@@ -21,8 +21,16 @@ I class
 	^aPeanoNumber next
 	! !
 
-!I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 20:35:30'!
+!I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 21:02:10'!
+- aPeanoNumber
+	^self error: self descripcionDeErrorDeNumerosNegativosNoSoportados 
+	! !
+
+!I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 21:06:23'!
 / aPeanoNumber
+	self < aPeanoNumber ifTrue: [
+		^self error: self descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor
+	].
 	self < (aPeanoNumber * II) 
 		ifTrue: [ ^I ]
 		ifFalse: [ ^(self - aPeanoNumber / aPeanoNumber) next ]	.
@@ -34,6 +42,16 @@ I class
 !I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 20:41:40'!
 < aPeanoNumber
 	^self name size < aPeanoNumber name size! !
+
+!I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 21:04:05'!
+descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor
+	^'No se puede dividir por un numero mas grande'
+	! !
+
+!I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 21:01:53'!
+descripcionDeErrorDeNumerosNegativosNoSoportados
+	^'No se puede restar por un numero mas grande'
+	! !
 
 !I class methodsFor: 'as yet unclassified' stamp: 'CM 9/16/2020 19:36:02'!
 next
