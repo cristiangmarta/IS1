@@ -144,6 +144,111 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 07:59:31'!
+test01
+
+	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder result|
+	
+	stack := OOStack new.
+	firstPushedObject := 'first'.
+	secondPushedObject := 'second'.
+	thirdPushedObject := 'third'.
+	fourthPushedObject := 'fourth'.
+	
+	stack push: firstPushedObject.
+	stack push: secondPushedObject.
+	stack push: thirdPushedObject .
+	stack push: fourthPushedObject .
+	
+	finder:= SentenceFinderByPrefix with: stack.
+	result:=finder find: 'fou'.
+	self assert: (Bag with:fourthPushedObject  )=(Bag with: (result pop)).
+	self assert: result isEmpty .
+	
+	self assert: stack pop = fourthPushedObject.
+	self assert: stack pop = thirdPushedObject.
+	self assert: stack pop = secondPushedObject.
+	self assert: stack pop = firstPushedObject.
+	self assert: stack isEmpty .
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 08:01:04'!
+test02
+
+	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder result|
+
+	stack := OOStack new.
+	firstPushedObject := 'first'.
+	secondPushedObject := 'second'.
+	thirdPushedObject := 'third'.
+	fourthPushedObject := 'thirsty'.
+	
+	stack push: firstPushedObject.
+	stack push: secondPushedObject.
+	stack push: thirdPushedObject .
+	stack push: fourthPushedObject .
+	
+	finder:= SentenceFinderByPrefix with: stack.
+	result:=finder find: 'thi'.
+	
+	self assert: (Bag with:thirdPushedObject with:fourthPushedObject  )=(Bag with: (result pop) with: (result pop)).
+	
+	self assert: result isEmpty.
+	
+	self assert: stack pop = fourthPushedObject.
+	self assert: stack pop = thirdPushedObject.
+	self assert: stack pop = secondPushedObject.
+	self assert: stack pop = firstPushedObject.
+	
+	self assert: stack isEmpty .
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 08:49:37'!
+test03
+
+	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder|
+
+	stack := OOStack new.
+	firstPushedObject := 'first'.
+	secondPushedObject := 'second'.
+	thirdPushedObject := 'third'.
+	fourthPushedObject := 'thirsty'.
+	
+	stack push: firstPushedObject.
+	stack push: secondPushedObject.
+	stack push: thirdPushedObject .
+	stack push: fourthPushedObject .
+	
+	finder:= SentenceFinderByPrefix with: stack.
+	self
+		should: [finder find: 'ds as' ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription ]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 08:50:31'!
+test04
+
+	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder|
+
+	stack := OOStack new.
+	firstPushedObject := 'first'.
+	secondPushedObject := 'second'.
+	thirdPushedObject := 'third'.
+	fourthPushedObject := 'thirsty'.
+	
+	stack push: firstPushedObject.
+	stack push: secondPushedObject.
+	stack push: thirdPushedObject .
+	stack push: fourthPushedObject .
+	
+	finder:= SentenceFinderByPrefix with: stack.
+	self
+		should: [finder find: '' ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix EmptyPrefixErrorDescription ]! !
+
 
 !classDefinition: #ElementWithLink category: #'Stack-Exercise'!
 Object subclass: #ElementWithLink
@@ -180,15 +285,15 @@ isEmpty
 linked
 OOStack error: OOStack stackEmptyErrorDescription! !
 
-!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 20:21:59'!
+!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'a 10/6/2020 08:20:41'!
 value
-OOStack error: OOStack stackEmptyErrorDescription
+self error: OOStack stackEmptyErrorDescription
 ! !
 
 
 !classDefinition: #FilledElementWithLink category: #'Stack-Exercise'!
 ElementWithLink subclass: #FilledElementWithLink
-	instanceVariableNames: 'Value LinkedElement'
+	instanceVariableNames: 'value linkedElement'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
@@ -197,19 +302,19 @@ ElementWithLink subclass: #FilledElementWithLink
 isEmpty
 ^false! !
 
-!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 12:08:32'!
+!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/6/2020 08:32:44'!
 linked
-^LinkedElement ! !
+^linkedElement ! !
 
-!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 12:27:23'!
+!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/6/2020 08:32:39'!
 value
-^Value! !
+^value! !
 
 
-!FilledElementWithLink methodsFor: 'Initialize' stamp: 'a 10/4/2020 11:19:32'!
-initializeWithValue: ValueToInsert AndLinkedTo: Element
-Value:=ValueToInsert.
-LinkedElement:=Element
+!FilledElementWithLink methodsFor: 'Initialize' stamp: 'a 10/6/2020 08:32:57'!
+initializeWithValue: aValue AndLinkedTo: anElement
+value:=aValue.
+linkedElement:=anElement 
 ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -218,9 +323,9 @@ LinkedElement:=Element
 FilledElementWithLink class
 	instanceVariableNames: ''!
 
-!FilledElementWithLink class methodsFor: 'InstanceCreation' stamp: 'a 10/4/2020 11:18:13'!
-newElementWithValue: Value AndLinkedTo: Element
-^self new initializeWithValue: Value AndLinkedTo: Element! !
+!FilledElementWithLink class methodsFor: 'InstanceCreation' stamp: 'a 10/6/2020 08:32:13'!
+newElementWithValue: aValue AndLinkedTo: anElement
+^self new initializeWithValue: aValue AndLinkedTo: anElement! !
 
 
 !classDefinition: #OOStack category: #'Stack-Exercise'!
@@ -249,9 +354,9 @@ top:= top linked.
 size:=size-1.
 ^ValorEliminado ! !
 
-!OOStack methodsFor: 'StackActions' stamp: 'a 10/4/2020 11:28:14'!
-push: element
-top:=FilledElementWithLink newElementWithValue:  element AndLinkedTo: top.
+!OOStack methodsFor: 'StackActions' stamp: 'a 10/6/2020 08:31:10'!
+push: anElement
+top:=FilledElementWithLink newElementWithValue:  anElement AndLinkedTo: top.
 size:=size+1.! !
 
 !OOStack methodsFor: 'StackActions' stamp: 'a 10/4/2020 11:46:58'!
@@ -285,7 +390,89 @@ new
 
 !classDefinition: #SentenceFinderByPrefix category: #'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'a 10/6/2020 08:39:32'!
+find: aPrefix
+
+self prefixIsValid: aPrefix .
+
+^self findRecursive: aPrefix .
+
+
+
+
+
+
+! !
+
+
+!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'a 10/6/2020 08:55:46'!
+findRecursive: aPrefix
+|currentWord result deeperRecursiveResult|
+
+(stack isEmpty) 
+	ifTrue: [^OOStack new] 
+	ifFalse:[
+		currentWord:=stack pop.
+		deeperRecursiveResult:=(self findRecursive: aPrefix).
+		(currentWord beginsWith: aPrefix)
+		 	ifTrue: [	result:= deeperRecursiveResult push: currentWord.				] 
+			ifFalse: 	[result:=deeperRecursiveResult].
+		
+		stack push: currentWord.
+		^result.
+		]
+
+
+
+
+
+
+! !
+
+
+!SentenceFinderByPrefix methodsFor: 'private - error detection' stamp: 'a 10/6/2020 08:47:35'!
+prefixDoesNotHaveBlankSpaces: aPrefix
+
+	(aPrefix findString: ' ') > 0 ifTrue: [self error: self class BlankSpaceInThePrefixErrorDescription ].! !
+
+!SentenceFinderByPrefix methodsFor: 'private - error detection' stamp: 'a 10/6/2020 08:47:24'!
+prefixIsNotEmpty: aPrefix
+
+	^ aPrefix isEmpty ifTrue: [self error: self class EmptyPrefixErrorDescription ].! !
+
+!SentenceFinderByPrefix methodsFor: 'private - error detection' stamp: 'a 10/6/2020 08:35:16'!
+prefixIsValid: aPrefix
+self prefixDoesNotHaveBlankSpaces: aPrefix.
+self prefixIsNotEmpty: aPrefix.! !
+
+
+!SentenceFinderByPrefix methodsFor: 'private - initialization' stamp: 'a 10/6/2020 08:30:35'!
+initializeWith: aStack
+stack:=aStack
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: #'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'Instance Creation' stamp: 'a 10/6/2020 08:30:11'!
+with: aStack
+^SentenceFinderByPrefix new initializeWith: aStack! !
+
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'a 10/6/2020 08:46:59'!
+BlankSpaceInThePrefixErrorDescription
+
+^'Prefix can not have blank spaces!!'! !
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'a 10/6/2020 08:46:29'!
+EmptyPrefixErrorDescription
+
+^'Prefix can not be empty!!'! !
