@@ -139,115 +139,173 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: #'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'stackVacio stackUnElement stackMultipleElements'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 07:59:31'!
-test01
+!SentenceFinderByPrefixTest methodsFor: 'setUp/tearDown' stamp: 'CM 10/7/2020 17:15:53'!
+setUp
+	
+	stackVacio := OOStack new.
+	stackUnElement := stackVacio copy push: 'winter is coming'.
+	stackMultipleElements := stackUnElement copy.
+	stackMultipleElements push: 'winning is everything';
+					   push: 'The winds of Winter';
+					   push: 'Winter is here'.
+	
 
-	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder result|
-	
-	stack := OOStack new.
-	firstPushedObject := 'first'.
-	secondPushedObject := 'second'.
-	thirdPushedObject := 'third'.
-	fourthPushedObject := 'fourth'.
-	
-	stack push: firstPushedObject.
-	stack push: secondPushedObject.
-	stack push: thirdPushedObject .
-	stack push: fourthPushedObject .
-	
-	finder:= SentenceFinderByPrefix with: stack.
-	result:=finder find: 'fou'.
-	self assert: (Bag with:fourthPushedObject  )=(Bag with: (result pop)).
-	self assert: result isEmpty .
-	
-	self assert: stack pop = fourthPushedObject.
-	self assert: stack pop = thirdPushedObject.
-	self assert: stack pop = secondPushedObject.
-	self assert: stack pop = firstPushedObject.
-	self assert: stack isEmpty .
+
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 08:01:04'!
-test02
 
-	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder result|
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 16:54:06'!
+shouldNotModify: aStack
+		! !
 
-	stack := OOStack new.
-	firstPushedObject := 'first'.
-	secondPushedObject := 'second'.
-	thirdPushedObject := 'third'.
-	fourthPushedObject := 'thirsty'.
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:18:04'!
+test01FindOnEmptyStackReturnsEmptyStack
 	
-	stack push: firstPushedObject.
-	stack push: secondPushedObject.
-	stack push: thirdPushedObject .
-	stack push: fourthPushedObject .
+	| finder result |
+	finder := SentenceFinderByPrefix with: stackVacio.
 	
-	finder:= SentenceFinderByPrefix with: stack.
-	result:=finder find: 'thi'.
+	result := finder find: 'KO'.
+	self assert: result isEmpty.
 	
-	self assert: (Bag with:thirdPushedObject with:fourthPushedObject  )=(Bag with: (result pop) with: (result pop)).
+	self shouldNotModify: stackVacio
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:20:26'!
+test02FindExistingPrefixInAStackWith1Element
+	
+	| finder result |
+	finder := SentenceFinderByPrefix with: stackUnElement .
+	
+	result := finder find: 'wint'.
+	
+	self assert: result pop = stackUnElement top.
+	self assert: result isEmpty.
+	
+	self shouldNotModify: stackUnElement 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:21:09'!
+test03FindNonExistentPrefixInAStackWith1Element
+	
+	| finder result |
+	finder := SentenceFinderByPrefix with: stackUnElement .
+	
+	result := finder find: 'wit'.
 	
 	self assert: result isEmpty.
 	
-	self assert: stack pop = fourthPushedObject.
-	self assert: stack pop = thirdPushedObject.
-	self assert: stack pop = secondPushedObject.
-	self assert: stack pop = firstPushedObject.
-	
-	self assert: stack isEmpty .
-! !
+	self shouldNotModify: stackUnElement 
+		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 08:49:37'!
-test03
-
-	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder|
-
-	stack := OOStack new.
-	firstPushedObject := 'first'.
-	secondPushedObject := 'second'.
-	thirdPushedObject := 'third'.
-	fourthPushedObject := 'thirsty'.
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:21:37'!
+test04FindNonExistentPrefixInAStackWithMultipleElements
 	
-	stack push: firstPushedObject.
-	stack push: secondPushedObject.
-	stack push: thirdPushedObject .
-	stack push: fourthPushedObject .
+	| finder result |
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
 	
-	finder:= SentenceFinderByPrefix with: stack.
+	result := finder find: 'wit'.
+	
+	self assert: result isEmpty.
+	
+	self shouldNotModify: stackMultipleElements 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:25:48'!
+test05FindPrefixInAStackWithMultipleMatches
+	
+	| finder result |
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	
+	result := finder find: 'win'.
+	
+	"fijarse de que el orden no importe"
+	self assert: result pop = 'winning is everything'.
+	self assert: result pop = 'winter is coming'.
+
+	self assert: result isEmpty.
+	
+	self shouldNotModify: stackMultipleElements 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:26:23'!
+test06FindPrefixInAStackWithOnly1Match
+	
+	| finder result |
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	
+	result := finder find: 'winning'.
+	
+	
+	"fijarse de que el orden no importe"
+	self assert: result pop = 'winning is everything'.
+
+	self assert: result isEmpty.
+	
+	self shouldNotModify: stackMultipleElements 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:29:32'!
+test07RaisesErrorWhenPrefixIsEmpty
+	
+	| finder |
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	
 	self
-		should: [finder find: 'ds as' ]
+		should: [ finder find: '' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix EmptyPrefixErrorDescription ].
+	
+	self shouldNotModify: stackMultipleElements 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:31:17'!
+test08RaisesErrorWhenPrefixHasWhitespace
+	
+	| finder |
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	
+	self
+		should: [ finder find: 'Wi nt' ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription ].
+	
+	self shouldNotModify: stackMultipleElements 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:32:05'!
+test09RaisesErrorWhenPrefixHasWhitespaceEvenIfItExistsInTheStack
+	
+	| finder |
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	
+	self
+		should: [ finder find: 'Winter is here' ]
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription ]! !
-
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/6/2020 08:50:31'!
-test04
-
-	| stack firstPushedObject secondPushedObject thirdPushedObject fourthPushedObject finder|
-
-	stack := OOStack new.
-	firstPushedObject := 'first'.
-	secondPushedObject := 'second'.
-	thirdPushedObject := 'third'.
-	fourthPushedObject := 'thirsty'.
+			self assert: anError messageText = SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription ].
 	
-	stack push: firstPushedObject.
-	stack push: secondPushedObject.
-	stack push: thirdPushedObject .
-	stack push: fourthPushedObject .
+	self shouldNotModify: stackMultipleElements 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:44:05'!
+test10PrefixIsCaseSensitive
 	
-	finder:= SentenceFinderByPrefix with: stack.
-	self
-		should: [finder find: '' ]
-		raise: Error - MessageNotUnderstood 
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = SentenceFinderByPrefix EmptyPrefixErrorDescription ]! !
+	| finder result originalStack |
+	originalStack := stackMultipleElements copy.
+	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	
+	result := finder find: 'winter'.
+	
+	"self shouldNotContain: result oration: 'Winter is here'."
+	self shouldStack: originalStack beEqualTo: stackMultipleElements
+		! !
 
 
 !classDefinition: #ElementWithLink category: #'Stack-Exercise'!
