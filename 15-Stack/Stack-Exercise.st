@@ -32,7 +32,7 @@ test03PopRemovesElementsFromTheStack
 	stack := OOStack new.
 	stack push: 'something'.
 	stack pop.
-		self assert: stack isEmpty
+		self assert: stack isEmpty
 	! !
 
 !OOStackTest methodsFor: 'test' stamp: 'NR 5/13/2020 13:30:09'!
@@ -159,153 +159,186 @@ setUp
 ! !
 
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 16:54:06'!
-shouldNotModify: aStack
-		! !
-
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:18:04'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:16'!
 test01FindOnEmptyStackReturnsEmptyStack
+|expectedResult|
 	
-	| finder result |
-	finder := SentenceFinderByPrefix with: stackVacio.
+	expectedResult:=OOStack new.
 	
-	result := finder find: 'KO'.
-	self assert: result isEmpty.
-	
-	self shouldNotModify: stackVacio
+	self shouldFind: 'KO' OnTheStack: stackVacio  PreserveStackOrderAndReturn: expectedResult.
+
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:20:26'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:20'!
 test02FindExistingPrefixInAStackWith1Element
+|expectedResult|
 	
-	| finder result |
-	finder := SentenceFinderByPrefix with: stackUnElement .
+	expectedResult:=OOStack new push: 'winter is coming'.
 	
-	result := finder find: 'wint'.
+	self shouldFind: 'wint' OnTheStack: stackUnElement  PreserveStackOrderAndReturn: expectedResult.
 	
-	self assert: result pop = stackUnElement top.
-	self assert: result isEmpty.
-	
-	self shouldNotModify: stackUnElement 
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:21:09'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:23'!
 test03FindNonExistentPrefixInAStackWith1Element
+|expectedResult|
 	
-	| finder result |
-	finder := SentenceFinderByPrefix with: stackUnElement .
+	expectedResult:=OOStack new.
 	
-	result := finder find: 'wit'.
-	
-	self assert: result isEmpty.
-	
-	self shouldNotModify: stackUnElement 
-		! !
+	self shouldFind: 'wit' OnTheStack: stackUnElement  PreserveStackOrderAndReturn: expectedResult.
+	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:21:37'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:27'!
 test04FindNonExistentPrefixInAStackWithMultipleElements
+|expectedResult|
 	
-	| finder result |
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	expectedResult:=OOStack new.
 	
-	result := finder find: 'wit'.
-	
-	self assert: result isEmpty.
-	
-	self shouldNotModify: stackMultipleElements 
-		! !
+	self shouldFind: 'wit' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.
+	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:25:48'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:30'!
 test05FindPrefixInAStackWithMultipleMatches
+|expectedResult|
 	
-	| finder result |
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	expectedResult:=(OOStack new push: 'winter is coming') push: 'winning is everything'.
 	
-	result := finder find: 'win'.
-	
-	"fijarse de que el orden no importe"
-	self assert: result pop = 'winning is everything'.
-	self assert: result pop = 'winter is coming'.
+	self shouldFind: 'win' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.
+	! !
 
-	self assert: result isEmpty.
-	
-	self shouldNotModify: stackMultipleElements 
-		! !
-
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:26:23'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:33'!
 test06FindPrefixInAStackWithOnly1Match
+|expectedResult|
 	
-	| finder result |
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	expectedResult:=OOStack new push: 'winning is everything'.
 	
-	result := finder find: 'winning'.
-	
-	
-	"fijarse de que el orden no importe"
-	self assert: result pop = 'winning is everything'.
+	self shouldFind: 'winning' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.! !
 
-	self assert: result isEmpty.
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:42'!
+test07PrefixIsCaseSensitive
+|expectedResult|
 	
-	self shouldNotModify: stackMultipleElements 
+	expectedResult:=OOStack new push: 'Winter is here'. 
+	
+	self shouldFind: 'Wint' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.
+	
+	
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 03:06:56'!
+test08RaisesErrorWhenPrefixHasWhitespaceInStackWithAtLeast1Element
+
+	self shouldFind: 'Wi nt' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 03:07:08'!
+test09RaisesErrorWhenPrefixHasWhitespaceInEmptyStack
+
+	self shouldFind: 'Wi nt' OnTheStack: stackVacio PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:54'!
+test10RaisesErrorWhenPrefixHasWhitespaceEvenIfItExistsInTheStack
+
+	self shouldFind: 'Winter is here' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:57'!
+test11RaisesErrorWhenPrefixIsJustAWhiteSpace
+
+	self shouldFind: ' ' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:49:44'!
+test12RaisesErrorWhenPrefixIsEmptyInStackWithAtLeast1Element
+	self shouldFind: '' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix EmptyPrefixErrorDescription! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:49:44'!
+test13RaisesErrorWhenPrefixIsEmptyInEmptyStack
+	self shouldFind: '' OnTheStack: stackVacio PreserveStackOrderAndRaiseError: SentenceFinderByPrefix EmptyPrefixErrorDescription! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:54'!
+makeABagFrom: aStack
+|bag sizeOfStack|
+
+	bag:=Bag new.
+
+	sizeOfStack:=aStack size.
+	1 to: sizeOfStack do: [:x |bag add: (aStack pop)].
+
+	^bag
+
+
+
+
+
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:47'!
+shouldFind: aPrefix OnTheStack: aStack PreserveStackOrderAndRaiseError: anErrorDescription
+| originalStack|
+	originalStack:=aStack copy.
+	
+	self shouldFind: aPrefix OnTheStack: aStack RaiseError: anErrorDescription.
+	
+	self shouldStack: originalStack beEqualTo: aStack.  
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:29:32'!
-test07RaisesErrorWhenPrefixIsEmpty
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:43'!
+shouldFind: aPrefix OnTheStack: aStack PreserveStackOrderAndReturn: expectedResult
+| originalStack|
 	
-	| finder |
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
+	originalStack := aStack copy.
+	
+	self shouldFind: aPrefix OnTheStack: aStack  Returns: expectedResult.
+	
+	self shouldStack: originalStack beEqualTo: aStack 
+		! !
+
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:38'!
+shouldFind: aPrefix OnTheStack: aStack RaiseError: anErrorDescription
+| finder|
+
+	finder := SentenceFinderByPrefix with: aStack .
 	
 	self
-		should: [ finder find: '' ]
+		should: [ finder find: aPrefix ]
 		raise: Error
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = SentenceFinderByPrefix EmptyPrefixErrorDescription ].
-	
-	self shouldNotModify: stackMultipleElements 
+			self assert: anError messageText = anErrorDescription ].
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:31:17'!
-test08RaisesErrorWhenPrefixHasWhitespace
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:31'!
+shouldFind: aPrefix OnTheStack: aStack Returns: expectedResult 
 	
-	| finder |
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
+| finder result|
 	
-	self
-		should: [ finder find: 'Wi nt' ]
-		raise: Error
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription ].
+	finder := SentenceFinderByPrefix with: aStack .
+	result := finder find: aPrefix.
 	
-	self shouldNotModify: stackMultipleElements 
+	self shouldStack: result containSameElementsInAnyOrderOf: expectedResult .
+	
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:32:05'!
-test09RaisesErrorWhenPrefixHasWhitespaceEvenIfItExistsInTheStack
-	
-	| finder |
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
-	
-	self
-		should: [ finder find: 'Winter is here' ]
-		raise: Error - MessageNotUnderstood 
-		withExceptionDo: [ :anError |
-			self assert: anError messageText = SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription ].
-	
-	self shouldNotModify: stackMultipleElements 
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:23'!
+shouldStack: firstStack beEqualTo: secondStack
+|sizeOfFirstStack|
+
+	sizeOfFirstStack:=firstStack size.
+
+	1 to: sizeOfFirstStack do: [:x | self assert: firstStack pop = secondStack pop].
+
+	self assert: (secondStack isEmpty). 
+
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/7/2020 17:44:05'!
-test10PrefixIsCaseSensitive
-	
-	| finder result originalStack |
-	originalStack := stackMultipleElements copy.
-	finder := SentenceFinderByPrefix with: stackMultipleElements .
-	
-	result := finder find: 'winter'.
-	
-	"self shouldNotContain: result oration: 'Winter is here'."
-	self shouldStack: originalStack beEqualTo: stackMultipleElements
-		! !
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:27'!
+shouldStack: firstStack containSameElementsInAnyOrderOf: secondStack
+
+	self assert: (self makeABagFrom: firstStack) = (self makeABagFrom: secondStack). 
+
+
+
+
+! !
 
 
 !classDefinition: #ElementWithLink category: #'Stack-Exercise'!
@@ -468,22 +501,35 @@ self prefixIsValid: aPrefix .
 ! !
 
 
-!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'a 10/6/2020 08:55:46'!
+!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'a 10/8/2020 03:03:55'!
 findRecursive: aPrefix
-|currentWord result deeperRecursiveResult|
 
 (stack isEmpty) 
 	ifTrue: [^OOStack new] 
 	ifFalse:[
-		currentWord:=stack pop.
-		deeperRecursiveResult:=(self findRecursive: aPrefix).
-		(currentWord beginsWith: aPrefix)
-		 	ifTrue: [	result:= deeperRecursiveResult push: currentWord.				] 
-			ifFalse: 	[result:=deeperRecursiveResult].
-		
-		stack push: currentWord.
-		^result.
+		^self recursiveCaseOfFindRecursive: aPrefix
 		]
+
+
+
+
+
+
+! !
+
+!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'a 10/8/2020 03:03:23'!
+recursiveCaseOfFindRecursive: aPrefix
+|currentWord result deeperRecursiveResult|
+
+	currentWord:=stack pop.
+	deeperRecursiveResult:=(self findRecursive: aPrefix).
+	
+	(currentWord beginsWith: aPrefix)
+		ifTrue: [	result:= deeperRecursiveResult push: currentWord.				] 
+		ifFalse: 	[result:=deeperRecursiveResult].
+		
+	stack push: currentWord.
+	^result.
 
 
 
