@@ -139,17 +139,18 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: #'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: 'stackVacio stackUnElement stackMultipleElements'
+	instanceVariableNames: 'stackVacio stackOneElement stackMultipleElements'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'setUp/tearDown' stamp: 'CM 10/7/2020 17:15:53'!
+!SentenceFinderByPrefixTest methodsFor: 'setUp/tearDown' stamp: 'CM 10/8/2020 16:06:24'!
 setUp
 	
 	stackVacio := OOStack new.
-	stackUnElement := stackVacio copy push: 'winter is coming'.
-	stackMultipleElements := stackUnElement copy.
+	stackOneElement := OOStack new push: 'winter is coming'.
+						
+	stackMultipleElements := stackOneElement copy.
 	stackMultipleElements push: 'winning is everything';
 					   push: 'The winds of Winter';
 					   push: 'Winter is here'.
@@ -159,64 +160,71 @@ setUp
 ! !
 
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:16'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:07:11'!
 test01FindOnEmptyStackReturnsEmptyStack
-|expectedResult|
+
+	|expectedResult|
 	
-	expectedResult:=OOStack new.
+	expectedResult := OOStack new.
 	
 	self shouldFind: 'KO' OnTheStack: stackVacio  PreserveStackOrderAndReturn: expectedResult.
 
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:20'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:07:34'!
 test02FindExistingPrefixInAStackWith1Element
-|expectedResult|
+
+	| expectedResult |
 	
-	expectedResult:=OOStack new push: 'winter is coming'.
+	expectedResult := OOStack new push: 'winter is coming'.
 	
-	self shouldFind: 'wint' OnTheStack: stackUnElement  PreserveStackOrderAndReturn: expectedResult.
+	self shouldFind: 'wint' OnTheStack: stackOneElement  PreserveStackOrderAndReturn: expectedResult.
 	
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:23'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:08:12'!
 test03FindNonExistentPrefixInAStackWith1Element
-|expectedResult|
+
+	| expectedResult |
 	
-	expectedResult:=OOStack new.
+	expectedResult := OOStack new.
 	
-	self shouldFind: 'wit' OnTheStack: stackUnElement  PreserveStackOrderAndReturn: expectedResult.
+	self shouldFind: 'wit' OnTheStack: stackOneElement  PreserveStackOrderAndReturn: expectedResult.
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:27'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:08:25'!
 test04FindNonExistentPrefixInAStackWithMultipleElements
-|expectedResult|
 	
-	expectedResult:=OOStack new.
+	| expectedResult |
+	
+	expectedResult := OOStack new.
 	
 	self shouldFind: 'wit' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:30'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:09:21'!
 test05FindPrefixInAStackWithMultipleMatches
-|expectedResult|
+
+	| expectedResult |
 	
-	expectedResult:=(OOStack new push: 'winter is coming') push: 'winning is everything'.
+	expectedResult := (OOStack new push: 'winter is coming') push: 'winning is everything'.
 	
 	self shouldFind: 'win' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:33'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:09:45'!
 test06FindPrefixInAStackWithOnly1Match
-|expectedResult|
+
+	| expectedResult |
 	
-	expectedResult:=OOStack new push: 'winning is everything'.
+	expectedResult := OOStack new push: 'winning is everything'.
 	
 	self shouldFind: 'winning' OnTheStack: stackMultipleElements  PreserveStackOrderAndReturn: expectedResult.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:42'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:09:38'!
 test07PrefixIsCaseSensitive
-|expectedResult|
+
+	| expectedResult |
 	
 	expectedResult:=OOStack new push: 'Winter is here'. 
 	
@@ -225,43 +233,56 @@ test07PrefixIsCaseSensitive
 	
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 03:06:56'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:10:10'!
 test08RaisesErrorWhenPrefixHasWhitespaceInStackWithAtLeast1Element
 
-	self shouldFind: 'Wi nt' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+	self shouldFind: 'Wi nt' 
+	      OnTheStack: stackMultipleElements 
+	      PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 03:07:08'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:10:23'!
 test09RaisesErrorWhenPrefixHasWhitespaceInEmptyStack
 
-	self shouldFind: 'Wi nt' OnTheStack: stackVacio PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+	self shouldFind: 'Wi nt' 
+	      OnTheStack: stackVacio 
+	      PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:54'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:10:38'!
 test10RaisesErrorWhenPrefixHasWhitespaceEvenIfItExistsInTheStack
 
-	self shouldFind: 'Winter is here' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+	self shouldFind: 'Winter is here' 
+	      OnTheStack: stackMultipleElements 
+	      PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:55:57'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:10:49'!
 test11RaisesErrorWhenPrefixIsJustAWhiteSpace
 
-	self shouldFind: ' ' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
+	self shouldFind: ' ' 
+	      OnTheStack: stackMultipleElements 
+	      PreserveStackOrderAndRaiseError: SentenceFinderByPrefix BlankSpaceInThePrefixErrorDescription! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:49:44'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:11:01'!
 test12RaisesErrorWhenPrefixIsEmptyInStackWithAtLeast1Element
-	self shouldFind: '' OnTheStack: stackMultipleElements PreserveStackOrderAndRaiseError: SentenceFinderByPrefix EmptyPrefixErrorDescription! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'a 10/8/2020 02:49:44'!
+	self shouldFind: '' 
+	      OnTheStack: stackMultipleElements 
+	      PreserveStackOrderAndRaiseError: SentenceFinderByPrefix EmptyPrefixErrorDescription! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'CM 10/8/2020 16:11:14'!
 test13RaisesErrorWhenPrefixIsEmptyInEmptyStack
-	self shouldFind: '' OnTheStack: stackVacio PreserveStackOrderAndRaiseError: SentenceFinderByPrefix EmptyPrefixErrorDescription! !
+
+	self shouldFind: '' 
+	      OnTheStack: stackVacio 
+	      PreserveStackOrderAndRaiseError: SentenceFinderByPrefix EmptyPrefixErrorDescription! !
 
 
-!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:54'!
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'CM 10/8/2020 16:15:31'!
 makeABagFrom: aStack
-|bag sizeOfStack|
+	| bag |
 
-	bag:=Bag new.
+	bag := Bag new.
 
-	sizeOfStack:=aStack size.
-	1 to: sizeOfStack do: [:x |bag add: (aStack pop)].
+	1 to: aStack size do: [ :x | bag add: (aStack pop) ].
 
 	^bag
 
@@ -272,44 +293,47 @@ makeABagFrom: aStack
 
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:47'!
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'CM 10/8/2020 16:15:53'!
 shouldFind: aPrefix OnTheStack: aStack PreserveStackOrderAndRaiseError: anErrorDescription
-| originalStack|
-	originalStack:=aStack copy.
+
+	| originalStack |
+	
+	originalStack := aStack copy.
 	
 	self shouldFind: aPrefix OnTheStack: aStack RaiseError: anErrorDescription.
 	
 	self shouldStack: originalStack beEqualTo: aStack.  
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:43'!
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'CM 10/8/2020 16:11:54'!
 shouldFind: aPrefix OnTheStack: aStack PreserveStackOrderAndReturn: expectedResult
-| originalStack|
+
+	| originalStack |
 	
 	originalStack := aStack copy.
 	
-	self shouldFind: aPrefix OnTheStack: aStack  Returns: expectedResult.
+	self shouldFind: aPrefix OnTheStack: aStack Returns: expectedResult.
 	
 	self shouldStack: originalStack beEqualTo: aStack 
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:38'!
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'CM 10/8/2020 16:16:54'!
 shouldFind: aPrefix OnTheStack: aStack RaiseError: anErrorDescription
-| finder|
+
+	| finder |
 
 	finder := SentenceFinderByPrefix with: aStack .
 	
-	self
-		should: [ finder find: aPrefix ]
+	self should: [ finder find: aPrefix ]		
 		raise: Error
 		withExceptionDo: [ :anError |
 			self assert: anError messageText = anErrorDescription ].
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:31'!
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'CM 10/8/2020 16:16:47'!
 shouldFind: aPrefix OnTheStack: aStack Returns: expectedResult 
 	
-| finder result|
+	| finder result |
 	
 	finder := SentenceFinderByPrefix with: aStack .
 	result := finder find: aPrefix.
@@ -318,15 +342,13 @@ shouldFind: aPrefix OnTheStack: aStack Returns: expectedResult
 	
 		! !
 
-!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'a 10/8/2020 02:54:23'!
+!SentenceFinderByPrefixTest methodsFor: 'private - test' stamp: 'CM 10/8/2020 16:14:18'!
 shouldStack: firstStack beEqualTo: secondStack
-|sizeOfFirstStack|
+	
+	self assert: (firstStack size = secondStack size). 
 
-	sizeOfFirstStack:=firstStack size.
+	1 to: firstStack size do: [ :x | self assert: firstStack pop = secondStack pop ].
 
-	1 to: sizeOfFirstStack do: [:x | self assert: firstStack pop = secondStack pop].
-
-	self assert: (secondStack isEmpty). 
 
 		! !
 
@@ -348,17 +370,17 @@ Object subclass: #ElementWithLink
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!ElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 10:13:56'!
+!ElementWithLink methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:54:16'!
 isEmpty
-self subclassResponsibility ! !
+	self subclassResponsibility .! !
 
-!ElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 12:07:44'!
+!ElementWithLink methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:54:20'!
 linked
-self subclassResponsibility ! !
+	self subclassResponsibility .! !
 
-!ElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 11:35:32'!
+!ElementWithLink methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:54:24'!
 value
-self subclassResponsibility ! !
+	self subclassResponsibility .! !
 
 
 !classDefinition: #EmptyElement category: #'Stack-Exercise'!
@@ -368,17 +390,20 @@ ElementWithLink subclass: #EmptyElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 10:10:58'!
+!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:54:37'!
 isEmpty
-^true! !
 
-!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 20:21:53'!
+	^ true .! !
+
+!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:59:20'!
 linked
-OOStack error: OOStack stackEmptyErrorDescription! !
 
-!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'a 10/6/2020 08:20:41'!
+	self error: OOStack stackEmptyErrorDescription.! !
+
+!EmptyElement methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:55:01'!
 value
-self error: OOStack stackEmptyErrorDescription
+
+	self error: OOStack stackEmptyErrorDescription
 ! !
 
 
@@ -389,23 +414,27 @@ ElementWithLink subclass: #FilledElementWithLink
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/4/2020 10:37:58'!
+!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:55:27'!
 isEmpty
-^false! !
 
-!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/6/2020 08:32:44'!
+	^ false.! !
+
+!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:55:35'!
 linked
-^linkedElement ! !
 
-!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'a 10/6/2020 08:32:39'!
+	^ linkedElement .! !
+
+!FilledElementWithLink methodsFor: 'InformationRetrieval' stamp: 'CM 10/8/2020 15:55:44'!
 value
-^value! !
+
+	^ value.! !
 
 
-!FilledElementWithLink methodsFor: 'Initialize' stamp: 'a 10/6/2020 08:32:57'!
+!FilledElementWithLink methodsFor: 'Initialization' stamp: 'CM 10/8/2020 15:56:06'!
 initializeWithValue: aValue AndLinkedTo: anElement
-value:=aValue.
-linkedElement:=anElement 
+
+	value := aValue.
+	linkedElement := anElement.
 ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -414,9 +443,10 @@ linkedElement:=anElement
 FilledElementWithLink class
 	instanceVariableNames: ''!
 
-!FilledElementWithLink class methodsFor: 'InstanceCreation' stamp: 'a 10/6/2020 08:32:13'!
+!FilledElementWithLink class methodsFor: 'InstanceCreation' stamp: 'CM 10/8/2020 15:56:31'!
 newElementWithValue: aValue AndLinkedTo: anElement
-^self new initializeWithValue: aValue AndLinkedTo: anElement! !
+
+	^ self new initializeWithValue: aValue AndLinkedTo: anElement.! !
 
 
 !classDefinition: #OOStack category: #'Stack-Exercise'!
@@ -426,39 +456,43 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'StackInformation' stamp: 'a 10/4/2020 10:12:30'!
+!OOStack methodsFor: 'StackInformation' stamp: 'CM 10/8/2020 15:53:41'!
 isEmpty
-^top isEmpty 
+
+	^ top isEmpty .
 ! !
 
-!OOStack methodsFor: 'StackInformation' stamp: 'a 10/4/2020 10:02:33'!
+!OOStack methodsFor: 'StackInformation' stamp: 'CM 10/8/2020 15:53:47'!
 size
-^size.! !
+
+	^ size.! !
 
 
-!OOStack methodsFor: 'StackActions' stamp: 'a 10/4/2020 20:25:03'!
+!OOStack methodsFor: 'StackActions' stamp: 'CM 10/8/2020 15:53:00'!
 pop
-|ValorEliminado|
+	| ValorEliminado |
 
-ValorEliminado:=top value.
-top:= top linked.
-size:=size-1.
-^ValorEliminado ! !
+	ValorEliminado := top value.
+	top := top linked.
+	size := size-1.
+	^ ValorEliminado.! !
 
-!OOStack methodsFor: 'StackActions' stamp: 'a 10/6/2020 08:31:10'!
+!OOStack methodsFor: 'StackActions' stamp: 'CM 10/8/2020 15:53:24'!
 push: anElement
-top:=FilledElementWithLink newElementWithValue:  anElement AndLinkedTo: top.
-size:=size+1.! !
+	top := FilledElementWithLink newElementWithValue:  anElement AndLinkedTo: top.
+	size := size+1.! !
 
-!OOStack methodsFor: 'StackActions' stamp: 'a 10/4/2020 11:46:58'!
+!OOStack methodsFor: 'StackActions' stamp: 'CM 10/8/2020 15:53:32'!
 top
-^top value! !
+
+	^ top value.! !
 
 
-!OOStack methodsFor: 'Private - Initialization' stamp: 'a 10/4/2020 10:06:57'!
+!OOStack methodsFor: 'Initialization' stamp: 'CM 10/8/2020 15:52:04'!
 initialize
-top:=EmptyElement new.
-size:=0.! !
+
+	top := EmptyElement new.
+	size :=0.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -472,9 +506,10 @@ stackEmptyErrorDescription
 	^ 'Stack is empty!!'! !
 
 
-!OOStack class methodsFor: 'Instance Creation' stamp: 'a 10/4/2020 10:20:32'!
+!OOStack class methodsFor: 'Instance Creation' stamp: 'CM 10/8/2020 15:51:49'!
 new
-^super new initialize.
+
+	^ super new initialize.
 	
 ! !
 
@@ -486,12 +521,11 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'a 10/6/2020 08:39:32'!
+!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'CM 10/8/2020 15:46:11'!
 find: aPrefix
 
-self prefixIsValid: aPrefix .
-
-^self findRecursive: aPrefix .
+	self prefixIsValid: aPrefix.
+	^self findRecursive: aPrefix.
 
 
 
@@ -501,13 +535,13 @@ self prefixIsValid: aPrefix .
 ! !
 
 
-!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'a 10/8/2020 03:03:55'!
+!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'CM 10/8/2020 15:46:30'!
 findRecursive: aPrefix
 
-(stack isEmpty) 
-	ifTrue: [^OOStack new] 
-	ifFalse:[
-		^self recursiveCaseOfFindRecursive: aPrefix
+	(stack isEmpty) 
+		ifTrue: [^OOStack new] 
+		ifFalse: [
+			^self recursiveCaseOfFindRecursive: aPrefix
 		]
 
 
@@ -517,16 +551,16 @@ findRecursive: aPrefix
 
 ! !
 
-!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'a 10/8/2020 03:03:23'!
+!SentenceFinderByPrefix methodsFor: 'private - operations' stamp: 'CM 10/8/2020 15:48:00'!
 recursiveCaseOfFindRecursive: aPrefix
-|currentWord result deeperRecursiveResult|
+	|currentWord result deeperRecursiveResult|
 
-	currentWord:=stack pop.
-	deeperRecursiveResult:=(self findRecursive: aPrefix).
+	currentWord := stack pop.
+	deeperRecursiveResult := (self findRecursive: aPrefix).
 	
 	(currentWord beginsWith: aPrefix)
-		ifTrue: [	result:= deeperRecursiveResult push: currentWord.				] 
-		ifFalse: 	[result:=deeperRecursiveResult].
+		ifTrue:  [ result := deeperRecursiveResult push: currentWord.				] 
+		ifFalse: 	[ result := deeperRecursiveResult ].
 		
 	stack push: currentWord.
 	^result.
@@ -549,15 +583,15 @@ prefixIsNotEmpty: aPrefix
 
 	^ aPrefix isEmpty ifTrue: [self error: self class EmptyPrefixErrorDescription ].! !
 
-!SentenceFinderByPrefix methodsFor: 'private - error detection' stamp: 'a 10/6/2020 08:35:16'!
+!SentenceFinderByPrefix methodsFor: 'private - error detection' stamp: 'CM 10/8/2020 15:50:57'!
 prefixIsValid: aPrefix
-self prefixDoesNotHaveBlankSpaces: aPrefix.
-self prefixIsNotEmpty: aPrefix.! !
+	self prefixDoesNotHaveBlankSpaces: aPrefix.
+	self prefixIsNotEmpty: aPrefix.! !
 
 
-!SentenceFinderByPrefix methodsFor: 'private - initialization' stamp: 'a 10/6/2020 08:30:35'!
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'CM 10/8/2020 15:48:29'!
 initializeWith: aStack
-stack:=aStack
+	stack := aStack
 ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -566,17 +600,18 @@ stack:=aStack
 SentenceFinderByPrefix class
 	instanceVariableNames: ''!
 
-!SentenceFinderByPrefix class methodsFor: 'Instance Creation' stamp: 'a 10/6/2020 08:30:11'!
+!SentenceFinderByPrefix class methodsFor: 'Instance Creation' stamp: 'CM 10/8/2020 16:02:21'!
 with: aStack
-^SentenceFinderByPrefix new initializeWith: aStack! !
+
+	^ SentenceFinderByPrefix new initializeWith: aStack.! !
 
 
-!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'a 10/6/2020 08:46:59'!
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'CM 10/8/2020 16:01:58'!
 BlankSpaceInThePrefixErrorDescription
 
-^'Prefix can not have blank spaces!!'! !
+	^ 'Prefix can not have blank spaces!!'! !
 
-!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'a 10/6/2020 08:46:29'!
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'CM 10/8/2020 16:02:02'!
 EmptyPrefixErrorDescription
 
-^'Prefix can not be empty!!'! !
+	^ 'Prefix can not be empty!!'! !
