@@ -1,220 +1,296 @@
-!classDefinition: #XXTest category: 'ISW1 - Ejercicio 16'!
-TestCase subclass: #XXTest
+!classDefinition: #UnknownCommandError category: 'ISW1 - Ejercicio 16'!
+Error subclass: #UnknownCommandError
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!XXTest methodsFor: 'multiple' stamp: 'CM 10/24/2020 18:36:47'!
-test20
-	self assertExecuting: 'ff' whenHeading: $S movesRoverTo: #(12 20) pointing: $S.! !
-
-!XXTest methodsFor: 'multiple' stamp: 'CM 10/24/2020 18:36:52'!
-test21
-	self assertExecuting: 'ffgff' whenHeading: $S movesRoverTo: #(12 20) pointing: $S.! !
-
-
-!XXTest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:10:37'!
-assertExecuting: aCommandList whenHeading: aCardinalPoint movesRoverTo: aPosition pointing: anotherCardinalPoint
-	| marsRover |
-	marsRover := MarsRover atX: 10 atY: 20 heading: aCardinalPoint .
-	
-	marsRover executeCommands: aCommandList.
-	
-	self assert: marsRover position equals: aPosition.
-	self assert: marsRover direction equals: anotherCardinalPoint .! !
-
-!XXTest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 16:57:39'!
-test01
-	| marsRover |
-	marsRover := MarsRover atX: 50 atY: 50 heading: $N.
-	
-	self assert: marsRover position equals: #(50 50).
-	self assert: marsRover direction equals: $N.! !
-
-!XXTest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:01:30'!
-test02
-	| marsRover |
-	marsRover := MarsRover atX: 10 atY: 20 heading: $E.
-	
-	self assert: marsRover position equals: #(10 20).
-	self assert: marsRover direction equals: $E.! !
-
-!XXTest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:11:34'!
-test03
-	
-	self assertExecuting: '' whenHeading: $E movesRoverTo: #(10 20) pointing: $E.
-! !
-
-
-!XXTest methodsFor: 'forward' stamp: 'CM 10/24/2020 18:12:12'!
-test04
-	
-	self assertExecuting: 'f' whenHeading: $E movesRoverTo: #(10 21) pointing: $E.
-! !
-
-!XXTest methodsFor: 'forward' stamp: 'CM 10/24/2020 18:12:36'!
-test05
-	self assertExecuting: 'f' whenHeading: $S movesRoverTo: #(11 20) pointing: $S.
-	! !
-
-!XXTest methodsFor: 'forward' stamp: 'CM 10/24/2020 18:15:25'!
-test10
-	
-	self assertExecuting: 'f' whenHeading: $N movesRoverTo: #(9 20) pointing: $N.
-	! !
-
-!XXTest methodsFor: 'forward' stamp: 'CM 10/24/2020 18:15:47'!
-test11
-	self assertExecuting: 'f' whenHeading: $O movesRoverTo: #(10 19) pointing: $O.! !
-
-
-!XXTest methodsFor: 'backwards' stamp: 'CM 10/24/2020 18:13:50'!
-test06
-	self assertExecuting: 'b' whenHeading: $O movesRoverTo: #(10 21) pointing: $O.
-	! !
-
-!XXTest methodsFor: 'backwards' stamp: 'CM 10/24/2020 18:14:26'!
-test07
-	self assertExecuting: 'b' whenHeading: $E movesRoverTo: #(10 19) pointing: $E.
-	! !
-
-!XXTest methodsFor: 'backwards' stamp: 'CM 10/24/2020 18:14:43'!
-test08
-	self assertExecuting: 'b' whenHeading: $N movesRoverTo: #(11 20) pointing: $N.
-	! !
-
-!XXTest methodsFor: 'backwards' stamp: 'CM 10/24/2020 18:15:03'!
-test09
-	self assertExecuting: 'b' whenHeading: $S movesRoverTo: #(9 20) pointing: $S.
-	! !
-
-
-!XXTest methodsFor: 'rotateRight' stamp: 'CM 10/24/2020 18:26:11'!
-test16
-	self assertExecuting: 'r' whenHeading: $N movesRoverTo: #(10 20) pointing: $E.! !
-
-!XXTest methodsFor: 'rotateRight' stamp: 'CM 10/24/2020 18:27:23'!
-test17
-	self assertExecuting: 'r' whenHeading: $E movesRoverTo: #(10 20) pointing: $S.! !
-
-!XXTest methodsFor: 'rotateRight' stamp: 'CM 10/24/2020 18:28:02'!
-test18
-	self assertExecuting: 'r' whenHeading: $S movesRoverTo: #(10 20) pointing: $O.! !
-
-!XXTest methodsFor: 'rotateRight' stamp: 'CM 10/24/2020 18:28:35'!
-test19
-	self assertExecuting: 'r' whenHeading: $O movesRoverTo: #(10 20) pointing: $N.! !
-
-
-!XXTest methodsFor: 'rotateLeft' stamp: 'CM 10/24/2020 18:18:01'!
-test12
-
-	self assertExecuting: 'l' whenHeading: $N movesRoverTo: #(10 20) pointing: $O.! !
-
-!XXTest methodsFor: 'rotateLeft' stamp: 'CM 10/24/2020 18:23:23'!
-test13
-
-	self assertExecuting: 'l' whenHeading: $O movesRoverTo: #(10 20) pointing: $S.! !
-
-!XXTest methodsFor: 'rotateLeft' stamp: 'CM 10/24/2020 18:24:08'!
-test14
-
-	self assertExecuting: 'l' whenHeading: $S movesRoverTo: #(10 20) pointing: $E.! !
-
-!XXTest methodsFor: 'rotateLeft' stamp: 'CM 10/24/2020 18:24:44'!
-test15
-
-	self assertExecuting: 'l' whenHeading: $E movesRoverTo: #(10 20) pointing: $N.! !
-
 
-!classDefinition: #MarsRover category: 'ISW1 - Ejercicio 16'!
-Object subclass: #MarsRover
-	instanceVariableNames: 'coordinateX coordinateY cardinalPoint'
+!classDefinition: #MarsRoverTest category: 'ISW1 - Ejercicio 16'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:39:41'!
-direction
-	^ cardinalPoint direction.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/25/2020 14:10:42'!
+assertExecuting: aCommandList on: aMarsRover movesItTo: aPosition facing: aCardinalPoint
+	
+	aMarsRover executeCommands: aCommandList.
+	
+	self assert: aMarsRover position equals: aPosition.
+	self assert: aMarsRover facingDirection equals: aCardinalPoint.	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:07:44'!
-executeCommands: aString 
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/25/2020 13:23:58'!
+test01MarsRoverShouldBeLocatedAtLandingPosition
+	| marsRover |
 	
-	aString do: [ :aCharacter |
-		((MarsRoverCommand subclasses detect: [:aSubClass | aSubClass canHandle: aCharacter ]) for: self) execute
-		ifFalse: [
-			^self
-		].
-	]	
+	marsRover := MarsRover landingAtX: 50 andY: 50 facing: $N.
+
+	self assert: marsRover position equals: #(50 50).
+	self assert: marsRover facingDirection equals: $N.! !
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/25/2020 14:13:27'!
+test02MarsRoverShouldNotMoveWhenGivenEmptyCommands
 	
+	self 
+		assertExecuting: '' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $N)
+	 	movesItTo: #(10 20) facing: $N
+		
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:55:50'!
-moveBackwards
-	
-	cardinalPoint moveBackwards.
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/25/2020 14:13:58'!
+test07MarsRoverExecutesManyCommandsCorrectly
+
+	self 
+		assertExecuting: 'ff' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $N)
+	 	movesItTo: #(8 20) facing: $N
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:45:12'!
-moveEast
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/25/2020 14:14:52'!
+test12MarsRoverStopsExecutionWhenUnknownCommandDetected
 	
-	coordinateY := coordinateY + 1.
+	self 
+		assertExecuting: 'ffbnff' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $W)
+	 	movesItTo: #(10 19) facing: $W
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:01:15'!
-moveForward
-	
-	cardinalPoint moveForward.
+
+!MarsRoverTest methodsFor: 'move forward tests' stamp: 'CM 10/25/2020 14:15:37'!
+test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth
+
+	self 
+		assertExecuting: 'f' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $N)
+	 	movesItTo: #(9 20) facing: $N
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:45:30'!
-moveNorth
+!MarsRoverTest methodsFor: 'move forward tests' stamp: 'CM 10/25/2020 14:15:59'!
+test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth
+
+	self 
+		assertExecuting: 'f' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $S)
+	 	movesItTo: #(11 20) facing: $S! !
+
+!MarsRoverTest methodsFor: 'move forward tests' stamp: 'CM 10/25/2020 14:16:17'!
+test05MarsRoverMovesForwardCorrectlyWhenHeadingEast
+
+	self 
+		assertExecuting: 'f' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $E)
+	 	movesItTo: #(10 21) facing: $E! !
+
+!MarsRoverTest methodsFor: 'move forward tests' stamp: 'CM 10/25/2020 14:16:50'!
+test06MarsRoverMovesForwardCorrectlyWhenHeadingWest
+
+	self 
+		assertExecuting: 'f' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $W)
+	 	movesItTo: #(10 19) facing: $W! !
+
+
+!MarsRoverTest methodsFor: 'rotate left tests' stamp: 'CM 10/25/2020 14:17:24'!
+test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth
 	
-	coordinateX := coordinateX - 1.
+	self 
+		assertExecuting: 'l' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $N)
+	 	movesItTo: #(10 20) facing: $W
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:45:37'!
-moveSouth
+!MarsRoverTest methodsFor: 'rotate left tests' stamp: 'CM 10/25/2020 14:17:39'!
+test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest
 	
-	coordinateX := coordinateX + 1.
+	self 
+		assertExecuting: 'l' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $W)
+	 	movesItTo: #(10 20) facing: $S
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:45:22'!
-moveWest
+!MarsRoverTest methodsFor: 'rotate left tests' stamp: 'CM 10/25/2020 14:17:51'!
+test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth
 	
-	coordinateY := coordinateY - 1.
+	self 
+		assertExecuting: 'l' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $S)
+	 	movesItTo: #(10 20) facing: $E
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:04:54'!
+!MarsRoverTest methodsFor: 'rotate left tests' stamp: 'CM 10/25/2020 14:17:58'!
+test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast
+	
+	self 
+		assertExecuting: 'l' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $E)
+	 	movesItTo: #(10 20) facing: $N
+	! !
+
+
+!MarsRoverTest methodsFor: 'rotate right tests' stamp: 'CM 10/25/2020 14:19:13'!
+test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth
+	
+	self 
+		assertExecuting: 'r' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $N)
+	 	movesItTo: #(10 20) facing: $E
+	! !
+
+!MarsRoverTest methodsFor: 'rotate right tests' stamp: 'CM 10/25/2020 14:19:27'!
+test18MarsRoverRotatesRightCorrectlyWhenHeadingEast
+	
+	self 
+		assertExecuting: 'r' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $E)
+	 	movesItTo: #(10 20) facing: $S
+	! !
+
+!MarsRoverTest methodsFor: 'rotate right tests' stamp: 'CM 10/25/2020 14:19:34'!
+test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth
+	
+	self 
+		assertExecuting: 'r' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $S)
+	 	movesItTo: #(10 20) facing: $W
+	! !
+
+!MarsRoverTest methodsFor: 'rotate right tests' stamp: 'CM 10/25/2020 14:19:43'!
+test20MarsRoverRotatesRightCorrectlyWhenHeadingWest
+	
+	self 
+		assertExecuting: 'r' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $W)
+	 	movesItTo: #(10 20) facing: $N
+	! !
+
+
+!MarsRoverTest methodsFor: 'move backward tests' stamp: 'CM 10/25/2020 14:20:13'!
+test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth
+
+	self 
+		assertExecuting: 'b' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $N)
+	 	movesItTo: #(11 20) facing: $N
+	! !
+
+!MarsRoverTest methodsFor: 'move backward tests' stamp: 'CM 10/25/2020 14:20:31'!
+test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast
+
+	self 
+		assertExecuting: 'b' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $E)
+	 	movesItTo: #(10 19) facing: $E
+	! !
+
+!MarsRoverTest methodsFor: 'move backward tests' stamp: 'CM 10/25/2020 14:20:47'!
+test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth
+
+	self 
+		assertExecuting: 'b' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $S)
+	 	movesItTo: #(9 20) facing: $S
+	! !
+
+!MarsRoverTest methodsFor: 'move backward tests' stamp: 'CM 10/25/2020 14:20:59'!
+test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest
+
+	self 
+		assertExecuting: 'b' 
+		on: (MarsRover landingAtX: 10 andY: 20 facing: $W)
+	 	movesItTo: #(10 21) facing: $W
+	! !
+
+
+!classDefinition: #MarsRover category: 'ISW1 - Ejercicio 16'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'coordinateX coordinateY facingDirection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1 - Ejercicio 16'!
+
+!MarsRover methodsFor: 'initialization' stamp: 'CM 10/25/2020 13:37:17'!
+initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint 
+	
+	coordinateX := startingCoordinateX.
+	coordinateY := startingCoordinateY.
+	facingDirection := aCardinalPoint.! !
+
+
+!MarsRover methodsFor: 'accessing' stamp: 'CM 10/25/2020 13:37:17'!
+facingDirection
+	^ facingDirection .! !
+
+!MarsRover methodsFor: 'accessing' stamp: 'CM 10/25/2020 11:33:58'!
 position
-	^ Array with: coordinateX with: coordinateY.! !
+	^ Array with: coordinateX  with: coordinateY.! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:56:04'!
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 11:59:28'!
+moveEast
+
+	coordinateY := coordinateY + 1.! !
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 13:37:17'!
+moveFaceTo: aCardinalPoint
+
+	facingDirection := aCardinalPoint.! !
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 11:53:05'!
+moveNorth
+
+	coordinateX := coordinateX - 1.! !
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 11:53:13'!
+moveSouth
+
+	coordinateX := coordinateX + 1.! !
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 12:02:04'!
+moveWest
+
+	coordinateY := coordinateY - 1.! !
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 11:54:03'!
+state
+
+	^ MarsRoverState stateFor: self.! !
+
+
+!MarsRover methodsFor: 'private - actions' stamp: 'CM 10/25/2020 13:39:03'!
+moveBackward
+
+	^ self state moveBackward.! !
+
+!MarsRover methodsFor: 'private - actions' stamp: 'CM 10/25/2020 13:39:06'!
+moveForward
+
+	^ self state moveForward.! !
+
+!MarsRover methodsFor: 'private - actions' stamp: 'CM 10/25/2020 12:50:35'!
 rotateLeft
-	
-	cardinalPoint rotateLeft.
-	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:56:12'!
+	^ self state rotateLeft.! !
+
+!MarsRover methodsFor: 'private - actions' stamp: 'CM 10/25/2020 12:57:15'!
 rotateRight
-	
-	cardinalPoint rotateRight.
-	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:23:02'!
-setCardinalPointTo: aMarsRoverPointingSubclass
-	cardinalPoint := aMarsRoverPointingSubclass for: self.! !
+	^ self state rotateRight.! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'CM 10/24/2020 17:46:41'!
-initializeAtX: aSmallInteger atY: aSmallInteger2 heading: aCardinalPoint 
+!MarsRover methodsFor: 'command execution' stamp: 'CM 10/25/2020 13:12:30'!
+executeCommands: aCommandList 
 	
-	coordinateX := aSmallInteger.
-	coordinateY := aSmallInteger2.
-	
-	cardinalPoint := (MarsRoverCardinalPoint subclasses detect: [:aSubClass | aSubClass canHandle: aCardinalPoint ]) for: self.
+	[ 
+		aCommandList do: [ :aCommand | 
+			(MarsRoverCommand for: aCommand) executeOn: self.
+		]
+	] on: UnknownCommandError do: [ ^ self ]
+
+
+
 	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -223,240 +299,23 @@ initializeAtX: aSmallInteger atY: aSmallInteger2 heading: aCardinalPoint
 MarsRover class
 	instanceVariableNames: ''!
 
-!MarsRover class methodsFor: 'instance creation' stamp: 'CM 10/24/2020 17:00:55'!
-atX: coordinateX atY: coordinateY heading: aCardinalPoint 
+!MarsRover class methodsFor: 'instance creation' stamp: 'CM 10/25/2020 13:06:42'!
+landingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint 
 	
-	^self new initializeAtX: coordinateX atY: coordinateY heading: aCardinalPoint ! !
-
-
-!classDefinition: #MarsRoverCardinalPoint category: 'ISW1 - Ejercicio 16'!
-Object subclass: #MarsRoverCardinalPoint
-	instanceVariableNames: 'marsRover'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1 - Ejercicio 16'!
-
-!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:40:24'!
-direction
-
-	self subclassResponsibility .! !
-
-!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:47:31'!
-initializeFor: aMarsRover
-
-	marsRover := aMarsRover! !
-
-!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:04:41'!
-moveBackwards
-	
-	self subclassResponsibility .! !
-
-!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:30:00'!
-moveForward
-	
-	self subclassResponsibility .! !
-
-!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:25:30'!
-rotateLeft
-	
-	self subclassResponsibility .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MarsRoverCardinalPoint class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverCardinalPoint class
-	instanceVariableNames: ''!
-
-!MarsRoverCardinalPoint class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:32:41'!
-canHandle: aMarsRover
-
-	^ self subclassResponsibility.
-	! !
-
-!MarsRoverCardinalPoint class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:47:09'!
-for: aMarsRover
-
-	^ self new initializeFor: aMarsRover! !
-
-
-!classDefinition: #MarsRoverPointingEast category: 'ISW1 - Ejercicio 16'!
-MarsRoverCardinalPoint subclass: #MarsRoverPointingEast
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1 - Ejercicio 16'!
-
-!MarsRoverPointingEast methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:39:58'!
-direction
-	
-	^ $E.! !
-
-!MarsRoverPointingEast methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:02:41'!
-moveBackwards
-
-	marsRover moveWest.! !
-
-!MarsRoverPointingEast methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:28:54'!
-moveForward
-	
-	marsRover moveEast.! !
-
-!MarsRoverPointingEast methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:25:13'!
-rotateLeft
-	marsRover setCardinalPointTo: MarsRoverPointingNorth.! !
-
-!MarsRoverPointingEast methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:27:45'!
-rotateRight
-	marsRover setCardinalPointTo: MarsRoverPointingSouth .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MarsRoverPointingEast class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverPointingEast class
-	instanceVariableNames: ''!
-
-!MarsRoverPointingEast class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:35:41'!
-canHandle: aCardinalPoint
-
-	^ aCardinalPoint = $E! !
-
-
-!classDefinition: #MarsRoverPointingNorth category: 'ISW1 - Ejercicio 16'!
-MarsRoverCardinalPoint subclass: #MarsRoverPointingNorth
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1 - Ejercicio 16'!
-
-!MarsRoverPointingNorth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:40:06'!
-direction
-	
-	^ $N.! !
-
-!MarsRoverPointingNorth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:03:26'!
-moveBackwards
-	marsRover moveSouth.! !
-
-!MarsRoverPointingNorth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:29:15'!
-moveForward
-	
-	marsRover moveNorth.! !
-
-!MarsRoverPointingNorth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:22:15'!
-rotateLeft
-	marsRover setCardinalPointTo: MarsRoverPointingWest.! !
-
-!MarsRoverPointingNorth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:27:11'!
-rotateRight
-	marsRover setCardinalPointTo: MarsRoverPointingEast .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MarsRoverPointingNorth class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverPointingNorth class
-	instanceVariableNames: ''!
-
-!MarsRoverPointingNorth class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:36:00'!
-canHandle: aCardinalPoint
-
-	^ aCardinalPoint = $N! !
-
-
-!classDefinition: #MarsRoverPointingSouth category: 'ISW1 - Ejercicio 16'!
-MarsRoverCardinalPoint subclass: #MarsRoverPointingSouth
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1 - Ejercicio 16'!
-
-!MarsRoverPointingSouth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:40:12'!
-direction
-	
-	^ $S.! !
-
-!MarsRoverPointingSouth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:29:32'!
-moveForward
-	
-	marsRover moveSouth.! !
-
-!MarsRoverPointingSouth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:24:29'!
-rotateLeft
-	marsRover setCardinalPointTo: MarsRoverPointingEast .! !
-
-!MarsRoverPointingSouth methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:28:17'!
-rotateRight
-	marsRover setCardinalPointTo: MarsRoverPointingWest ! !
-
-
-!MarsRoverPointingSouth methodsFor: 'accessing' stamp: 'CM 10/24/2020 18:04:23'!
-moveBackwards
-	marsRover moveNorth .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MarsRoverPointingSouth class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverPointingSouth class
-	instanceVariableNames: ''!
-
-!MarsRoverPointingSouth class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:36:07'!
-canHandle: aCardinalPoint
-
-	^ aCardinalPoint = $S! !
-
-
-!classDefinition: #MarsRoverPointingWest category: 'ISW1 - Ejercicio 16'!
-MarsRoverCardinalPoint subclass: #MarsRoverPointingWest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1 - Ejercicio 16'!
-
-!MarsRoverPointingWest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:40:17'!
-direction
-	
-	^ $O.! !
-
-!MarsRoverPointingWest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:55:37'!
-moveBackwards
-
-	marsRover moveEast.! !
-
-!MarsRoverPointingWest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:29:43'!
-moveForward
-	
-	marsRover moveWest.! !
-
-!MarsRoverPointingWest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:23:53'!
-rotateLeft
-	marsRover setCardinalPointTo: MarsRoverPointingSouth .! !
-
-!MarsRoverPointingWest methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:28:51'!
-rotateRight
-	marsRover setCardinalPointTo: MarsRoverPointingNorth .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'MarsRoverPointingWest class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverPointingWest class
-	instanceVariableNames: ''!
-
-!MarsRoverPointingWest class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 17:36:14'!
-canHandle: aCardinalPoint
-
-	^ aCardinalPoint = $O! !
+	^self new initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint ! !
 
 
 !classDefinition: #MarsRoverCommand category: 'ISW1 - Ejercicio 16'!
 Object subclass: #MarsRoverCommand
-	instanceVariableNames: 'marsRover'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRoverCommand methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:59:45'!
-initializeFor: aMarsRover
-
-	marsRover := aMarsRover .! !
+!MarsRoverCommand methodsFor: 'execution' stamp: 'CM 10/25/2020 12:37:18'!
+executeOn: aMarsRover
+	
+	self subclassResponsibility .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -464,65 +323,64 @@ initializeFor: aMarsRover
 MarsRoverCommand class
 	instanceVariableNames: ''!
 
-!MarsRoverCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:45:55'!
-canHandle: aMarsRover
+!MarsRoverCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 12:33:41'!
+canHandle: aCommand
 
-	^ self subclassResponsibility.! !
+	self subclassResponsibility .! !
 
-!MarsRoverCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:00:21'!
-for: aMarsRover
+!MarsRoverCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 13:28:48'!
+for: aCommand
 
-	^ self new initializeFor: aMarsRover.! !
+	^(self subclasses detect: [:aMarsRoverCommandClass | aMarsRoverCommandClass canHandle: aCommand ] 
+				   ifNone: [ UnknownCommandError signal ]) new! !
 
 
-!classDefinition: #MarsRoverBackwardCommand category: 'ISW1 - Ejercicio 16'!
-MarsRoverCommand subclass: #MarsRoverBackwardCommand
+!classDefinition: #MarsRoverMoveBackwardCommand category: 'ISW1 - Ejercicio 16'!
+MarsRoverCommand subclass: #MarsRoverMoveBackwardCommand
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRoverBackwardCommand methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:08:06'!
-execute
+!MarsRoverMoveBackwardCommand methodsFor: 'execution' stamp: 'CM 10/25/2020 12:39:12'!
+executeOn: aMarsRover
 	
-	marsRover moveBackwards .
-	^ true.! !
+	aMarsRover moveBackward.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MarsRoverBackwardCommand class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverBackwardCommand class
+!classDefinition: 'MarsRoverMoveBackwardCommand class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverMoveBackwardCommand class
 	instanceVariableNames: ''!
 
-!MarsRoverBackwardCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:54:32'!
+!MarsRoverMoveBackwardCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 13:24:32'!
 canHandle: aCommand
-
-	^ aCommand = $b! !
+	
+	^ aCommand = $b.! !
 
 
-!classDefinition: #MarsRoverFordwardCommand category: 'ISW1 - Ejercicio 16'!
-MarsRoverCommand subclass: #MarsRoverFordwardCommand
+!classDefinition: #MarsRoverMoveForwardCommand category: 'ISW1 - Ejercicio 16'!
+MarsRoverCommand subclass: #MarsRoverMoveForwardCommand
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRoverFordwardCommand methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:08:13'!
-execute
+!MarsRoverMoveForwardCommand methodsFor: 'execution' stamp: 'CM 10/25/2020 12:38:50'!
+executeOn: aMarsRover
 	
-	marsRover moveForward.
-	^ true.! !
+	aMarsRover moveForward.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MarsRoverFordwardCommand class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverFordwardCommand class
+!classDefinition: 'MarsRoverMoveForwardCommand class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverMoveForwardCommand class
 	instanceVariableNames: ''!
 
-!MarsRoverFordwardCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:52:20'!
+!MarsRoverMoveForwardCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 13:24:36'!
 canHandle: aCommand
-
-	^ aCommand = $f! !
+	
+	^ aCommand = $f.! !
 
 
 !classDefinition: #MarsRoverRotateLeftCommand category: 'ISW1 - Ejercicio 16'!
@@ -532,11 +390,10 @@ MarsRoverCommand subclass: #MarsRoverRotateLeftCommand
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRoverRotateLeftCommand methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:08:16'!
-execute
+!MarsRoverRotateLeftCommand methodsFor: 'execution' stamp: 'CM 10/25/2020 12:51:15'!
+executeOn: aMarsRover
 	
-	marsRover rotateLeft .
-	^ true.! !
+	aMarsRover rotateLeft.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -544,10 +401,10 @@ execute
 MarsRoverRotateLeftCommand class
 	instanceVariableNames: ''!
 
-!MarsRoverRotateLeftCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:54:54'!
+!MarsRoverRotateLeftCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 13:24:41'!
 canHandle: aCommand
-
-	^ aCommand = $l! !
+	
+	^ aCommand = $l.! !
 
 
 !classDefinition: #MarsRoverRotateRightCommand category: 'ISW1 - Ejercicio 16'!
@@ -557,11 +414,10 @@ MarsRoverCommand subclass: #MarsRoverRotateRightCommand
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRoverRotateRightCommand methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:08:20'!
-execute
+!MarsRoverRotateRightCommand methodsFor: 'execution' stamp: 'CM 10/25/2020 12:56:35'!
+executeOn: aMarsRover
 	
-	marsRover rotateRight .
-	^ true.! !
+	aMarsRover rotateRight.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -569,31 +425,219 @@ execute
 MarsRoverRotateRightCommand class
 	instanceVariableNames: ''!
 
-!MarsRoverRotateRightCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 18:55:26'!
+!MarsRoverRotateRightCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 13:24:44'!
 canHandle: aCommand
-
-	^ aCommand = $r! !
+	
+	^ aCommand = $r.! !
 
 
-!classDefinition: #MarsRoverWrongCommand category: 'ISW1 - Ejercicio 16'!
-MarsRoverCommand subclass: #MarsRoverWrongCommand
+!classDefinition: #MarsRoverState category: 'ISW1 - Ejercicio 16'!
+Object subclass: #MarsRoverState
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1 - Ejercicio 16'!
+
+!MarsRoverState methodsFor: 'initialization' stamp: 'CM 10/25/2020 13:31:36'!
+initializeFor: aMarsRover
+	
+	marsRover := aMarsRover.! !
+
+
+!MarsRoverState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:32:49'!
+moveBackward
+	
+	self subclassResponsibility.! !
+
+!MarsRoverState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:32:46'!
+moveForward
+	
+	self subclassResponsibility.! !
+
+!MarsRoverState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:32:43'!
+rotateLeft
+	
+	self subclassResponsibility.! !
+
+!MarsRoverState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:32:40'!
+rotateRight
+	
+	self subclassResponsibility.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverState class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverState class
+	instanceVariableNames: ''!
+
+!MarsRoverState class methodsFor: 'instance creation' stamp: 'CM 10/25/2020 13:30:27'!
+for: aMarsRover
+
+	^ self new initializeFor: aMarsRover.! !
+
+
+!MarsRoverState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:30:31'!
+canHandle: aMarsRover
+
+	self subclassResponsibility.! !
+
+!MarsRoverState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:30:35'!
+stateFor: aMarsRover
+
+	^(self subclasses detect: [:aMarsRoverStateClass | aMarsRoverStateClass canHandle: aMarsRover ]) for: aMarsRover.! !
+
+
+!classDefinition: #MarsRoverFacingEastState category: 'ISW1 - Ejercicio 16'!
+MarsRoverState subclass: #MarsRoverFacingEastState
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRoverWrongCommand methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:08:27'!
-execute
-	^ false.! !
+!MarsRoverFacingEastState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:22:10'!
+moveBackward
+
+	marsRover moveWest.! !
+
+!MarsRoverFacingEastState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 11:59:09'!
+moveForward
+
+	marsRover moveEast.! !
+
+!MarsRoverFacingEastState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateLeft
+
+	marsRover moveFaceTo: $N.! !
+
+!MarsRoverFacingEastState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateRight
+
+	marsRover moveFaceTo: $S.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MarsRoverWrongCommand class' category: 'ISW1 - Ejercicio 16'!
-MarsRoverWrongCommand class
+!classDefinition: 'MarsRoverFacingEastState class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverFacingEastState class
 	instanceVariableNames: ''!
 
-!MarsRoverWrongCommand class methodsFor: 'as yet unclassified' stamp: 'CM 10/24/2020 19:06:24'!
-canHandle: aCommand
-	|x|
-	x := Set with: $r with: $l with: $f with: $b.
-	^ (x includes: aCommand) not! !
+!MarsRoverFacingEastState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:23:58'!
+canHandle: aMarsRover
+
+	^ aMarsRover facingDirection = $E.! !
+
+
+!classDefinition: #MarsRoverFacingNorthState category: 'ISW1 - Ejercicio 16'!
+MarsRoverState subclass: #MarsRoverFacingNorthState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1 - Ejercicio 16'!
+
+!MarsRoverFacingNorthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:22:06'!
+moveBackward
+
+	marsRover moveSouth.! !
+
+!MarsRoverFacingNorthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 11:50:45'!
+moveForward
+
+	marsRover moveNorth.! !
+
+!MarsRoverFacingNorthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateLeft
+
+	marsRover moveFaceTo: $W.! !
+
+!MarsRoverFacingNorthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateRight
+
+	marsRover moveFaceTo: $E.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverFacingNorthState class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverFacingNorthState class
+	instanceVariableNames: ''!
+
+!MarsRoverFacingNorthState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:23:58'!
+canHandle: aMarsRover
+
+	^ aMarsRover facingDirection = $N! !
+
+
+!classDefinition: #MarsRoverFacingSouthState category: 'ISW1 - Ejercicio 16'!
+MarsRoverState subclass: #MarsRoverFacingSouthState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1 - Ejercicio 16'!
+
+!MarsRoverFacingSouthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:34:36'!
+moveBackward
+
+	marsRover moveNorth.! !
+
+!MarsRoverFacingSouthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 11:52:30'!
+moveForward
+
+	marsRover moveSouth.! !
+
+!MarsRoverFacingSouthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateLeft
+
+	marsRover moveFaceTo: $E.! !
+
+!MarsRoverFacingSouthState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateRight
+
+	marsRover moveFaceTo: $W.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverFacingSouthState class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverFacingSouthState class
+	instanceVariableNames: ''!
+
+!MarsRoverFacingSouthState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:23:58'!
+canHandle: aMarsRover
+
+	^ aMarsRover facingDirection = $S.! !
+
+
+!classDefinition: #MarsRoverFacingWestState category: 'ISW1 - Ejercicio 16'!
+MarsRoverState subclass: #MarsRoverFacingWestState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1 - Ejercicio 16'!
+
+!MarsRoverFacingWestState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:22:22'!
+moveBackward
+
+	marsRover moveEast.! !
+
+!MarsRoverFacingWestState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 12:01:36'!
+moveForward
+
+	marsRover moveWest.! !
+
+!MarsRoverFacingWestState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateLeft
+
+	marsRover moveFaceTo: $S.! !
+
+!MarsRoverFacingWestState methodsFor: 'mars-rover actions' stamp: 'CM 10/25/2020 13:35:21'!
+rotateRight
+
+	marsRover moveFaceTo: $N.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverFacingWestState class' category: 'ISW1 - Ejercicio 16'!
+MarsRoverFacingWestState class
+	instanceVariableNames: ''!
+
+!MarsRoverFacingWestState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:23:58'!
+canHandle: aMarsRover
+
+	^ aMarsRover facingDirection = $W.! !
