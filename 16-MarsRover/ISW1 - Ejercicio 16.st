@@ -164,6 +164,14 @@ test20MarsRoverRotatesRightCorrectlyWhenHeadingWest
 	 	movesItTo: #(10 20) facing: $N
 	! !
 
+!MarsRoverTest methodsFor: 'rotate right tests' stamp: 'CM 10/26/2020 12:50:39'!
+test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint
+	
+	self should: [ MarsRover landingAtX: 10 andY: 20 facing: $P ] 
+		raise: Error withMessageText: MarsRover invalidCardinalPointErrorDescription
+		
+	! !
+
 
 !MarsRoverTest methodsFor: 'move backward tests' stamp: 'CM 10/25/2020 14:20:13'!
 test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth
@@ -209,12 +217,14 @@ Object subclass: #MarsRover
 	poolDictionaries: ''
 	category: 'ISW1 - Ejercicio 16'!
 
-!MarsRover methodsFor: 'initialization' stamp: 'CM 10/25/2020 13:37:17'!
+!MarsRover methodsFor: 'initialization' stamp: 'CM 10/26/2020 12:57:20'!
 initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint 
 	
 	coordinateX := startingCoordinateX.
 	coordinateY := startingCoordinateY.
-	facingDirection := aCardinalPoint.! !
+	facingDirection := aCardinalPoint.
+	
+	self checkIfStateIsValid.! !
 
 
 !MarsRover methodsFor: 'accessing' stamp: 'CM 10/25/2020 13:37:17'!
@@ -225,6 +235,11 @@ facingDirection
 position
 	^ Array with: coordinateX  with: coordinateY.! !
 
+
+!MarsRover methodsFor: 'private' stamp: 'CM 10/26/2020 12:57:40'!
+checkIfStateIsValid
+
+	self state! !
 
 !MarsRover methodsFor: 'private' stamp: 'CM 10/25/2020 11:59:28'!
 moveEast
@@ -301,6 +316,10 @@ landingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint
 	
 	^self new initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint ! !
 
+
+!MarsRover class methodsFor: 'error messages' stamp: 'CM 10/26/2020 12:51:32'!
+invalidCardinalPointErrorDescription
+	^ 'Invalid cardinal point'.! !
 
 !MarsRover class methodsFor: 'error messages' stamp: 'CM 10/26/2020 11:16:39'!
 unknownCommandErrorDescription
@@ -484,10 +503,12 @@ canHandle: aMarsRover
 
 	self subclassResponsibility.! !
 
-!MarsRoverState class methodsFor: 'state selection' stamp: 'CM 10/25/2020 13:30:35'!
+!MarsRoverState class methodsFor: 'state selection' stamp: 'CM 10/26/2020 12:54:31'!
 stateFor: aMarsRover
 
-	^(self subclasses detect: [:aMarsRoverStateClass | aMarsRoverStateClass canHandle: aMarsRover ]) for: aMarsRover.! !
+	^(self subclasses detect: [ :aMarsRoverStateClass | aMarsRoverStateClass canHandle: aMarsRover ] 
+					ifNone: [ self error: MarsRover invalidCardinalPointErrorDescription ]
+		) for: aMarsRover.! !
 
 
 !classDefinition: #MarsRoverFacingEastState category: 'ISW1 - Ejercicio 16'!

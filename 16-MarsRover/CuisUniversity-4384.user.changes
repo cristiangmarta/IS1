@@ -31342,3 +31342,255 @@ PASSED!
 ----SNAPSHOT----(26 October 2020 11:20:30) CuisUniversity-4384.image priorSource: 17296595!
 
 ----SNAPSHOT----(26 October 2020 11:21:47) CuisUniversity-4384.image priorSource: 17311076!
+
+----STARTUP---- (26 October 2020 12:48:05) as /home/cmarta/Downloads/parcial/limpio/linux64/CuisUniversity-4384.image!
+
+!MarsRoverTest methodsFor: 'rotate right tests' stamp: 'CM 10/26/2020 12:50:39'!
+test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint
+	
+	self should: [ MarsRover landingAtX: 10 andY: 20 facing: $P ] 
+		raise: Error withMessageText: MarsRover invalidCardinalPointErrorDescription
+		
+	! !
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:50:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:50:42'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 12:51:01'!
+invalidCardinalPointErrorDescription
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 12:51:32' prior: 50872649!
+invalidCardinalPointErrorDescription
+	^ 'Invalid cardinal point'.! !
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:51:33'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:52:47'!
+FAILURE!
+!MarsRoverState class methodsFor: 'state selection' stamp: 'CM 10/26/2020 12:54:31' prior: 50871398!
+stateFor: aMarsRover
+
+	^(self subclasses detect: [ :aMarsRoverStateClass | aMarsRoverStateClass canHandle: aMarsRover ] 
+					ifNone: [ self error: MarsRover invalidCardinalPointErrorDescription ]
+		) for: aMarsRover.! !
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:54:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:54:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:54:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:54:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:54:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:54:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:54:37'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:54:37'!
+FAILURE!
+!MarsRover methodsFor: 'initialization' stamp: 'CM 10/26/2020 12:55:17' prior: 50871501!
+initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint 
+	
+	coordinateX := startingCoordinateX.
+	coordinateY := startingCoordinateY.
+	facingDirection := aCardinalPoint.
+	
+	self state.! !
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:55:21'!
+PASSED!
+!MarsRover methodsFor: 'initialization' stamp: 'CM 10/26/2020 12:57:20'!
+checkIfStateIsValid
+
+	^ self state! !
+!MarsRover methodsFor: 'initialization' stamp: 'CM 10/26/2020 12:57:20' prior: 50872762!
+initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint 
+	
+	coordinateX := startingCoordinateX.
+	coordinateY := startingCoordinateY.
+	facingDirection := aCardinalPoint.
+	
+	self checkIfStateIsValid.! !
+!MarsRover methodsFor: 'private' stamp: 'CM 10/26/2020 12:57:40' prior: 50872851!
+checkIfStateIsValid
+
+	self state! !
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21MarsRoverCanNotBeCreatedWithInvalidCardinalPoint stamp: 'CM 10/26/2020 12:57:46'!
+PASSED!
+
+----SNAPSHOT----(26 October 2020 12:57:54) CuisUniversity-4384.image priorSource: 17311169!
