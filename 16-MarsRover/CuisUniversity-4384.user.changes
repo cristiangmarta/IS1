@@ -30972,3 +30972,373 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(25 October 2020 14:23:04) CuisUniversity-4384.image priorSource: 17271464!
+
+----QUIT----(25 October 2020 14:28:45) CuisUniversity-4384.image priorSource: 17296502!
+
+----STARTUP---- (26 October 2020 11:03:54) as /home/cmarta/Downloads/parcial/limpio/linux64/CuisUniversity-4384.image!
+
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:04:14'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:09:16' prior: 50871802!
+test12MarsRoverStopsExecutionWhenUnknownCommandDetected
+	
+	|marsRover|
+	
+	marsRover := MarsRover landingAtX: 10 andY: 20 facing: $W.
+	self should: [
+		marsRover executeCommands: 'ffbnff'
+	] raise: Error withExceptionDo: [ :error | 
+		self assert: marsRover position equals: #(9 20).
+		self assert: marsRover facingDirection equals: $W.
+	] description: ''.
+	
+	! !
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:09:19'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:09:19'!
+FAILURE!
+!MarsRover methodsFor: 'command execution' stamp: 'CM 10/26/2020 11:09:36' prior: 50870965!
+executeCommands: aCommandList 
+	
+	aCommandList do: [ :aCommand | 
+		(MarsRoverCommand for: aCommand) executeOn: self.
+	]
+
+
+
+
+	! !
+!MarsRoverCommand class methodsFor: 'subclass selection' stamp: 'CM 10/26/2020 11:09:53' prior: 50871376!
+for: aCommand
+
+	^(self subclasses detect: [:aMarsRoverCommandClass | aMarsRoverCommandClass canHandle: aCommand ] 
+				   ifNone: [ Error signal ]) new! !
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:09:56'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:09:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:09:56'!
+FAILURE!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:10:12' prior: 50872252!
+test12MarsRoverStopsExecutionWhenUnknownCommandDetected
+	
+	|marsRover|
+	
+	marsRover := MarsRover landingAtX: 10 andY: 20 facing: $W.
+	self should: [
+		marsRover executeCommands: 'ffbnff'
+	] raise: Error withExceptionDo: [ :error | 
+		self assert: marsRover position equals: #(10 19).
+		self assert: marsRover facingDirection equals: $W.
+	] description: ''.
+	
+	! !
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:10:16'!
+PASSED!
+
+!classRemoval: #UnknownCommandError stamp: 'CM 10/26/2020 11:10:19'!
+Error subclass: #UnknownCommandError
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1 - Ejercicio 16'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:11:00' prior: 50872370!
+test12MarsRoverStopsExecutionWhenUnknownCommandDetected
+	
+	|marsRover|
+	
+	marsRover := MarsRover landingAtX: 10 andY: 20 facing: $W.
+	self should: [
+		marsRover executeCommands: 'ffbnff'
+	] raise: Error withExceptionDo: [ :error | 
+		self assert: marsRover position equals: #(10 19).
+		self assert: marsRover facingDirection equals: $W.
+	] description: MarsRover unknownCommandErrorDescription.
+	
+	! !
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:11:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:11:06'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:11:20'!
+unknownCommandErrorDescription
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:12:04' prior: 50872490!
+unknownCommandErrorDescription
+	^ 'Unknown command detected'.! !
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:12:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:12:09'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:16:06' prior: 50872467!
+test12MarsRoverStopsExecutionWhenUnknownCommandDetected
+	
+	|marsRover|
+	
+	marsRover := MarsRover landingAtX: 10 andY: 20 facing: $W.
+	
+	self should: [ marsRover executeCommands: 'ffbnff' ]	
+		raise: Error withMessageText: MarsRover unknownCommandErrorDescription.
+	
+	self assert: marsRover position equals: #(10 19).
+	self assert: marsRover facingDirection equals: $W.
+	
+	! !
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:16:12'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:16:12'!
+FAILURE!
+!MarsRover class methodsFor: 'error messages' stamp: 'CM 10/26/2020 11:16:39' prior: 50872496!
+unknownCommandErrorDescription
+
+	^ 'Unknown command detected'.! !
+!MarsRoverCommand class methodsFor: 'subclass selection' stamp: 'CM 10/26/2020 11:18:56' prior: 50872283!
+for: aCommand
+
+	^(self subclasses detect: [:aMarsRoverCommandClass | aMarsRoverCommandClass canHandle: aCommand ] 
+				   ifNone: [ self error: MarsRover unknownCommandErrorDescription . ]) new! !
+
+!testRun: #MarsRoverTest #test01MarsRoverShouldBeLocatedAtLandingPosition stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverShouldNotMoveWhenGivenEmptyCommands stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesForwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverMovesForwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverMovesForwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverExecutesManyCommandsCorrectly stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverMovesBackwardCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverMovesBackwardCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverMovesBackwardCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverMovesBackwardCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverStopsExecutionWhenUnknownCommandDetected stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverRotatesLeftCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverRotatesLeftCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverRotatesLeftCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverRotatesLeftCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverRotatesRightCorrectlyWhenHeadingNorth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverRotatesRightCorrectlyWhenHeadingEast stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverRotatesRightCorrectlyWhenHeadingSouth stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverRotatesRightCorrectlyWhenHeadingWest stamp: 'CM 10/26/2020 11:18:59'!
+PASSED!
+
+----SNAPSHOT----(26 October 2020 11:20:30) CuisUniversity-4384.image priorSource: 17296595!
+
+----SNAPSHOT----(26 October 2020 11:21:47) CuisUniversity-4384.image priorSource: 17311076!

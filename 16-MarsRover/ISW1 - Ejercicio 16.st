@@ -1,11 +1,3 @@
-!classDefinition: #UnknownCommandError category: 'ISW1 - Ejercicio 16'!
-Error subclass: #UnknownCommandError
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'ISW1 - Ejercicio 16'!
-
-
 !classDefinition: #MarsRoverTest category: 'ISW1 - Ejercicio 16'!
 TestCase subclass: #MarsRoverTest
 	instanceVariableNames: ''
@@ -49,13 +41,19 @@ test07MarsRoverExecutesManyCommandsCorrectly
 	 	movesItTo: #(8 20) facing: $N
 	! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/25/2020 14:14:52'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'CM 10/26/2020 11:16:06'!
 test12MarsRoverStopsExecutionWhenUnknownCommandDetected
 	
-	self 
-		assertExecuting: 'ffbnff' 
-		on: (MarsRover landingAtX: 10 andY: 20 facing: $W)
-	 	movesItTo: #(10 19) facing: $W
+	|marsRover|
+	
+	marsRover := MarsRover landingAtX: 10 andY: 20 facing: $W.
+	
+	self should: [ marsRover executeCommands: 'ffbnff' ]	
+		raise: Error withMessageText: MarsRover unknownCommandErrorDescription.
+	
+	self assert: marsRover position equals: #(10 19).
+	self assert: marsRover facingDirection equals: $W.
+	
 	! !
 
 
@@ -280,14 +278,13 @@ rotateRight
 	^ self state rotateRight.! !
 
 
-!MarsRover methodsFor: 'command execution' stamp: 'CM 10/25/2020 13:12:30'!
+!MarsRover methodsFor: 'command execution' stamp: 'CM 10/26/2020 11:09:36'!
 executeCommands: aCommandList 
 	
-	[ 
-		aCommandList do: [ :aCommand | 
-			(MarsRoverCommand for: aCommand) executeOn: self.
-		]
-	] on: UnknownCommandError do: [ ^ self ]
+	aCommandList do: [ :aCommand | 
+		(MarsRoverCommand for: aCommand) executeOn: self.
+	]
+
 
 
 
@@ -303,6 +300,12 @@ MarsRover class
 landingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint 
 	
 	^self new initializeLandingAtX: startingCoordinateX andY: startingCoordinateY facing: aCardinalPoint ! !
+
+
+!MarsRover class methodsFor: 'error messages' stamp: 'CM 10/26/2020 11:16:39'!
+unknownCommandErrorDescription
+
+	^ 'Unknown command detected'.! !
 
 
 !classDefinition: #MarsRoverCommand category: 'ISW1 - Ejercicio 16'!
@@ -328,11 +331,11 @@ canHandle: aCommand
 
 	self subclassResponsibility .! !
 
-!MarsRoverCommand class methodsFor: 'subclass selection' stamp: 'CM 10/25/2020 13:28:48'!
+!MarsRoverCommand class methodsFor: 'subclass selection' stamp: 'CM 10/26/2020 11:18:56'!
 for: aCommand
 
 	^(self subclasses detect: [:aMarsRoverCommandClass | aMarsRoverCommandClass canHandle: aCommand ] 
-				   ifNone: [ UnknownCommandError signal ]) new! !
+				   ifNone: [ self error: MarsRover unknownCommandErrorDescription . ]) new! !
 
 
 !classDefinition: #MarsRoverMoveBackwardCommand category: 'ISW1 - Ejercicio 16'!
