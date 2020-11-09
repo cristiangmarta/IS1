@@ -28194,3 +28194,2900 @@ PASSED!
 
 !testRun: #PortfolioTest #test09 stamp: 'CM 11/5/2020 12:43:22'!
 PASSED!
+
+----STARTUP---- (9 November 2020 12:46:59) as /home/cmarta/Downloads/parcial/limpio/linux64/CuisUniversity-4384.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:51:52'!
+test10
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+					
+	self should: [ portfolio1 add: portfolio2 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioTest #test01 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'CM 11/9/2020 12:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'CM 11/9/2020 12:51:57'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'CM 11/9/2020 12:51:57'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:53:48' prior: 50871491!
+add: aReceptiveAccount 
+	
+	(aReceptiveAccount isKindOf: Portfolio) ifTrue: [
+		aReceptiveAccount = self ifTrue: [ self error: self class xxErrorDescription ].
+		(aReceptiveAccount includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	].
+	
+	(self includes: aReceptiveAccount) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	accounts add: aReceptiveAccount .! !
+
+!testRun: #PortfolioTest #test01 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 12:53:50'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'CM 11/9/2020 12:53:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 12:53:50'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:54:49' prior: 50872287!
+add: aReceptiveAccount 
+	
+	(aReceptiveAccount isKindOf: Portfolio) ifTrue: [
+		aReceptiveAccount = self ifTrue: [ self error: self class xxErrorDescription ].
+		(aReceptiveAccount includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	].
+	
+	accounts add: aReceptiveAccount .! !
+
+!methodRemoval: PortfolioTest #test10 stamp: 'CM 11/9/2020 12:54:56'!
+test10
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+					
+	self should: [ portfolio1 add: portfolio2 ] raise: Error withMessageText: Portfolio xxErrorDescription!
+
+!testRun: #PortfolioTest #test01 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'CM 11/9/2020 12:55:00'!
+PASSED!
+
+Object subclass: #PortfolioEntry
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioEntry category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 12:55:47'!
+Object subclass: #PortfolioEntry
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioEntry methodsFor: 'nil' stamp: 'CM 11/9/2020 12:56:16'!
+add: aPortfolio
+
+	self subclassResponsibility .! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:56:21'!
+balance
+
+	self subclassResponsibility .! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:56:33'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility .! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:56:42'!
+transactions
+
+	self subclassResponsibility .! !
+
+PortfolioEntry subclass: #PortfolioAccount
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioAccount category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 12:57:05'!
+PortfolioEntry subclass: #PortfolioAccount
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioAccount methodsFor: 'no messages' stamp: 'CM 11/9/2020 12:57:48' overrides: 50872382!
+add: aPortfolio
+	
+	self error: 'No se puede agregar un porfolio a un portfolioAccount'! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:58:02' overrides: 50872387!
+balance
+	
+	^ account balance.! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:58:12' overrides: 50872396!
+transactions
+	
+	^ account transactions.! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 12:58:31' overrides: 50872391!
+hasRegistered: aTransaction
+	
+	^ account hasRegistered: aTransaction .! !
+!PortfolioAccount class methodsFor: 'nil' stamp: 'CM 11/9/2020 13:00:25'!
+with: anAccount
+	
+	^ self new initializeWith: anAccount.! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:00:46'!
+initalizeWith: anAccount
+	
+	account := anAccount.! !
+
+PortfolioEntry subclass: #PortfolioPortfolio
+	instanceVariableNames: 'portfolioEntries'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioPortfolio category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 13:01:26'!
+PortfolioEntry subclass: #PortfolioPortfolio
+	instanceVariableNames: 'portfolioEntries'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioPortfolio methodsFor: 'nil' stamp: 'CM 11/9/2020 13:03:26' overrides: 50872387!
+balance
+
+	^ portfolioEntries sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ].! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:04:11' overrides: 50872391!
+hasRegistered: aTransaction 
+
+	^ portfolioEntries anySatisfy: [ :aPortfolio | aPortfolio hasRegistered: aTransaction ].! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:05:25' overrides: 50872396!
+transactions
+
+	^ portfolioEntries inject: OrderedCollection new into: [ :allTransactions :account | allTransactions addAll: account transactions ].! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:05:38' prior: 50872475 overrides: 50872396!
+transactions
+
+	^ portfolioEntries inject: OrderedCollection new into: [ :allTransactions :aPortfolio | allTransactions addAll: aPortfolio transactions ].! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:06' overrides: 50872382!
+add: aPortfolio 
+	
+	aPortfolio = self ifTrue: [ self error: self class xxErrorDescription ].
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .! !
+
+TestCase subclass: #PortfolioEntryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioEntryTest category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 13:07:33'!
+TestCase subclass: #PortfolioEntryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+PortfolioEntryTest class
+	instanceVariableNames: ''!
+
+!classDefinition: 'PortfolioEntryTest class' category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 13:07:33'!
+PortfolioEntryTest class
+	instanceVariableNames: ''!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test01
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test02
+
+	| portfolio account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: 100 equals: portfolio balance.
+! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test03
+
+	| portfolio account1 account2 |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	portfolio add: account1.
+	
+	account2 := ReceptiveAccount new.
+	Deposit register: 50 on: account2.
+	portfolio add: account2.
+	
+	self assert: 150 equals: portfolio balance.
+! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test04
+
+	| portfolio account deposit |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	
+	self deny: (portfolio hasRegistered: deposit).
+! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test05
+
+	| portfolio account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio := Portfolio new add: account.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test06
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test07
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+			
+	self should: [ portfolio2 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test08
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+					
+	self should: [ portfolio3 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:07:33'!
+test09
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	portfolio3 := Portfolio new.
+	portfolio4 := Portfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio3 add: portfolio4.
+	portfolio4 add: portfolio2.
+					
+	self should: [ portfolio2 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:11:21' prior: 50872522!
+test01
+
+	| portfolio |
+	
+	portfolio := PortfolioPortfolio new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:11:47'!
+test011
+
+	| portfolio |
+	
+	portfolio := PortfolioAccount with: ReceptiveAccount new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:11:49'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:11:49'!
+ERROR!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:12:11' overrides: 16896425!
+initialize
+
+	portfolioEntries := OrderedCollection new.! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:12:13'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:12:16'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:12:16'!
+ERROR!
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:12:31'!
+initializeWith: anAccount
+	
+	account := anAccount.! !
+
+!methodRemoval: PortfolioAccount #initalizeWith: stamp: 'CM 11/9/2020 13:12:31'!
+initalizeWith: anAccount
+	
+	account := anAccount.!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:12:35'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:13:17' prior: 50872528!
+test02
+
+	| portfolio account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: 100 equals: portfolio balance.
+! !
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:13:19'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:13:19'!
+ERROR!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:13:25' prior: 50872665!
+test02
+
+	| portfolio account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := PortfolioAccount with: account.
+	
+	self assert: 100 equals: portfolio balance.
+! !
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:13:27'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:14:39'!
+test022
+
+	| portfolio1 portfolio2 account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio1 := PortfolioAccount with: account.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio2 add: portfolio1.
+	
+	self assert: 100 equals: portfolio2 balance.
+! !
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:14:42'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:14:42'!
+ERROR!
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:15:40'!
+includes: anAccount
+	
+	^ (anAccount = account) not.! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:17:47'!
+includes: aPortfolio
+
+	^ (portfolioEntries includes: aPortfolio) or: (portfolioEntries anySatisfy: [ :aPortfolioEntry | 
+		aPortfolioEntry includes: aPortfolio.
+	]).! !
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:17:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:17:50'!
+ERROR!
+!PortfolioEntry class methodsFor: 'nil' stamp: 'CM 11/9/2020 13:18:17'!
+xxErrorDescription
+	
+	^ 'No se puede tener ciclos' ! !
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:18:24'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:18:24'!
+ERROR!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:19:00' prior: 50872692!
+test022
+
+	| portfolio1 portfolio2 account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	
+	portfolio1 := PortfolioAccount with: account.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio2 add: portfolio1.
+	
+	self assert: 100 equals: portfolio2 balance.
+! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:19:20' prior: 50872493 overrides: 50872382!
+add: aPortfolio 
+	"
+	aPortfolio = self ifTrue: [ self error: self class xxErrorDescription ].
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	"
+	portfolioEntries add: aPortfolio .! !
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:19:23'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:19:25'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:19:27'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:19:30'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:19:57' prior: 50872737!
+test022
+
+	| portfolio1 portfolio2 account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio1 := PortfolioAccount with: account.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio2 add: portfolio1.
+	
+	self assert: 100 equals: portfolio2 balance.
+! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:24:34' prior: 50872538!
+test03
+
+	| portfolio1 portfolio2 portfolio3 account1 |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 50 on: account1.
+	portfolio1 := PortfolioAccount with: account1.
+	
+	portfolio2 := PortfolioPortfolio new.
+	portfolio2 add: portfolio1.
+	
+	portfolio3 := PortfolioPortfolio new.
+	portfolio3 add: portfolio2.
+	
+	self assert: 50 equals: portfolio3 balance.
+! !
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:24:36'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:26:16' prior: 50872551!
+test04
+
+	| portfolio account1 account2 deposit |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio := PortfolioAccount with: account1.
+	
+	deposit := Deposit register: 100 on: account2.
+	
+	self deny: (portfolio hasRegistered: deposit).
+! !
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:26:18'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:27:10'!
+test044
+
+	| portfolio account1 deposit |
+	
+	account1 := ReceptiveAccount new.	
+	portfolio := PortfolioPortfolio new.
+	
+	deposit := Deposit register: 100 on: account1.
+	
+	self deny: (portfolio hasRegistered: deposit).
+! !
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:27:16'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:27:44' prior: 50872561!
+test05
+
+	| portfolio account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio := Portfolio with: account.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).! !
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:27:45'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:27:45'!
+ERROR!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:27:50' prior: 50872828!
+test05
+
+	| portfolio account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio := PortfolioAccount with: account.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit).! !
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:27:52'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:28:43'!
+test055
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+
+	portfolio2 := PortfolioPortfolio new.	
+	portfolio2 add: portfolio1 .
+	
+	self assert: 1 equals: portfolio2 transactions size.
+	self assert: (portfolio2 transactions includes: deposit).! !
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:28:45'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:29:02' prior: 50872573!
+test06
+
+	| portfolio |
+	
+	portfolio := PortfolioPortfolio new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:29:03'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:29:03'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:29:51' prior: 50872750 overrides: 50872382!
+add: aPortfolio 
+	
+	aPortfolio = self ifTrue: [ self error: self class xxErrorDescription ].
+	"
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	"
+	portfolioEntries add: aPortfolio .! !
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:29:56'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:30:39'!
+test066
+
+	| portfolio |
+	
+	portfolio := PortfolioAccount with: ReceptiveAccount new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:30:40'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:30:40'!
+FAILURE!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:30:52' prior: 50872906!
+test066
+
+	| portfolio |
+	
+	portfolio := PortfolioAccount with: ReceptiveAccount new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: ''! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:31:41' prior: 50872921!
+test066
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioAccount with: ReceptiveAccount new.
+	portfolio2 := PortfolioPortfolio new.
+		
+	self should: [ portfolio1 add: portfolio2 ] raise: Error withMessageText: 'No se puede agregar un porfolio a un portfolioAccount'! !
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:31:43'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:32:34' prior: 50872581!
+test07
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+			
+	self should: [ portfolio2 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:32:35'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:32:35'!
+FAILURE!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:33:12' prior: 50872592!
+test08
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+					
+	self should: [ portfolio3 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:33:27' prior: 50872605!
+test09
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio3 add: portfolio4.
+	portfolio4 add: portfolio2.
+					
+	self should: [ portfolio2 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:33:30'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:33:30'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:33:30'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:33:30'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:34:18' prior: 50872893 overrides: 50872382!
+add: aPortfolio 
+	
+	aPortfolio = self ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:34:41'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:34:41'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:34:42'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:34:42'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:34:42'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:34:42'!
+PASSED!
+
+anAccount = account!
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:36:48' prior: 50872709!
+includes: anAccount
+	
+	^ anAccount = account.! !
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:36:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:36:51'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:42:32'!
+test10
+
+	| portfolio1 portfolio2 portfolio3 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	
+	portfolio1 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:42:34'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:42:34'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:43:07' prior: 50873028 overrides: 50872382!
+add: aPortfolio 
+	
+	aPortfolio = self ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self includes: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:43:12'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:43:12'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:43:12'!
+FAILURE!
+
+portfolioEntries includes: aPortfolio!
+
+portfolioEntries anySatisfy:  [ :aPortfolioEntry | 
+		aPortfolioEntry includes: aPortfolio.
+	]!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:45:36' prior: 50872714!
+includes: aPortfolio
+
+	^ (portfolioEntries includes: aPortfolio) or: (portfolioEntries anySatisfy: [ :aPortfolioEntry | 
+		aPortfolioEntry includes: aPortfolio.
+	]).! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:46:54' prior: 50873074!
+includes: anAccount
+	
+	^ anAccount = self.! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:46:59'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:46:59'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:46:59'!
+FAILURE!
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:47:54' prior: 50873203!
+includes: anAccount
+	
+	^ anAccount = account.! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:50:38' prior: 50873248!
+includes: anAccount
+	
+	^ anAccount zaraza: account.! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:50:57'!
+zaraza: anAccount
+	
+	^ anAccount = account.! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:51:09'!
+zaraza: anAccount
+
+	^ false! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:51:11'!
+PASSED!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:53:02' prior: 50873137 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self includes: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:53:03'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:53:03'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:53:03'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 13:53:34' prior: 50873194!
+includes: aPortfolio
+	
+	^ (aPortfolio = self) or: (portfolioEntries includes: aPortfolio) or: (portfolioEntries anySatisfy: [ :aPortfolioEntry | 
+		aPortfolioEntry includes: aPortfolio.
+	]).! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 13:53:36'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:16:51'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:19:27'!
+test11
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:19:31'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:19:31'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:20:46' prior: 50873305 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self includes: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:21:00'!
+hasCommonAccountsWith: aPortfolio
+
+	^ self includes: aPortfolio! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:21:00' prior: 50873462 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:24:17' prior: 50873440!
+test11
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:24:19'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:24:19'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:26:47' prior: 50873472!
+hasCommonAccountsWith: aPortfolio
+
+	^ (self includes: aPortfolio) or: (portfolioEntries anySatisfy: [ :pe | pe hasCommonAccountsWith: aPortfolio])! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:26:49'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:26:49'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:26:49'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:27:07'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:27:07'!
+FAILURE!
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:27:52'!
+hasCommonAccountsWith: aPortfolio
+
+	^ aPortfolio zaraza: account.
+
+
+	
+	! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:27:54'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:27:54'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:27:54'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:31:58' prior: 50873512!
+hasCommonAccountsWith: aPortfolio
+
+	^ (self includes: aPortfolio) or: (portfolioEntries anySatisfy: [ :pe | aPortfolio hasCommonAccountsWith: pe])! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:32:01'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:34:46'!
+test12
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	portfolio5 := PortfolioPortfolio new.	
+
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio5.
+	portfolio5 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:34:48'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:37:04'!
+PASSED!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:39:37' prior: 50873263!
+zaraza: anAccount
+
+	^ portfolioEntries anySatisfy: [ :portfolio | portfolio zaraza: anAccount ]! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:39:39'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:39:42'!
+PASSED!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:41:35'!
+test13
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+	
+				
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:41:51'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:41:51'!
+FAILURE!
+
+Object subclass: #PortfolioEntry
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioEntry category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 14:43:32'!
+Object subclass: #PortfolioEntry
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:43:56' prior: 50872641 overrides: 16896425!
+initialize
+
+	super.
+	portfolioEntries := OrderedCollection new.
+	! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:44:20' overrides: 16896425!
+initialize
+
+	parents := OrderedCollection new.! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:44:55' prior: 50873478 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .
+	aPortfolio addParent: self.! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:45:20'!
+addParent: aPortfolio
+
+	parents add: aPortfolio .! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:47:43' prior: 50873786 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(aPortfolio sameTreeAs: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .
+	aPortfolio addParent: self.! !
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:49:20'!
+sameTreeAs: aPortfolio 
+	
+	^ (self includes: aPortfolio) or: (parents anySatisfy: [ :aParentPortfolio | aParentPortfolio sameTreeAs: aPortfolio ])! !
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:49:37'!
+sameTreeAs: aPortfolio 
+	
+	^ (self includes: aPortfolio) or: (parents anySatisfy: [ :aParentPortfolio | aParentPortfolio sameTreeAs: aPortfolio ])! !
+
+!methodRemoval: PortfolioPortfolio #sameTreeAs: stamp: 'CM 11/9/2020 14:49:44'!
+sameTreeAs: aPortfolio 
+	
+	^ (self includes: aPortfolio) or: (parents anySatisfy: [ :aParentPortfolio | aParentPortfolio sameTreeAs: aPortfolio ])!
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:49:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:49:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:49:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:49:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:49:50'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:49:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:49:50'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:50:02'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:50:32'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:50:32'!
+ERROR!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:50:46'!
+ERROR!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:51:36' prior: 50873774 overrides: 50873780!
+initialize
+
+	super initialize.
+	portfolioEntries := OrderedCollection new.
+	! !
+!PortfolioAccount methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:51:40' prior: 50872653!
+initializeWith: anAccount
+	
+	super initialize.
+	account := anAccount.! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:51:42'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:51:42'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:51:42'!
+FAILURE!
+!PortfolioPortfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:53:09' prior: 50873804 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(aPortfolio sameTreeAs: self) ifTrue: [ self error: self class xxErrorDescription ].
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolioEntries add: aPortfolio .
+	aPortfolio addParent: self.! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:53:11'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:53:11'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:53:11'!
+FAILURE!
+
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.!
+
+portfolio1 includes: portfolio5.!
+
+portfolio3 add: portfolio5.	!
+
+portfolio1 includes: portfolio5	!
+!PortfolioEntry methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 14:58:58' prior: 50873826!
+sameTreeAs: aPortfolio 
+	
+	^ (self hasCommonAccountsWith: aPortfolio) or: (parents anySatisfy: [ :aParentPortfolio | aParentPortfolio sameTreeAs: aPortfolio ])! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 14:59:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:59:00'!
+FAILURE!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 14:59:00'!
+FAILURE!
+
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+!
+
+portfolio1 includes: portfolio5.!
+
+portfolio1 hasCommonAccountsWith: portfolio5.!
+
+portfolio4 hasCommonAccountsWith: portfolio5.!
+
+portfolio4 hasCommonAccountsWith: portfolio5.!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:01:26' prior: 50873737!
+test13
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+				
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 15:01:28'!
+PASSED!
+
+----SNAPSHOT----(9 November 2020 15:02:45) CuisUniversity-4384.image priorSource: 17278566!
+
+!classRemoval: #PortfolioTest stamp: 'CM 11/9/2020 15:02:51'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:03:51' prior: 50872878!
+test06
+
+	| portfolio |
+	
+	portfolio := PortfolioPortfolio new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:03:57' prior: 50872945!
+test07
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+			
+	self should: [ portfolio2 add: portfolio1 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:00' prior: 50872962!
+test08
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+					
+	self should: [ portfolio3 add: portfolio1 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:03' prior: 50872976!
+test09
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio3 add: portfolio4.
+	portfolio4 add: portfolio2.
+					
+	self should: [ portfolio2 add: portfolio3 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:06' prior: 50873116!
+test10
+
+	| portfolio1 portfolio2 portfolio3 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	
+	portfolio1 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:09' prior: 50873489!
+test11
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:13' prior: 50873661!
+test12
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	portfolio5 := PortfolioPortfolio new.	
+
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio5.
+	portfolio5 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:15' prior: 50874104!
+test13
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+				
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: PortfolioEntry xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 15:04:21'!
+PASSED!
+
+!classRemoval: #Portfolio stamp: 'CM 11/9/2020 15:04:24'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRenamed: #PortfolioEntry as: #Portfolio stamp: 'CM 11/9/2020 15:04:51'!
+Smalltalk renameClassNamed: #PortfolioEntry as: #Portfolio!
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874178!
+test06
+
+	| portfolio |
+	
+	portfolio := PortfolioPortfolio new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874199!
+test08
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+					
+	self should: [ portfolio3 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874230!
+test10
+
+	| portfolio1 portfolio2 portfolio3 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	
+	portfolio1 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874187!
+test07
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+			
+	self should: [ portfolio2 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874213!
+test09
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 |
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio1 add: portfolio2.
+	portfolio3 add: portfolio4.
+	portfolio4 add: portfolio2.
+					
+	self should: [ portfolio2 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874245!
+test11
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874263!
+test12
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio4 := PortfolioPortfolio new.
+	portfolio5 := PortfolioPortfolio new.	
+
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio5.
+	portfolio5 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioEntryTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:04:51' prior: 50874283!
+test13
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioPortfolio new.
+	portfolio2 := PortfolioPortfolio new.
+	portfolio3 := PortfolioPortfolio new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+				
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+
+!testRun: #PortfolioEntryTest #test01 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test011 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test02 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test022 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test03 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test04 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test044 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test05 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test055 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test06 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test066 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test07 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test08 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test09 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test10 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test11 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test12 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!testRun: #PortfolioEntryTest #test13 stamp: 'CM 11/9/2020 15:05:00'!
+PASSED!
+
+!classRenamed: #PortfolioEntryTest as: #PortfolioTest stamp: 'CM 11/9/2020 15:05:09'!
+Smalltalk renameClassNamed: #PortfolioEntryTest as: #PortfolioTest!
+
+!classRenamed: #PortfolioPortfolio as: #PortfolioCollection stamp: 'CM 11/9/2020 15:05:20'!
+Smalltalk renameClassNamed: #PortfolioPortfolio as: #PortfolioCollection!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874464!
+test13
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	portfolio3 := PortfolioCollection new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+				
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50872770!
+test022
+
+	| portfolio1 portfolio2 account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio1 := PortfolioAccount with: account.
+	portfolio2 := PortfolioCollection new.
+	portfolio2 add: portfolio1.
+	
+	self assert: 100 equals: portfolio2 balance.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874444!
+test12
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio4 := PortfolioCollection new.
+	portfolio5 := PortfolioCollection new.	
+
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio5.
+	portfolio5 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50872621!
+test01
+
+	| portfolio |
+	
+	portfolio := PortfolioCollection new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50872860!
+test055
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+
+	portfolio2 := PortfolioCollection new.	
+	portfolio2 add: portfolio1 .
+	
+	self assert: 1 equals: portfolio2 transactions size.
+	self assert: (portfolio2 transactions includes: deposit).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874359!
+test06
+
+	| portfolio |
+	
+	portfolio := PortfolioCollection new.
+		
+	self should: [ portfolio add: portfolio ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874426!
+test11
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio4 := PortfolioCollection new.
+	
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50872783!
+test03
+
+	| portfolio1 portfolio2 portfolio3 account1 |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 50 on: account1.
+	portfolio1 := PortfolioAccount with: account1.
+	
+	portfolio2 := PortfolioCollection new.
+	portfolio2 add: portfolio1.
+	
+	portfolio3 := PortfolioCollection new.
+	portfolio3 add: portfolio2.
+	
+	self assert: 50 equals: portfolio3 balance.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874409!
+test09
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 |
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	portfolio3 := PortfolioCollection new.
+	portfolio4 := PortfolioCollection new.
+	
+	portfolio1 add: portfolio2.
+	portfolio3 add: portfolio4.
+	portfolio4 add: portfolio2.
+					
+	self should: [ portfolio2 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874397!
+test07
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	
+	portfolio1 add: portfolio2.
+			
+	self should: [ portfolio2 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50872815!
+test044
+
+	| portfolio account1 deposit |
+	
+	account1 := ReceptiveAccount new.	
+	portfolio := PortfolioCollection new.
+	
+	deposit := Deposit register: 100 on: account1.
+	
+	self deny: (portfolio hasRegistered: deposit).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874368!
+test08
+
+	| portfolio1 portfolio2 portfolio3 |
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	portfolio3 := PortfolioCollection new.
+	
+	portfolio1 add: portfolio2.
+	portfolio2 add: portfolio3.
+					
+	self should: [ portfolio3 add: portfolio1 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50874382!
+test10
+
+	| portfolio1 portfolio2 portfolio3 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	
+	portfolio1 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:20' prior: 50872930!
+test066
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioAccount with: ReceptiveAccount new.
+	portfolio2 := PortfolioCollection new.
+		
+	self should: [ portfolio1 add: portfolio2 ] raise: Error withMessageText: 'No se puede agregar un porfolio a un portfolioAccount'! !
+
+!classDefinition: #PortfolioCollection category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 15:05:45'!
+Portfolio subclass: #PortfolioCollection
+	instanceVariableNames: 'portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50872467 overrides: 50872391!
+hasRegistered: aTransaction 
+
+	^ portfolios anySatisfy: [ :aPortfolio | aPortfolio hasRegistered: aTransaction ].! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50873356!
+includes: aPortfolio
+	
+	^ (aPortfolio = self) or: (portfolios includes: aPortfolio) or: (portfolios anySatisfy: [ :aPortfolioEntry | 
+		aPortfolioEntry includes: aPortfolio.
+	]).! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50873896 overrides: 50873780!
+initialize
+
+	super initialize.
+	portfolios := OrderedCollection new.
+	! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50873956 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(aPortfolio sameTreeAs: self) ifTrue: [ self error: self class xxErrorDescription ].
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolios add: aPortfolio .
+	aPortfolio addParent: self.! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50873686!
+zaraza: anAccount
+
+	^ portfolios anySatisfy: [ :portfolio | portfolio zaraza: anAccount ]! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50872460 overrides: 50872387!
+balance
+
+	^ portfolios sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ].! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50872484 overrides: 50872396!
+transactions
+
+	^ portfolios inject: OrderedCollection new into: [ :allTransactions :aPortfolio | allTransactions addAll: aPortfolio transactions ].! !
+!PortfolioCollection methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:45' prior: 50873613!
+hasCommonAccountsWith: aPortfolio
+
+	^ (self includes: aPortfolio) or: (portfolios anySatisfy: [ :pe | aPortfolio hasCommonAccountsWith: pe])! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'CM 11/9/2020 15:05:57'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'parentPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:57' prior: 50874033!
+sameTreeAs: aPortfolio 
+	
+	^ (self hasCommonAccountsWith: aPortfolio) or: (parentPortfolios anySatisfy: [ :aParentPortfolio | aParentPortfolio sameTreeAs: aPortfolio ])! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:57' prior: 50873780 overrides: 16896425!
+initialize
+
+	parentPortfolios := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:05:57' prior: 50873798!
+addParent: aPortfolio
+
+	parentPortfolios add: aPortfolio .! !
+!Portfolio methodsFor: 'private' stamp: 'CM 11/9/2020 15:13:13'!
+hasCommonAccountsWith: aPortfolio
+
+	self subclassResponsibility .
+
+
+	! !
+!Portfolio methodsFor: 'private' stamp: 'CM 11/9/2020 15:13:33'!
+zaraza: anAccount 
+	
+	self subclassResponsibility .! !
+!PortfolioAccount methodsFor: 'initialization' stamp: 'CM 11/9/2020 15:14:04' prior: 50873902!
+initializeWith: anAccount
+	
+	account := anAccount.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test011 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test022 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test044 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test055 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test066 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'CM 11/9/2020 15:14:07'!
+PASSED!
+
+----SNAPSHOT----(9 November 2020 15:14:12) CuisUniversity-4384.image priorSource: 17360548!
+!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 15:18:18' prior: 50874768 overrides: 50872382!
+add: aPortfolio 
+	"
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	"
+	(aPortfolio sameTreeAs: self) ifTrue: [ self error: self class xxErrorDescription ].
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolios add: aPortfolio .
+	aPortfolio addParent: self.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:20:57' prior: 50874539!
+test13
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	portfolio3 := PortfolioCollection new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: Portfolio xxErrorDescription! !
+!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 15:25:25' prior: 50874901 overrides: 50872382!
+add: aPortfolio 
+	
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(aPortfolio sameTreeAs: self) ifTrue: [ self error: self class xxErrorDescription ].
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolios add: aPortfolio .
+	aPortfolio addParent: self.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test011 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test022 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test044 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test055 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test066 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'CM 11/9/2020 15:25:26'!
+PASSED!
+!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 15:25:33' prior: 50874938 overrides: 50872382!
+add: aPortfolio 
+	"
+	(aPortfolio includes: self) ifTrue: [ self error: self class xxErrorDescription ].
+	"
+	(aPortfolio sameTreeAs: self) ifTrue: [ self error: self class xxErrorDescription ].
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	(self hasCommonAccountsWith: aPortfolio) ifTrue: [ self error: self class xxErrorDescription ].
+	
+	portfolios add: aPortfolio .
+	aPortfolio addParent: self.! !
+
+!testRun: #PortfolioTest #test01 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test011 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test022 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test044 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test055 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test066 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'CM 11/9/2020 15:25:35'!
+PASSED!
+
+----SNAPSHOT----(9 November 2020 15:25:47) CuisUniversity-4384.image priorSource: 17383886!
