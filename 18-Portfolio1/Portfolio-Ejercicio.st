@@ -5,17 +5,7 @@ TestCase subclass: #PortfolioTest
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:40:51'!
-test01PortfolioAccountStartsWithZeroBalance
-
-	| portfolio |
-	
-	portfolio := PortfolioAccount with: ReceptiveAccount new.
-
-	self assert: 0 equals: portfolio balance.
-! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:40:31'!
+!PortfolioTest methodsFor: 'Portfolio with one account - Tests' stamp: 'CM 11/9/2020 15:40:31'!
 test01PortfolioCollectionStartsWithZeroBalance
 
 	| portfolio |
@@ -25,19 +15,7 @@ test01PortfolioCollectionStartsWithZeroBalance
 	self assert: 0 equals: portfolio balance.
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:42:44'!
-test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance
-
-	| portfolio account |
-	
-	account := ReceptiveAccount new.
-	Deposit register: 100 on: account.
-	portfolio := PortfolioAccount with: account.
-	
-	self assert: 100 equals: portfolio balance.
-! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:43:02'!
+!PortfolioTest methodsFor: 'Portfolio with one account - Tests' stamp: 'CM 11/9/2020 15:43:02'!
 test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance
 
 	| portfolio1 portfolio2 account |
@@ -52,7 +30,7 @@ test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance
 	self assert: 100 equals: portfolio2 balance.
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:44:08'!
+!PortfolioTest methodsFor: 'Portfolio with one account - Tests' stamp: 'CM 11/9/2020 15:44:08'!
 test03PortfolioCollectionCanContainAnotherPorfolioCollection
 
 	| portfolio1 portfolio2 portfolio3 account1 |
@@ -70,22 +48,7 @@ test03PortfolioCollectionCanContainAnotherPorfolioCollection
 	self assert: 50 equals: portfolio3 balance.
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:45:10'!
-test04PortfolioAccountDoNotKnowNotRegisteredTransactions
-
-	| portfolio account1 account2 deposit |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	portfolio := PortfolioAccount with: account1.
-	
-	deposit := Deposit register: 100 on: account2.
-	
-	self deny: (portfolio hasRegistered: deposit).
-! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:45:29'!
+!PortfolioTest methodsFor: 'Portfolio with one account - Tests' stamp: 'CM 11/9/2020 15:45:29'!
 test04PortfolioCollectionDoNotKnowNotRegisteredTransactions
 
 	| portfolio account1 deposit |
@@ -98,20 +61,7 @@ test04PortfolioCollectionDoNotKnowNotRegisteredTransactions
 	self deny: (portfolio hasRegistered: deposit).
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:48:38'!
-test05PortfolioAccountKnowsRegisteredTransactions 
-
-	| portfolio account deposit |
-	
-	account := ReceptiveAccount new.
-	
-	deposit := Deposit register: 50 on: account.
-	portfolio := PortfolioAccount with: account.
-		
-	self assert: 1 equals: portfolio transactions size.
-	self assert: (portfolio transactions includes: deposit).! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 15:48:53'!
+!PortfolioTest methodsFor: 'Portfolio with one account - Tests' stamp: 'CM 11/9/2020 16:23:36'!
 test05PortfolioCollectionKnowsRegisteredTransactions 
 
 	| portfolio1 portfolio2 account deposit |
@@ -124,10 +74,27 @@ test05PortfolioCollectionKnowsRegisteredTransactions
 	portfolio2 := PortfolioCollection new.	
 	portfolio2 add: portfolio1 .
 	
-	self assert: 1 equals: portfolio2 transactions size.
-	self assert: (portfolio2 transactions includes: deposit).! !
+	self assert: (portfolio2 hasRegistered: deposit).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:06:50'!
+!PortfolioTest methodsFor: 'Portfolio with one account - Tests' stamp: 'CM 11/9/2020 16:28:33'!
+test14PortfolioKnowsItsTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+	
+	portfolio2 := PortfolioCollection new.
+	portfolio2 add: portfolio1.
+		
+	self assert: 1 equals: portfolio2 transactions size.
+	self assert: (portfolio2 transactions includes: deposit).
+! !
+
+
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:06:50'!
 test06PortfolioCanNotAddItself
 
 	| portfolio |
@@ -136,17 +103,7 @@ test06PortfolioCanNotAddItself
 		
 	self should: [ portfolio add: portfolio ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:05'!
-test07PortfolioAccountCanNotAddAnotherPortfolio
-
-	| portfolio1 portfolio2 |
-	
-	portfolio1 := PortfolioAccount with: ReceptiveAccount new.
-	portfolio2 := PortfolioCollection new.
-		
-	self should: [ portfolio1 add: portfolio2 ] raise: Error withMessageText: PortfolioAccount canNotAddPortfolioErrorDescription ! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:14'!
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:07:14'!
 test08PortfolioTreeCanNotHaveShortLoop
 
 	| portfolio1 portfolio2 |
@@ -158,7 +115,7 @@ test08PortfolioTreeCanNotHaveShortLoop
 			
 	self should: [ portfolio2 add: portfolio1 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:17'!
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:07:17'!
 test09PortfolioTreeCanNotHaveLoop
 
 	| portfolio1 portfolio2 portfolio3 |
@@ -172,8 +129,8 @@ test09PortfolioTreeCanNotHaveLoop
 					
 	self should: [ portfolio3 add: portfolio1 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:20'!
-test10PortfolioTreeCanNotHavePortfolioAtDeep1
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:27:18'!
+test10PortfolioTreeCanNotHaveSameAccountAtDepth1
 
 	| portfolio1 portfolio2 portfolio3 account |
 	
@@ -188,7 +145,7 @@ test10PortfolioTreeCanNotHavePortfolioAtDeep1
 				
 	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:23'!
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:07:23'!
 test11CanNotAddPortfolioIncludingOnOfItsAccounts
 
 	| portfolio1 portfolio2 portfolio3 portfolio4 account |
@@ -206,8 +163,8 @@ test11CanNotAddPortfolioIncludingOnOfItsAccounts
 				
 	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:25'!
-test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:29:36'!
+test12CanNotAddPortfolioIncludingSameAccountToTheLeft
 
 	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
 	
@@ -226,8 +183,8 @@ test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft
 				
 	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:07:28'!
-test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight
+!PortfolioTest methodsFor: 'Is a Tree - Tests' stamp: 'CM 11/9/2020 16:30:07'!
+test13CanNotAddPortfolioIncludingSameAccountToTheRight
 
 	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
 	
@@ -245,6 +202,66 @@ test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight
 	portfolio2 add: portfolio3.
 	
 	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
+
+
+!PortfolioTest methodsFor: 'Portfolio Collection - Tests' stamp: 'CM 11/9/2020 15:40:51'!
+test01PortfolioAccountStartsWithZeroBalance
+
+	| portfolio |
+	
+	portfolio := PortfolioAccount with: ReceptiveAccount new.
+
+	self assert: 0 equals: portfolio balance.
+! !
+
+!PortfolioTest methodsFor: 'Portfolio Collection - Tests' stamp: 'CM 11/9/2020 15:42:44'!
+test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance
+
+	| portfolio account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := PortfolioAccount with: account.
+	
+	self assert: 100 equals: portfolio balance.
+! !
+
+!PortfolioTest methodsFor: 'Portfolio Collection - Tests' stamp: 'CM 11/9/2020 15:45:10'!
+test04PortfolioAccountDoNotKnowNotRegisteredTransactions
+
+	| portfolio account1 account2 deposit |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio := PortfolioAccount with: account1.
+	
+	deposit := Deposit register: 100 on: account2.
+	
+	self deny: (portfolio hasRegistered: deposit).
+! !
+
+!PortfolioTest methodsFor: 'Portfolio Collection - Tests' stamp: 'CM 11/9/2020 16:23:29'!
+test05PortfolioAccountKnowsRegisteredTransactions 
+
+	| portfolio account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio := PortfolioAccount with: account.
+		
+	self assert: (portfolio hasRegistered: deposit).! !
+
+!PortfolioTest methodsFor: 'Portfolio Collection - Tests' stamp: 'CM 11/9/2020 16:07:05'!
+test07PortfolioAccountCanNotAddAnotherPortfolio
+
+	| portfolio1 portfolio2 |
+	
+	portfolio1 := PortfolioAccount with: ReceptiveAccount new.
+	portfolio2 := PortfolioCollection new.
+		
+	self should: [ portfolio1 add: portfolio2 ] raise: Error withMessageText: PortfolioAccount canNotAddPortfolioErrorDescription ! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -632,12 +649,10 @@ balance
 	^ portfolios sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ].! !
 
 
-!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 16:12:49'!
+!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 16:38:38'!
 add: aPortfolio 
 	
 	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class canNotAddPortfolioErrorDescription ].
-	
-	(self hasCommonPortfolioWith: aPortfolio) ifTrue: [ self error: self class canNotAddPortfolioErrorDescription ].
 	
 	portfolios add: aPortfolio .
 	aPortfolio addParent: self.! !

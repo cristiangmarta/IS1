@@ -32678,3 +32678,618 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(9 November 2020 16:14:28) CuisUniversity-4384.image priorSource: 17388946!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:21:05' prior: 50875521!
+test05PortfolioAccountKnowsRegisteredTransactions 
+
+	| portfolio account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio := PortfolioAccount with: account.
+		
+	self assert: 1 equals: portfolio transactions size.
+	self assert: (portfolio hasRegistered: deposit).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:21:12' prior: 50875534!
+test05PortfolioCollectionKnowsRegisteredTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+
+	portfolio2 := PortfolioCollection new.	
+	portfolio2 add: portfolio1 .
+	
+	self assert: 1 equals: portfolio2 transactions size.
+	self assert: (portfolio2 hasRegistered: deposit).! !
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHavePortfolioAtDeep1 stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight stamp: 'CM 11/9/2020 16:21:30'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:23:29' prior: 50876801!
+test05PortfolioAccountKnowsRegisteredTransactions 
+
+	| portfolio account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio := PortfolioAccount with: account.
+		
+	self assert: (portfolio hasRegistered: deposit).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:23:36' prior: 50876815!
+test05PortfolioCollectionKnowsRegisteredTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+
+	portfolio2 := PortfolioCollection new.	
+	portfolio2 add: portfolio1 .
+	
+	self assert: (portfolio2 hasRegistered: deposit).! !
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHavePortfolioAtDeep1 stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight stamp: 'CM 11/9/2020 16:23:39'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:25:28'!
+test04PortfolioKnowsItsTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+	
+	portfolio2 := PortfolioCollection new.
+	portfolio1 add: portfolio2.
+		
+	self assert: (portfolio2 transactions size).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:27:18'!
+test10PortfolioTreeCanNotHaveSameAccountAtDepth1
+
+	| portfolio1 portfolio2 portfolio3 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	
+	portfolio1 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
+
+!methodRemoval: PortfolioTest #test10PortfolioTreeCanNotHavePortfolioAtDeep1 stamp: 'CM 11/9/2020 16:27:18'!
+test10PortfolioTreeCanNotHavePortfolioAtDeep1
+
+	| portfolio1 portfolio2 portfolio3 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	
+	portfolio1 add: portfolio2.
+				
+	self should: [ portfolio1 add: portfolio3 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:28:04'!
+test14PortfolioKnowsItsTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+	
+	portfolio2 := PortfolioCollection new.
+	portfolio1 add: portfolio2.
+		
+	self assert: 1 equals: portfolio2 transactions size.
+	self assert: (portfolio2 transactions includes: deposit).
+! !
+
+!methodRemoval: PortfolioTest #test04PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:28:07'!
+test04PortfolioKnowsItsTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+	
+	portfolio2 := PortfolioCollection new.
+	portfolio1 add: portfolio2.
+		
+	self assert: (portfolio2 transactions size).!
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHaveSameAccountAtDepth1 stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight stamp: 'CM 11/9/2020 16:28:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:28:09'!
+ERROR!
+
+!testRun: #PortfolioTest #test14PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:28:09'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:28:33' prior: 50877030!
+test14PortfolioKnowsItsTransactions 
+
+	| portfolio1 portfolio2 account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 50 on: account.
+	portfolio1 := PortfolioAccount with: account.
+	
+	portfolio2 := PortfolioCollection new.
+	portfolio2 add: portfolio1.
+		
+	self assert: 1 equals: portfolio2 transactions size.
+	self assert: (portfolio2 transactions includes: deposit).
+! !
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHaveSameAccountAtDepth1 stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:28:38'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:29:36'!
+test12CanNotAddPortfolioIncludingSameAccountToTheLeft
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio4 := PortfolioCollection new.
+	portfolio5 := PortfolioCollection new.	
+
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio5.
+	portfolio5 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
+
+!methodRemoval: PortfolioTest #test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft stamp: 'CM 11/9/2020 16:29:36'!
+test12CanNotAddPortfolioIncludingOnOfItsAccountsToTheLeft
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio4 := PortfolioCollection new.
+	portfolio5 := PortfolioCollection new.	
+
+	portfolio2 := PortfolioAccount with: account.
+	portfolio3 := PortfolioAccount with: account.
+	
+	portfolio4 add: portfolio5.
+	portfolio5 add: portfolio2.
+	portfolio1 add: portfolio3.
+				
+	self should: [ portfolio1 add: portfolio4 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'CM 11/9/2020 16:30:07'!
+test13CanNotAddPortfolioIncludingSameAccountToTheRight
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	portfolio3 := PortfolioCollection new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription! !
+
+!methodRemoval: PortfolioTest #test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight stamp: 'CM 11/9/2020 16:30:07'!
+test13CanNotAddPortfolioIncludingOnOfItsAccountsToTheRight
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 portfolio5 account |
+	
+	account := ReceptiveAccount new.
+	
+	portfolio1 := PortfolioCollection new.
+	portfolio2 := PortfolioCollection new.
+	portfolio3 := PortfolioCollection new.	
+
+	portfolio4 := PortfolioAccount with: account.
+	portfolio5 := PortfolioAccount with: account.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: portfolio4.
+	portfolio2 add: portfolio3.
+	
+	self should: [ portfolio3 add: portfolio5 ] raise: Error withMessageText: PortfolioCollection canNotAddPortfolioErrorDescription!
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHaveSameAccountAtDepth1 stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingSameAccountToTheLeft stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingSameAccountToTheRight stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:30:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHaveSameAccountAtDepth1 stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingSameAccountToTheLeft stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingSameAccountToTheRight stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:37:02'!
+PASSED!
+
+----SNAPSHOT----(9 November 2020 16:37:14) CuisUniversity-4384.image priorSource: 17444692!
+!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 16:38:20' prior: 50876676 overrides: 50872382!
+add: aPortfolio 
+	
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class canNotAddPortfolioErrorDescription ].
+	
+	"(self hasCommonPortfolioWith: aPortfolio) ifTrue: [ self error: self class canNotAddPortfolioErrorDescription ]."
+	
+	portfolios add: aPortfolio .
+	aPortfolio addParent: self.! !
+
+!testRun: #PortfolioTest #test01PortfolioAccountStartsWithZeroBalance stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioCollectionStartsWithZeroBalance stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioAccountBalance stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02IncreasingAccountBalanceIncreasesPortfolioCollectionBalance stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioCollectionCanContainAnotherPorfolioCollection stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioCollectionDoNotKnowNotRegisteredTransactions stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioAccountKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioCollectionKnowsRegisteredTransactions stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioCanNotAddItself stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioAccountCanNotAddAnotherPortfolio stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTreeCanNotHaveShortLoop stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTreeCanNotHaveLoop stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioTreeCanNotHaveSameAccountAtDepth1 stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11CanNotAddPortfolioIncludingOnOfItsAccounts stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CanNotAddPortfolioIncludingSameAccountToTheLeft stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13CanNotAddPortfolioIncludingSameAccountToTheRight stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14PortfolioKnowsItsTransactions stamp: 'CM 11/9/2020 16:38:22'!
+PASSED!
+!PortfolioCollection methodsFor: 'adding' stamp: 'CM 11/9/2020 16:38:38' prior: 50877436 overrides: 50872382!
+add: aPortfolio 
+	
+	(self sameTreeAs: aPortfolio) ifTrue: [ self error: self class canNotAddPortfolioErrorDescription ].
+	
+	portfolios add: aPortfolio .
+	aPortfolio addParent: self.! !
