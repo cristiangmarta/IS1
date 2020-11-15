@@ -30544,3 +30544,1148 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(15 November 2020 16:22:50) CuisUniversity-4384.image priorSource: 17213317!
+
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeReport category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 16:30:37'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTreeReport methodsFor: 'nil' stamp: 'CM 11/15/2020 16:30:47'!
+initializeFor: aReceptiveAccount 
+	
+	account := aReceptiveAccount.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 16:31:27'!
+printReport
+
+	reporteAcumulado := OrderedCollection new.
+	
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+
+!classDefinition: #AccountTreeReport category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 16:32:29'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 16:32:26'!
+printForReceptiveAccount: aReceptiveAccount
+
+	reporteAcumulado add: sangria , aReceptiveAccount name.
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 16:32:42' prior: 50874871!
+printReport
+
+	sangria := ''.
+	reporteAcumulado := OrderedCollection new.
+	
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+!Portfolio methodsFor: 'reportes' stamp: 'CM 11/15/2020 17:29:33' prior: 50874779!
+generateReportFor: anAccountSummaryReport 
+	
+	accounts do: [ :account |
+			anAccountSummaryReport generateReportFor: account.
+		].
+	
+	! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:30:04'!
+generateReportFor: anAccount
+	
+	anAccount generateReportFor: self.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:30:12'!
+generateReportFor: anAccount
+	
+	anAccount generateReportFor: self.! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:30:17'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:30:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:30:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:30:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:30:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:30:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 17:30:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 17:30:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 17:30:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 17:30:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 17:30:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 17:30:21'!
+PASSED!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:30:47'!
+generateReportFor: anAccount
+	
+	anAccount generateReportFor: self.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:31:52' prior: 50874949!
+generateReportFor: anAccount
+	
+	sangria := sangria , '    '.
+	anAccount generateReportFor: self.
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:36:02' prior: 50874955!
+generateReportFor: anAccount
+	
+	sangria := sangria , '    '.
+	anAccount generateReportFor: self.
+	sangria := sangria allButLast: 4.
+	! !
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 17:36:55' prior: 50874772!
+generateReportFor: anAccountReport 
+	anAccountReport printForAccount.
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:37:30'!
+printForAccount: anAccount
+
+	reporteAcumulado add: sangria , anAccount name! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:38:42' prior: 50874894!
+printReport
+
+	sangria := '    '.
+	reporteAcumulado := OrderedCollection new.
+	
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:40:20' prior: 50874984!
+printReport
+
+	sangria := ''.
+	reporteAcumulado := OrderedCollection new.
+	
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:41:56' prior: 50874962!
+generateReportFor: anAccount
+	
+	sangria := sangria , '    '.
+	anAccount generateReportFor: self.
+	sangria := sangria allButLast: 4.
+	! !
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:42:27'!
+ERROR!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:42:27'!
+ERROR!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:42:27'!
+ERROR!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:42:27'!
+ERROR!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:42:27'!
+ERROR!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:42:32'!
+ERROR!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:42:32'!
+ERROR!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:42:32'!
+ERROR!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:42:32'!
+ERROR!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:42:32'!
+ERROR!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:42:35'!
+ERROR!
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 17:43:19' prior: 50874970!
+generateReportFor: anAccountReport 
+	anAccountReport printForAccount: self.
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:43:33'!
+printForAccount: anAccount
+	
+	! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:43:40'!
+printForAccount: anAccount! !
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:43:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:43:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:43:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:43:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:43:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 17:43:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 17:43:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 17:43:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 17:43:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 17:43:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 17:43:51'!
+PASSED!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 17:43:57' prior: 50874787!
+test012
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '   Cuenta Mia' 
+							with: '   Portfolio de hijos' 
+							with: '      Cuenta de Juan' 
+							with: '      Cuenta de Angeles'.
+
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:43:59'!
+ERROR!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:43:59'!
+ERROR!
+
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 17:44:30'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'CM 11/15/2020 17:44:43' overrides: 16882612!
+name
+	^ name.! !
+!Portfolio methodsFor: 'composition' stamp: 'CM 11/15/2020 17:45:03' overrides: 16882612!
+name
+	^ name.! !
+!ReceptiveAccount class methodsFor: 'nil' stamp: 'CM 11/15/2020 17:46:15'!
+named: aName
+	
+	^ self new initializeNamed: aName.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'CM 11/15/2020 17:46:44'!
+initializeNamed: aName
+
+	name := aName.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:46:49'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:46:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:46:49'!
+ERROR!
+!AccountTreeReport class methodsFor: 'no messages' stamp: 'CM 11/15/2020 17:47:16'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:47:19'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:47:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:47:19'!
+FAILURE!
+!Portfolio methodsFor: 'reportes' stamp: 'CM 11/15/2020 17:48:17' prior: 50874901!
+generateReportFor: anAccountSummaryReport 
+	anAccountSummaryReport printForAccount: self.
+	accounts do: [ :account |
+			anAccountSummaryReport generateReportFor: account.
+		].
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:48:20'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:48:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:48:20'!
+FAILURE!
+
+failureString inspect!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 17:50:48'!
+FAILURE!
+
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 17:56:32'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 17:58:58'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 17:59:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 17:59:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 17:59:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 17:59:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 17:59:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 17:59:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 17:59:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 17:59:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 17:59:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 17:59:03'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 17:59:03'!
+PASSED!
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 18:00:00' prior: 50875034!
+generateReportFor: anAccountReport 
+	
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	! !
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 18:00:04' prior: 50875310!
+generateReportFor: anAccountReport 
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	! !
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 18:00:05' prior: 50875317!
+generateReportFor: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	! !
+!Portfolio methodsFor: 'reportes' stamp: 'CM 11/15/2020 18:00:11' prior: 50875211!
+generateReportFor: anAccountSummaryReport 
+	
+	accounts do: [ :account |
+			anAccountSummaryReport generateReportFor: account.
+		].
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:02:04' prior: 50875000!
+generateReportFor: anAccount
+	
+	reporteAcumulado add: ((self class for: anAccount) printReport collect: [ :rep | rep append: '    ']).
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:03:17' prior: 50875339!
+generateReportFor: anAccount
+	
+	reporteAcumulado add: ((self class for: anAccount) printReport collect: [ :rep | rep prepend: '    ']).
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:03:19'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 18:03:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:03:19'!
+ERROR!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:03:45' prior: 50875347!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | rep prepend: '    ']).
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:03:48'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 18:03:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:03:48'!
+FAILURE!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:04:31' prior: 50875387!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | rep prepend: '    ' ]).
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:08:50' prior: 50875427!
+generateReportFor: anAccount
+	
+	reporteAcumulado add: anAccount name.
+	reporteAcumulado addAll: ((self class for: anAccount) printReport).
+	
+	^ reporteAcumulado collect: [ :rep | rep prepend: '    ' ].
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:08:52'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 18:08:52'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:08:52'!
+ERROR!
+
+xx := 'aa'!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:09:47' prior: 50875435!
+generateReportFor: anAccount
+	
+	reporteAcumulado add: anAccount name.
+	reporteAcumulado addAll: ((self class for: anAccount) printReport).
+	
+	^ reporteAcumulado collect: [ :rep | '    ' , rep ].
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:09:50'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 18:09:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:09:50'!
+FAILURE!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:10:56' prior: 50875078!
+test012
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '   Cuenta Mia' 
+							with: '   Portfolio de hijos' 
+							with: '      Cuenta de Juan' 
+							with: '      Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:11:06'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:11:06'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:12:13'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:12:13'!
+FAILURE!
+
+x := (OrderedCollection with: 5).!
+
+x collect: [ :i | i +1]!
+
+x inspect!
+
+x collect: [ :i | i +1]!
+
+x collect: [ :i | i +1]!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:16:35' prior: 50874992!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:16:41'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:16:41'!
+FAILURE!
+
+x := (OrderedCollection with: '121').!
+
+x collect: [ :i | '   ', i].!
+
+!methodRemoval: AccountTreeReport #printForAccount: stamp: 'CM 11/15/2020 18:18:20'!
+printForAccount: anAccount
+
+	reporteAcumulado add: sangria , anAccount name!
+
+!methodRemoval: AccountTreeReport #printForReceptiveAccount: stamp: 'CM 11/15/2020 18:18:22'!
+printForReceptiveAccount: aReceptiveAccount
+
+	reporteAcumulado add: sangria , aReceptiveAccount name.
+	!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:18:48'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:18:48'!
+FAILURE!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:20:18' prior: 50875478!
+generateReportFor: anAccount
+	
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport).
+	
+	^ reporteAcumulado collect: [ :rep | '    ' , rep ].
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:20:19' prior: 50875595!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport).
+	
+	^ reporteAcumulado collect: [ :rep | '    ' , rep ].
+	
+	! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:20:24'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:20:24'!
+FAILURE!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:21:29' prior: 50875604!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport).
+	
+	
+	reporteAcumulado := reporteAcumulado collect: [ :rep | '    ' , rep ].
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:21:31'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'CM 11/15/2020 18:21:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:21:31'!
+FAILURE!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:22:23' prior: 50875618!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:22:26'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:22:26'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:23:40'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:23:40'!
+FAILURE!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:26:29' prior: 50875520!
+test012
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta Mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:26:32'!
+FAILURE!
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:26:32'!
+FAILURE!
+
+expected = report!
+
+expected first = report first!
+
+expected second = report second!
+
+expected second.!
+
+report second.!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:28:31' prior: 50875678!
+test012
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:28:34'!
+PASSED!
+
+AccountReport subclass: #AccountTreeBalanceReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeBalanceReport category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 18:28:55'!
+AccountReport subclass: #AccountTreeBalanceReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTreeBalanceReport class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTreeBalanceReport class' category: 'Portfolio-Solucion' stamp: 'CM 11/15/2020 18:28:55'!
+AccountTreeBalanceReport class
+	instanceVariableNames: ''!
+!AccountTreeBalanceReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountTreeBalanceReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
+initializeFor: aReceptiveAccount 
+	
+	account := aReceptiveAccount.! !
+!AccountTreeBalanceReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+!AccountTreeBalanceReport class methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+!classRenamed: #AccountTreeBalanceReport as: #AccountTreeSummaryReport stamp: 'CM 11/15/2020 18:29:11'!
+Smalltalk renameClassNamed: #AccountTreeBalanceReport as: #AccountTreeSummaryReport!
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:32:01'!
+printForDeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:32:18'!
+printForIncomingTransfer: aDeposit 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:32:27'!
+printForOutgoingTransfer: aDeposit 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:32:38'!
+printForWithdraw: aDeposit 
+	
+	reporteAcumulado add: 'Extraccion de ', aDeposit value asString.! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:32:55'!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:33:03' prior: 50875831!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:39:51' prior: 50875784!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account generateReportFor: self.
+	reporteAcumulado add: 'Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:40:58' prior: 50875860!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test012 stamp: 'CM 11/15/2020 18:41:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'CM 11/15/2020 18:41:06'!
+FAILURE!
+
+!testRun: #AccountReportTest #test013 stamp: 'CM 11/15/2020 18:41:06'!
+FAILURE!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:45:22' prior: 50875900!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance  100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test013 stamp: 'CM 11/15/2020 18:45:27'!
+FAILURE!
+
+!testRun: #AccountReportTest #test013 stamp: 'CM 11/15/2020 18:45:27'!
+FAILURE!
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:25' prior: 50875811!
+printForIncomingTransfer: aDeposit 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:28' prior: 50875818!
+printForOutgoingTransfer: aDeposit 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:31' prior: 50875825!
+printForWithdraw: aDeposit 
+	
+	reporteAcumulado add: '    Extraccion de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:33' prior: 50875805!
+printForDeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+
+!testRun: #AccountReportTest #test013 stamp: 'CM 11/15/2020 18:46:36'!
+FAILURE!
+
+!testRun: #AccountReportTest #test013 stamp: 'CM 11/15/2020 18:46:36'!
+FAILURE!
+
+expected first = report first!
+
+expected second = report second!
+
+expected third = report third!
+
+expected fourth = report fourth!
+
+expected fourth!
+
+report fourth!

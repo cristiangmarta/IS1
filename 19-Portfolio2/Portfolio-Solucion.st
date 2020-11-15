@@ -5,10 +5,10 @@ TestCase subclass: #AccountReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 16:22:33'!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:28:31'!
 test012
-"
-	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
 	
 	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
 	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
@@ -17,13 +17,44 @@ test012
 	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
 
 	report := OrderedCollection with: 'Portfolio de la familia' 
-							with: '   Cuenta Mia' 
-							with: '   Portfolio de hijos' 
-							with: '      Cuenta de Juan' 
-							with: '      Cuenta de Angeles'.
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
 
-	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
-"! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/15/2020 18:45:22'!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance  100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
 
 
 !AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/15/2020 15:19:02'!
@@ -707,14 +738,18 @@ isComposedBy: anAccount
 	^ self = anAccount or: [ accounts anySatisfy: [ :composedAccount | (composedAccount isComposedBy: anAccount) or: [ anAccount isComposedBy: composedAccount ]]]! !
 
 
-!Portfolio methodsFor: 'reportes' stamp: 'CM 11/15/2020 16:21:55'!
+!Portfolio methodsFor: 'reportes' stamp: 'CM 11/15/2020 18:00:11'!
 generateReportFor: anAccountSummaryReport 
 	
 	accounts do: [ :account |
-			account generateReportFor: anAccountSummaryReport.
+			anAccountSummaryReport generateReportFor: account.
 		].
 	
 	! !
+
+!Portfolio methodsFor: 'reportes' stamp: 'CM 11/15/2020 17:45:03'!
+name
+	^ name.! !
 
 
 !Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:17:31'!
@@ -779,7 +814,7 @@ with: anAccount with: anotherAccount
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -789,6 +824,11 @@ initialize
 
 	super initialize.
 	transactions := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'CM 11/15/2020 17:46:44'!
+initializeNamed: aName
+
+	name := aName.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'NR 11/9/2020 05:56:36'!
@@ -834,14 +874,29 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 16:21:45'!
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 18:00:05'!
 generateReportFor: anAccountReport 
-	
+
 	transactions do: [ :transaction |
 			transaction addToReport: anAccountReport
 		].
 	
 	! !
+
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'CM 11/15/2020 17:44:43'!
+name
+	^ name.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio-Solucion'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:46:15'!
+named: aName
+	
+	^ self new initializeNamed: aName.! !
 
 
 !classDefinition: #AccountReport category: 'Portfolio-Solucion'!
@@ -864,6 +919,14 @@ initializeFor: aReceptiveAccount
 	
 	receptiveAccount := aReceptiveAccount.! !
 
+
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:30:04'!
+generateReportFor: anAccount
+	
+	anAccount generateReportFor: self.! !
+
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:43:40'!
+printForAccount: anAccount! !
 
 !AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 15:50:26'!
 printForDeposit: aDeposit 
@@ -916,25 +979,15 @@ initializeFor: aReceptiveAccount
 	account := aReceptiveAccount.! !
 
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 15:47:16'!
-printForDeposit: aDeposit 
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:30:12'!
+generateReportFor: anAccount
 	
-	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+	anAccount generateReportFor: self.! !
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 15:44:00'!
-printForIncomingTransfer: aDeposit 
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:43:33'!
+printForAccount: anAccount
 	
-	reporteAcumulado add: 'Transferencia entrante de ', aDeposit value asString.! !
-
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 15:44:11'!
-printForOutgoingTransfer: aDeposit 
-	
-	reporteAcumulado add: 'Transferencia saliente de ', aDeposit value asString.! !
-
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 15:44:16'!
-printForWithdraw: aDeposit 
-	
-	reporteAcumulado add: 'Extraccion de ', aDeposit value asString.! !
+	! !
 
 !AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 15:49:24'!
 printReport
@@ -947,6 +1000,27 @@ printReport
 	
 	^ reporteAcumulado.! !
 
+
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'CM 11/15/2020 15:47:16'!
+printForDeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'CM 11/15/2020 15:44:00'!
+printForIncomingTransfer: aDeposit 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aDeposit value asString.! !
+
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'CM 11/15/2020 15:44:11'!
+printForOutgoingTransfer: aDeposit 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aDeposit value asString.! !
+
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'CM 11/15/2020 15:44:16'!
+printForWithdraw: aDeposit 
+	
+	reporteAcumulado add: 'Extraccion de ', aDeposit value asString.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'AccountSummaryReport class' category: 'Portfolio-Solucion'!
@@ -954,6 +1028,111 @@ AccountSummaryReport class
 	instanceVariableNames: ''!
 
 !AccountSummaryReport class methodsFor: 'instance creation' stamp: 'CM 11/15/2020 14:54:28'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+
+!classDefinition: #AccountTreeReport category: 'Portfolio-Solucion'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:22:23'!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 16:30:47'!
+initializeFor: aReceptiveAccount 
+	
+	account := aReceptiveAccount.! !
+
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:16:35'!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account generateReportFor: self.
+	
+	^ reporteAcumulado.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountTreeReport class' category: 'Portfolio-Solucion'!
+AccountTreeReport class
+	instanceVariableNames: ''!
+
+!AccountTreeReport class methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 17:47:16'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount ! !
+
+
+!classDefinition: #AccountTreeSummaryReport category: 'Portfolio-Solucion'!
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
+initializeFor: aReceptiveAccount 
+	
+	account := aReceptiveAccount.! !
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:33'!
+printForDeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:25'!
+printForIncomingTransfer: aDeposit 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aDeposit value asString.! !
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:28'!
+printForOutgoingTransfer: aDeposit 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aDeposit value asString.! !
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:46:31'!
+printForWithdraw: aDeposit 
+	
+	reporteAcumulado add: '    Extraccion de ', aDeposit value asString.! !
+
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:39:51'!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account generateReportFor: self.
+	reporteAcumulado add: 'Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountTreeSummaryReport class' category: 'Portfolio-Solucion'!
+AccountTreeSummaryReport class
+	instanceVariableNames: ''!
+
+!AccountTreeSummaryReport class methodsFor: 'as yet unclassified' stamp: 'CM 11/15/2020 18:28:55'!
 for: aReceptiveAccount 
 	
 	^self new initializeFor: aReceptiveAccount ! !
