@@ -1,0 +1,3466 @@
+
+
+----STARTUP---- (16 November 2020 08:36:04) as C:\Users\Alejo\Desktop\Smalltalk\windows64\1er Parcial v1.image!
+
+
+----SNAPSHOT----(16 November 2020 08:36:26) ejercicio19-2.image priorSource: 17986092!
+
+----End fileIn of C:\Users\Alejo\Desktop\Smalltalk\windows64\fileout\19-2\portfolio.st----!
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:37:10' prior: 50894972!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account generateReportFor: self.
+	reporteAcumulado add: '    Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'AS 11/16/2020 08:37:29' prior: 50893767!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance = 100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'AS 11/16/2020 08:38:11' prior: 50895295!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance = 100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							
+							add: '            Balance = 0' ;
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:38:14'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 08:38:22) ejercicio19-2.image priorSource: 17986290!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:38:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:38:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:38:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:38:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:38:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:38:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:38:38'!
+PASSED!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:38:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:38:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:38:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:38:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:38:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:38:39'!
+PASSED!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04'!
+addReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04'!
+addReportFor: anAccount
+	
+	anAccount generateReportFor: self.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04'!
+addReportFor: anAccount
+	
+	anAccount generateReportFor: self.! !
+!Portfolio methodsFor: 'reportes' stamp: 'AS 11/16/2020 08:40:04'!
+addReportFor: anAccountSummaryReport 
+	
+	accounts do: [ :account |
+			anAccountSummaryReport generateReportFor: account.
+		].
+	
+	! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04'!
+addReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'AS 11/16/2020 08:40:04'!
+addReportFor: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50894805!
+generateReportFor: anAccount
+	
+	anAccount addReportFor: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50894539!
+generateReportFor: anAccountSummaryReport 
+	
+	accounts do: [ :account |
+			anAccountSummaryReport addReportFor: account.
+		].
+	
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50894815!
+printReport
+
+	reporteAcumulado := OrderedCollection new.
+	
+	account addReportFor: self.
+	
+	reporteAcumulado add: 'Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50894892!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account addReportFor: self.
+	
+	^ reporteAcumulado.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50894733!
+generateReportFor: anAccount
+	
+	anAccount addReportFor: self.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50895284!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account addReportFor: self.
+	reporteAcumulado add: '    Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50894763!
+printReport
+	
+	reporteAcumulado := 0.
+	receptiveAccount addReportFor: self.
+	
+	^ reporteAcumulado.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50895423!
+addReportFor: anAccount
+	
+	anAccount addReportFor: self.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50895428!
+addReportFor: anAccount
+	
+	anAccount addReportFor: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:04' prior: 50895433!
+addReportFor: anAccountSummaryReport 
+	
+	accounts do: [ :account |
+			anAccountSummaryReport addReportFor: account.
+		].
+	
+	! !
+
+!methodRemoval: AccountTreeReport #generateReportFor: stamp: 'AS 11/16/2020 08:40:04'!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	!
+
+!methodRemoval: AccountSummaryReport #generateReportFor: stamp: 'AS 11/16/2020 08:40:04'!
+generateReportFor: anAccount
+	
+	anAccount addReportFor: self.!
+
+!methodRemoval: AccountNetTransferReport #generateReportFor: stamp: 'AS 11/16/2020 08:40:04'!
+generateReportFor: anAccount
+	
+	anAccount addReportFor: self.!
+
+!methodRemoval: Portfolio #generateReportFor: stamp: 'AS 11/16/2020 08:40:04'!
+generateReportFor: anAccountSummaryReport 
+	
+	accounts do: [ :account |
+			anAccountSummaryReport addReportFor: account.
+		].
+	
+	!
+
+!methodRemoval: AccountTreeSummaryReport #generateReportFor: stamp: 'AS 11/16/2020 08:40:04'!
+generateReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	!
+
+!methodRemoval: ReceptiveAccount #generateReportFor: stamp: 'AS 11/16/2020 08:40:04'!
+generateReportFor: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction addToReport: anAccountReport
+		].
+	
+	!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:40:11'!
+PASSED!
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:40:50' prior: 50895506!
+printReport
+	
+	reporteAcumulado := 0.
+	receptiveAccount addReportFor: self.
+	
+	^ reporteAcumulado.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:42:09' prior: 50894759!
+printForWithdraw: aWithdraw 
+	! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:42:22' prior: 50894753!
+printForOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado - aTransfer value.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:42:36' prior: 50894747!
+printForIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 08:43:39' prior: 50894830!
+printForIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 08:43:53' prior: 50894837!
+printForOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 08:44:05' prior: 50894844!
+printForWithdraw: aWithdraw 
+	
+	reporteAcumulado add: 'Extraccion de ', aWithdraw value asString.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:44:10'!
+PASSED!
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:44:31' prior: 50894887!
+initializeFor: anAccount 
+	
+	account := anAccount.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:45:23' prior: 50894951!
+printForIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:45:33' prior: 50894958!
+printForOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:45:42' prior: 50894965!
+printForWithdraw: aWithdraw 
+	
+	reporteAcumulado add: '    Extraccion de ', aWithdraw value asString.! !
+!AccountReport methodsFor: 'no messages' stamp: 'AS 11/16/2020 08:46:54'!
+addReportFor: anAccount
+self subclassResponsibility ! !
+!AccountSummaryReport methodsFor: 'initialization' stamp: 'AS 11/16/2020 08:47:41' prior: 50894799!
+initializeFor: anAccount 
+	
+	account := anAccount.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:48:30' prior: 50894938!
+initializeFor: anAccount 
+	
+	account := anAccount.! !
+
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:48:52'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountReport
+	instanceVariableNames: 'account reporteAcumulad'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountNetTransferReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:49:50'!
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: 'receptiveAccount reporteAcumulado account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountNetTransferReport methodsFor: 'initialization' stamp: 'AS 11/16/2020 08:49:32' prior: 50894727!
+initializeFor: anAccount 
+	
+	account := anAccount.! !
+
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: 'reporteAcumulado account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountNetTransferReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:50:00'!
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: 'reporteAcumulado account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountNetTransferReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:50:14'!
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:50:21'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:50:30'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeSummaryReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:50:40'!
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: 'reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:50:44'!
+Object subclass: #AccountReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:50:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:50:47'!
+ERROR!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:50:47'!
+ERROR!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:50:47'!
+ERROR!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:50:47'!
+ERROR!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:50:47'!
+ERROR!
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:51:15' prior: 50895602!
+printReport
+	
+	reporteAcumulado := 0.
+	account addReportFor: self.
+	
+	^ reporteAcumulado.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:51:22'!
+PASSED!
+
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeSummaryReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:51:48'!
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:51:52'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:51:56'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountNetTransferReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:51:59'!
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #AccountReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 08:52:03'!
+Object subclass: #AccountReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:52:06'!
+PASSED!
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 08:52:38'!
+initializeFor: anAccount 
+	
+	account := anAccount.! !
+
+!methodRemoval: AccountNetTransferReport #initializeFor: stamp: 'AS 11/16/2020 08:52:55'!
+initializeFor: anAccount 
+	
+	account := anAccount.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:53:00'!
+PASSED!
+
+!methodRemoval: AccountSummaryReport #initializeFor: stamp: 'AS 11/16/2020 08:53:10'!
+initializeFor: anAccount 
+	
+	account := anAccount.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:53:12'!
+PASSED!
+
+!methodRemoval: AccountTreeReport #initializeFor: stamp: 'AS 11/16/2020 08:53:22'!
+initializeFor: anAccount 
+	
+	account := anAccount.!
+
+!methodRemoval: AccountTreeSummaryReport #initializeFor: stamp: 'AS 11/16/2020 08:53:32'!
+initializeFor: anAccount 
+	
+	account := anAccount.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 08:53:36'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 08:53:40) ejercicio19-2.image priorSource: 18039321!
+!AccountReport class methodsFor: 'no messages' stamp: 'AS 11/16/2020 09:00:24'!
+for: aReceptiveAccount 
+	
+	self subclassResponsibility ! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:00:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:00:37'!
+PASSED!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:00:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:00:40'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 09:00:55) ejercicio19-2.image priorSource: 18063357!
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:02:09'!
+printForDeposit: aDeposit 
+self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:02:31'!
+printForIncomingTransfer: aTransfer
+self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:02:51'!
+printForOutgoingTransfer: aTransfer
+self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:03:08'!
+printForWithdraw: aWithdraw 
+self subclassResponsibility ! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:03:12'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 09:03:18) ejercicio19-2.image priorSource: 18066697!
+
+!methodRemoval: AccountNetTransferReport #printForAccount: stamp: 'AS 11/16/2020 09:04:09'!
+printForAccount: anAccount!
+
+!methodRemoval: AccountSummaryReport #printForAccount: stamp: 'AS 11/16/2020 09:04:13'!
+printForAccount: anAccount
+	
+	!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:04:20'!
+PASSED!
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:05:32'!
+printReport
+self subclassResponsibility ! !
+
+----SNAPSHOT----(16 November 2020 09:07:08) ejercicio19-2.image priorSource: 18068449!
+
+----SNAPSHOT----(16 November 2020 09:07:53) ejercicio19-2.image priorSource: 18069963!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:13:27'!
+PASSED!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'AS 11/16/2020 09:14:10'!
+test014
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance = 100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							
+							add: '            Balance = 0' ;
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!methodRemoval: AccountReportTest #test013 stamp: 'AS 11/16/2020 09:14:10'!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance = 100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							
+							add: '            Balance = 0' ;
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'AS 11/16/2020 09:14:33'!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'AS 11/16/2020 09:14:57' prior: 50896457!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:15:00'!
+ERROR!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:15:00'!
+ERROR!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:15:00'!
+ERROR!
+!AccountTreeReport methodsFor: 'printing report' stamp: 'AS 11/16/2020 09:15:29' overrides: 50896243!
+printForIncomingTransfer: aTransfer! !
+!AccountTreeReport methodsFor: 'printing report' stamp: 'AS 11/16/2020 09:15:53' overrides: 50896238!
+printForDeposit: aDeposit ! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:16:36' overrides: 50896248!
+printForOutgoingTransfer: aTransfer! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:16:46' overrides: 50896253!
+printForWithdraw: aWithdraw ! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:16:51'!
+PASSED!
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:20:58'!
+inReportAddADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:20:58'!
+inReportAddADeposit: aDeposit ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:20:58'!
+inReportAddADeposit: aDeposit 
+self subclassResponsibility ! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:20:58' overrides: 50896590!
+inReportAddADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:20:58' overrides: 50896590!
+inReportAddADeposit: aDeposit 
+	! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:20:59' prior: 50895080!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport inReportAddADeposit: self.! !
+
+!methodRemoval: AccountTreeSummaryReport #printForDeposit: stamp: 'AS 11/16/2020 09:20:59'!
+printForDeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountTreeReport #printForDeposit: stamp: 'AS 11/16/2020 09:20:59'!
+printForDeposit: aDeposit !
+
+!methodRemoval: AccountReport #printForDeposit: stamp: 'AS 11/16/2020 09:20:59'!
+printForDeposit: aDeposit 
+self subclassResponsibility !
+
+!methodRemoval: AccountSummaryReport #printForDeposit: stamp: 'AS 11/16/2020 09:20:59'!
+printForDeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountNetTransferReport #printForDeposit: stamp: 'AS 11/16/2020 09:20:59'!
+printForDeposit: aDeposit 
+	!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:21:07'!
+PASSED!
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:22:56'!
+inReportContemplateIncomingTransfer: aTransfer
+self subclassResponsibility ! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:22:56' overrides: 50896672!
+inReportContemplateIncomingTransfer: aTransfer! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:22:57' overrides: 50896672!
+inReportContemplateIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:22:57' overrides: 50896672!
+inReportContemplateIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:22:57' overrides: 50896672!
+inReportContemplateIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.! !
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:22:57' prior: 50895174!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport inReportContemplateIncomingTransfer: self.! !
+
+!methodRemoval: AccountReport #printForIncomingTransfer: stamp: 'AS 11/16/2020 09:22:57'!
+printForIncomingTransfer: aTransfer
+self subclassResponsibility !
+
+!methodRemoval: AccountTreeReport #printForIncomingTransfer: stamp: 'AS 11/16/2020 09:22:57'!
+printForIncomingTransfer: aTransfer!
+
+!methodRemoval: AccountSummaryReport #printForIncomingTransfer: stamp: 'AS 11/16/2020 09:22:57'!
+printForIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.!
+
+!methodRemoval: AccountTreeSummaryReport #printForIncomingTransfer: stamp: 'AS 11/16/2020 09:22:57'!
+printForIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.!
+
+!methodRemoval: AccountNetTransferReport #printForIncomingTransfer: stamp: 'AS 11/16/2020 09:22:57'!
+printForIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.!
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:00'!
+inReportReflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:00'!
+inReportReflectIncomingTransfer: aTransfer
+self subclassResponsibility ! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:00' overrides: 50896749!
+inReportReflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:00' overrides: 50896749!
+inReportReflectIncomingTransfer: aTransfer! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:24:00' overrides: 50896749!
+inReportReflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.! !
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:24:00' prior: 50896707!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport inReportReflectIncomingTransfer: self.! !
+
+!methodRemoval: AccountNetTransferReport #inReportContemplateIncomingTransfer: stamp: 'AS 11/16/2020 09:24:00'!
+inReportContemplateIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.!
+
+!methodRemoval: AccountReport #inReportContemplateIncomingTransfer: stamp: 'AS 11/16/2020 09:24:00'!
+inReportContemplateIncomingTransfer: aTransfer
+self subclassResponsibility !
+
+!methodRemoval: AccountTreeSummaryReport #inReportContemplateIncomingTransfer: stamp: 'AS 11/16/2020 09:24:00'!
+inReportContemplateIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.!
+
+!methodRemoval: AccountTreeReport #inReportContemplateIncomingTransfer: stamp: 'AS 11/16/2020 09:24:00'!
+inReportContemplateIncomingTransfer: aTransfer!
+
+!methodRemoval: AccountSummaryReport #inReportContemplateIncomingTransfer: stamp: 'AS 11/16/2020 09:24:00'!
+inReportContemplateIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.!
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:23'!
+inReportReflectAddADeposit: aDeposit ! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:23'!
+inReportReflectAddADeposit: aDeposit 
+	! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:23'!
+inReportReflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:24:23'!
+inReportReflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:24:23'!
+inReportReflectAddADeposit: aDeposit 
+self subclassResponsibility ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:24:23' prior: 50896608!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport inReportReflectAddADeposit: self.! !
+
+!methodRemoval: AccountTreeReport #inReportAddADeposit: stamp: 'AS 11/16/2020 09:24:23'!
+inReportAddADeposit: aDeposit !
+
+!methodRemoval: AccountNetTransferReport #inReportAddADeposit: stamp: 'AS 11/16/2020 09:24:23'!
+inReportAddADeposit: aDeposit 
+	!
+
+!methodRemoval: AccountTreeSummaryReport #inReportAddADeposit: stamp: 'AS 11/16/2020 09:24:23'!
+inReportAddADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountSummaryReport #inReportAddADeposit: stamp: 'AS 11/16/2020 09:24:23'!
+inReportAddADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountReport #inReportAddADeposit: stamp: 'AS 11/16/2020 09:24:23'!
+inReportAddADeposit: aDeposit 
+self subclassResponsibility !
+
+----SNAPSHOT----(16 November 2020 09:24:28) ejercicio19-2.image priorSource: 18070051!
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:15'!
+ReflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aTransfer value asString.! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:15'!
+ReflectOutgoingTransfer: aTransfer! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:15'!
+ReflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado - aTransfer value.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:15'!
+ReflectOutgoingTransfer: aTransfer
+self subclassResponsibility ! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:25:15' overrides: 50896896!
+ReflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aTransfer value asString.! !
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:25:15' prior: 50895199!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport ReflectOutgoingTransfer: self.! !
+
+!methodRemoval: AccountTreeSummaryReport #printForOutgoingTransfer: stamp: 'AS 11/16/2020 09:25:15'!
+printForOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aTransfer value asString.!
+
+!methodRemoval: AccountTreeReport #printForOutgoingTransfer: stamp: 'AS 11/16/2020 09:25:15'!
+printForOutgoingTransfer: aTransfer!
+
+!methodRemoval: AccountNetTransferReport #printForOutgoingTransfer: stamp: 'AS 11/16/2020 09:25:15'!
+printForOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado - aTransfer value.!
+
+!methodRemoval: AccountReport #printForOutgoingTransfer: stamp: 'AS 11/16/2020 09:25:15'!
+printForOutgoingTransfer: aTransfer
+self subclassResponsibility !
+
+!methodRemoval: AccountSummaryReport #printForOutgoingTransfer: stamp: 'AS 11/16/2020 09:25:15'!
+printForOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aTransfer value asString.!
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:27'!
+reflectOutgoingTransfer: aTransfer
+self subclassResponsibility ! !
+
+!methodRemoval: AccountReport #ReflectOutgoingTransfer: stamp: 'AS 11/16/2020 09:25:27'!
+ReflectOutgoingTransfer: aTransfer
+self subclassResponsibility !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:59' overrides: 50896944!
+reflectOutgoingTransfer: aTransfer! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:25:59' overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aTransfer value asString.! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:25:59' overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado - aTransfer value.! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:00' overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aTransfer value asString.! !
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:26:00' prior: 50896909!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectOutgoingTransfer: self.! !
+
+!methodRemoval: AccountTreeReport #ReflectOutgoingTransfer: stamp: 'AS 11/16/2020 09:26:00'!
+ReflectOutgoingTransfer: aTransfer!
+
+!methodRemoval: AccountSummaryReport #ReflectOutgoingTransfer: stamp: 'AS 11/16/2020 09:26:00'!
+ReflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia saliente de ', aTransfer value asString.!
+
+!methodRemoval: AccountNetTransferReport #ReflectOutgoingTransfer: stamp: 'AS 11/16/2020 09:26:00'!
+ReflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado - aTransfer value.!
+
+!methodRemoval: AccountTreeSummaryReport #ReflectOutgoingTransfer: stamp: 'AS 11/16/2020 09:26:00'!
+ReflectOutgoingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia saliente de ', aTransfer value asString.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:26:21'!
+PASSED!
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:38'!
+reflectIncomingTransfer: aTransfer! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:39'!
+reflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:39'!
+reflectIncomingTransfer: aTransfer
+self subclassResponsibility ! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:26:39' overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:39' overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.! !
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:26:39' prior: 50896776!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectIncomingTransfer: self.! !
+
+!methodRemoval: AccountTreeReport #inReportReflectIncomingTransfer: stamp: 'AS 11/16/2020 09:26:39'!
+inReportReflectIncomingTransfer: aTransfer!
+
+!methodRemoval: AccountTreeSummaryReport #inReportReflectIncomingTransfer: stamp: 'AS 11/16/2020 09:26:39'!
+inReportReflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: '    Transferencia entrante de ', aTransfer value asString.!
+
+!methodRemoval: AccountReport #inReportReflectIncomingTransfer: stamp: 'AS 11/16/2020 09:26:39'!
+inReportReflectIncomingTransfer: aTransfer
+self subclassResponsibility !
+
+!methodRemoval: AccountSummaryReport #inReportReflectIncomingTransfer: stamp: 'AS 11/16/2020 09:26:39'!
+inReportReflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado add: 'Transferencia entrante de ', aTransfer value asString.!
+
+!methodRemoval: AccountNetTransferReport #inReportReflectIncomingTransfer: stamp: 'AS 11/16/2020 09:26:39'!
+inReportReflectIncomingTransfer: aTransfer 
+	
+	reporteAcumulado := reporteAcumulado + aTransfer value.!
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:55'!
+reflectWithdraw: aWithdraw ! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:26:55'!
+reflectWithdraw: aWithdraw 
+	
+	reporteAcumulado add: 'Extraccion de ', aWithdraw value asString.! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:55'!
+reflectWithdraw: aWithdraw 
+	
+	reporteAcumulado add: '    Extraccion de ', aWithdraw value asString.! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:55'!
+reflectWithdraw: aWithdraw 
+	! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:26:55'!
+reflectWithdraw: aWithdraw 
+self subclassResponsibility ! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:26:55' prior: 50895098!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectWithdraw: self.! !
+
+!methodRemoval: AccountTreeReport #printForWithdraw: stamp: 'AS 11/16/2020 09:26:55'!
+printForWithdraw: aWithdraw !
+
+!methodRemoval: AccountSummaryReport #printForWithdraw: stamp: 'AS 11/16/2020 09:26:55'!
+printForWithdraw: aWithdraw 
+	
+	reporteAcumulado add: 'Extraccion de ', aWithdraw value asString.!
+
+!methodRemoval: AccountTreeSummaryReport #printForWithdraw: stamp: 'AS 11/16/2020 09:26:55'!
+printForWithdraw: aWithdraw 
+	
+	reporteAcumulado add: '    Extraccion de ', aWithdraw value asString.!
+
+!methodRemoval: AccountNetTransferReport #printForWithdraw: stamp: 'AS 11/16/2020 09:26:55'!
+printForWithdraw: aWithdraw 
+	!
+
+!methodRemoval: AccountReport #printForWithdraw: stamp: 'AS 11/16/2020 09:26:55'!
+printForWithdraw: aWithdraw 
+self subclassResponsibility !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:27:14'!
+reflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 09:27:14'!
+reflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:27:14'!
+reflectAddADeposit: aDeposit 
+self subclassResponsibility ! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:27:14' overrides: 50897189!
+reflectAddADeposit: aDeposit 
+	! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 09:27:14' overrides: 50897189!
+reflectAddADeposit: aDeposit ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:27:14' prior: 50896844!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectAddADeposit: self.! !
+
+!methodRemoval: AccountTreeSummaryReport #inReportReflectAddADeposit: stamp: 'AS 11/16/2020 09:27:14'!
+inReportReflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountSummaryReport #inReportReflectAddADeposit: stamp: 'AS 11/16/2020 09:27:14'!
+inReportReflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountReport #inReportReflectAddADeposit: stamp: 'AS 11/16/2020 09:27:14'!
+inReportReflectAddADeposit: aDeposit 
+self subclassResponsibility !
+
+!methodRemoval: AccountNetTransferReport #inReportReflectAddADeposit: stamp: 'AS 11/16/2020 09:27:14'!
+inReportReflectAddADeposit: aDeposit 
+	!
+
+!methodRemoval: AccountTreeReport #inReportReflectAddADeposit: stamp: 'AS 11/16/2020 09:27:14'!
+inReportReflectAddADeposit: aDeposit !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:27:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:27:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:27:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:27:21'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:27:21'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 09:29:27) ejercicio19-2.image priorSource: 18087167!
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:38:42'!
+reflectOn: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectIncomingTransfer: self.! !
+!Withdraw methodsFor: 'balance' stamp: 'AS 11/16/2020 09:38:42'!
+reflectOn: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectWithdraw: self.! !
+!Deposit methodsFor: 'reportes' stamp: 'AS 11/16/2020 09:38:42'!
+reflectOn: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectAddADeposit: self.! !
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:38:42'!
+reflectOn: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectOutgoingTransfer: self.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:38:42' prior: 50895448!
+addReportFor: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction reflectOn: anAccountReport
+		].
+	
+	! !
+
+!methodRemoval: IncomingTransfer #addToReport: stamp: 'AS 11/16/2020 09:38:42'!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectIncomingTransfer: self.!
+
+!methodRemoval: Withdraw #addToReport: stamp: 'AS 11/16/2020 09:38:42'!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectWithdraw: self.!
+
+!methodRemoval: Deposit #addToReport: stamp: 'AS 11/16/2020 09:38:42'!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectAddADeposit: self.!
+
+!methodRemoval: OutgoingTransfer #addToReport: stamp: 'AS 11/16/2020 09:38:42'!
+addToReport: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectOutgoingTransfer: self.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:38:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:38:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:38:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:38:50'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 09:38:54) ejercicio19-2.image priorSource: 18099858!
+!AccountTransferTransaction methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 09:40:36'!
+reflectOn: anAccountSummaryReport
+self subclassResponsibility ! !
+!AccountCashTransactions methodsFor: 'value' stamp: 'AS 11/16/2020 09:40:42'!
+reflectOn: anAccountSummaryReport
+self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'nil' stamp: 'AS 11/16/2020 09:40:53'!
+reflectOn: anAccountSummaryReport
+self subclassResponsibility ! !
+
+----SNAPSHOT----(16 November 2020 09:42:25) ejercicio19-2.image priorSource: 18102713!
+!AccountTransferTransaction methodsFor: 'reports' stamp: 'AS 11/16/2020 09:47:22' overrides: 50895014!
+affectBalance: aBalance
+self subclassResponsibility ! !
+!AccountCashTransactions methodsFor: 'value and balance' stamp: 'AS 11/16/2020 09:50:32' overrides: 50895014!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+
+----SNAPSHOT----(16 November 2020 09:55:34) ejercicio19-2.image priorSource: 18103297!
+
+----SNAPSHOT----(16 November 2020 09:57:04) ejercicio19-2.image priorSource: 18103769!
+!Portfolio methodsFor: 'reportes' stamp: 'AS 11/16/2020 09:58:23' prior: 50895524!
+addReportFor: anReport 
+	
+	accounts do: [ :account |
+			anReport addReportFor: account.
+		].
+	
+	! !
+!Portfolio methodsFor: 'reportes' stamp: 'AS 11/16/2020 09:58:29' prior: 50897399!
+addReportFor: aReport 
+	
+	accounts do: [ :account |
+			aReport addReportFor: account.
+		].
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 09:58:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 09:58:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 09:58:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 09:58:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 09:58:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 09:58:34'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 09:58:35'!
+PASSED!
+!AccountTransaction methodsFor: 'initialization' stamp: 'AS 11/16/2020 10:02:30'!
+initializeFor: aValue
+self subclassResponsibility ! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:08:35'!
+reflectADeposit: aDeposit ! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 10:08:35'!
+reflectADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:08:35'!
+reflectADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:08:35'!
+reflectADeposit: aDeposit 
+self subclassResponsibility ! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:08:35' overrides: 50897467!
+reflectADeposit: aDeposit 
+	! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:08:35' prior: 50897285 overrides: 50897369!
+reflectOn: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectADeposit: self.! !
+
+!methodRemoval: AccountTreeReport #reflectAddADeposit: stamp: 'AS 11/16/2020 10:08:35'!
+reflectAddADeposit: aDeposit !
+
+!methodRemoval: AccountSummaryReport #reflectAddADeposit: stamp: 'AS 11/16/2020 10:08:35'!
+reflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountTreeSummaryReport #reflectAddADeposit: stamp: 'AS 11/16/2020 10:08:35'!
+reflectAddADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountReport #reflectAddADeposit: stamp: 'AS 11/16/2020 10:08:35'!
+reflectAddADeposit: aDeposit 
+self subclassResponsibility !
+
+!methodRemoval: AccountNetTransferReport #reflectAddADeposit: stamp: 'AS 11/16/2020 10:08:35'!
+reflectAddADeposit: aDeposit 
+	!
+!AccountNetTransferReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 10:10:10'!
+reflectAccount: anAccount
+	
+	anAccount addReportFor: self.! !
+!AccountSummaryReport methodsFor: 'private - transactions' stamp: 'AS 11/16/2020 10:10:22'!
+reflectDeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:10:22'!
+reflectDeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:10:22'!
+reflectDeposit: aDeposit 
+self subclassResponsibility ! !
+!AccountNetTransferReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:10:22' overrides: 50897526!
+reflectDeposit: aDeposit 
+	! !
+!AccountTreeReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:10:22' overrides: 50897526!
+reflectDeposit: aDeposit ! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:10:22' prior: 50897478 overrides: 50897369!
+reflectOn: anAccountSummaryReport 
+
+	anAccountSummaryReport reflectDeposit: self.! !
+
+!methodRemoval: AccountSummaryReport #reflectADeposit: stamp: 'AS 11/16/2020 10:10:22'!
+reflectADeposit: aDeposit 
+	
+	reporteAcumulado add: 'Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountTreeSummaryReport #reflectADeposit: stamp: 'AS 11/16/2020 10:10:22'!
+reflectADeposit: aDeposit 
+	
+	reporteAcumulado add: '    Deposito de ', aDeposit value asString.!
+
+!methodRemoval: AccountReport #reflectADeposit: stamp: 'AS 11/16/2020 10:10:22'!
+reflectADeposit: aDeposit 
+self subclassResponsibility !
+
+!methodRemoval: AccountNetTransferReport #reflectADeposit: stamp: 'AS 11/16/2020 10:10:22'!
+reflectADeposit: aDeposit 
+	!
+
+!methodRemoval: AccountTreeReport #reflectADeposit: stamp: 'AS 11/16/2020 10:10:22'!
+reflectADeposit: aDeposit !
+!AccountSummaryReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 10:11:29'!
+reflectAccount: anAccount
+	
+	anAccount addReportFor: self.! !
+!AccountTreeReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 10:11:40'!
+reflectAccount: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountTreeSummaryReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 10:11:46'!
+reflectAccount: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+
+----SNAPSHOT----(16 November 2020 10:11:50) ejercicio19-2.image priorSource: 18103857!
+!AccountReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 10:11:58'!
+reflectAccount: anAccount
+self subclassResponsibility ! !
+!Portfolio methodsFor: 'reportes' stamp: 'AS 11/16/2020 10:12:32' prior: 50897405!
+addReportFor: aReport 
+	
+	accounts do: [ :account |
+			aReport reflectAccount: account.
+		].
+	
+	! !
+!Portfolio methodsFor: 'reportes' stamp: 'AS 11/16/2020 10:13:44' prior: 50897599!
+addReportFor: anAccountReport 
+	
+	accounts do: [ :account |
+			anAccountReport reflectAccount: account.
+		].
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:13:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:13:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:13:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:13:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:13:47'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:13:48'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:13:52) ejercicio19-2.image priorSource: 18110092!
+
+!methodRemoval: AccountNetTransferReport #addReportFor: stamp: 'AS 11/16/2020 10:14:03'!
+addReportFor: anAccount
+	
+	anAccount addReportFor: self.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:14:10'!
+PASSED!
+
+!methodRemoval: AccountSummaryReport #addReportFor: stamp: 'AS 11/16/2020 10:14:24'!
+addReportFor: anAccount
+	
+	anAccount addReportFor: self.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:14:27'!
+PASSED!
+
+!methodRemoval: AccountTreeReport #addReportFor: stamp: 'AS 11/16/2020 10:14:36'!
+addReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	!
+
+!methodRemoval: AccountTreeSummaryReport #addReportFor: stamp: 'AS 11/16/2020 10:14:42'!
+addReportFor: anAccount
+	
+	reporteAcumulado addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:14:45'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:14:49) ejercicio19-2.image priorSource: 18111854!
+!Portfolio methodsFor: 'reportes' stamp: 'AS 11/16/2020 10:16:09'!
+reflectOn: anAccountReport 
+	
+	accounts do: [ :account |
+			anAccountReport reflectAccount: account.
+		].
+	
+	! !
+!AccountReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 10:16:09'!
+reflectOn: anAccount
+self subclassResponsibility ! !
+!ReceptiveAccount methodsFor: 'reportes' stamp: 'AS 11/16/2020 10:16:09'!
+reflectOn: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction reflectOn: anAccountReport
+		].
+	
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:16:09' prior: 50895470 overrides: 50896333!
+printReport
+
+	reporteAcumulado := OrderedCollection new.
+	
+	account reflectOn: self.
+	
+	reporteAcumulado add: 'Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:16:09' prior: 50895495 overrides: 50896333!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account reflectOn: self.
+	reporteAcumulado add: '    Balance = ' , account balance asString.
+	
+	^ reporteAcumulado.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:16:09' prior: 50897509 overrides: 50897594!
+reflectAccount: anAccount
+	
+	anAccount reflectOn: self.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:16:09' prior: 50897571 overrides: 50897594!
+reflectAccount: anAccount
+	
+	anAccount reflectOn: self.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:16:09' prior: 50895480 overrides: 50896333!
+printReport
+
+	
+	reporteAcumulado := OrderedCollection new.
+	
+	reporteAcumulado add: account name.
+	account reflectOn: self.
+	
+	^ reporteAcumulado.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:16:09' prior: 50895876 overrides: 50896333!
+printReport
+	
+	reporteAcumulado := 0.
+	account reflectOn: self.
+	
+	^ reporteAcumulado.! !
+
+!methodRemoval: Portfolio #addReportFor: stamp: 'AS 11/16/2020 10:16:09'!
+addReportFor: anAccountReport 
+	
+	accounts do: [ :account |
+			anAccountReport reflectAccount: account.
+		].
+	
+	!
+
+!methodRemoval: AccountReport #addReportFor: stamp: 'AS 11/16/2020 10:16:09'!
+addReportFor: anAccount
+self subclassResponsibility !
+
+!methodRemoval: ReceptiveAccount #addReportFor: stamp: 'AS 11/16/2020 10:16:09'!
+addReportFor: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction reflectOn: anAccountReport
+		].
+	
+	!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:16:19'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:16:22) ejercicio19-2.image priorSource: 18116012!
+!Account methodsFor: 'reports' stamp: 'AS 11/16/2020 10:18:26' overrides: 16882612!
+name
+	self subclassResponsibility ! !
+!Account methodsFor: 'reports' stamp: 'AS 11/16/2020 10:18:45'!
+reflectOn: anAccountReport 
+	self subclassResponsibility ! !
+
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:19:39'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:19:44'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:19:48'!
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:19:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:19:50'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:19:51'!
+PASSED!
+!Account methodsFor: 'reports' stamp: 'AS 11/16/2020 10:20:24' prior: 50897905!
+reflectOn: anAccountReport 
+	^ name.! !
+
+!methodRemoval: Portfolio #name stamp: 'AS 11/16/2020 10:20:32'!
+name
+	^ name.!
+
+!methodRemoval: ReceptiveAccount #name stamp: 'AS 11/16/2020 10:20:37'!
+name
+	^ name.!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:20:41'!
+ERROR!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:20:41'!
+ERROR!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:20:41'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:20:41'!
+PASSED!
+!Account methodsFor: 'reports' stamp: 'AS 11/16/2020 10:21:03' prior: 50897901 overrides: 16882612!
+name
+	^name ! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:21:06'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:21:09) ejercicio19-2.image priorSource: 18119914!
+
+!classDefinition: #AccountReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:25:46'!
+Object subclass: #AccountReport
+	instanceVariableNames: 'account acumulatedReport'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:46' prior: 50897130 overrides: 50897141!
+reflectWithdraw: aWithdraw 
+	
+	acumulatedReport add: '    Extraccion de ', aWithdraw value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:46' prior: 50897808 overrides: 50896333!
+printReport
+
+	
+	acumulatedReport := OrderedCollection new.
+	
+	acumulatedReport add: account name.
+	account reflectOn: self.
+	acumulatedReport add: '    Balance = ' , account balance asString.
+	
+	^ acumulatedReport.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:46' prior: 50897053 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	acumulatedReport add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:46' prior: 50896975 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	acumulatedReport add: '    Transferencia saliente de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897584 overrides: 50897594!
+reflectAccount: anAccount
+	
+	acumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897520 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	acumulatedReport add: '    Deposito de ', aDeposit value asString.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897576 overrides: 50897594!
+reflectAccount: anAccount
+	
+	acumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897832 overrides: 50896333!
+printReport
+
+	
+	acumulatedReport := OrderedCollection new.
+	
+	acumulatedReport add: account name.
+	account reflectOn: self.
+	
+	^ acumulatedReport.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50896960 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	acumulatedReport add: 'Transferencia saliente de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897798 overrides: 50896333!
+printReport
+
+	acumulatedReport := OrderedCollection new.
+	
+	account reflectOn: self.
+	
+	acumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ acumulatedReport.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897514 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	acumulatedReport add: 'Deposito de ', aDeposit value asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897066 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	acumulatedReport add: 'Transferencia entrante de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897123 overrides: 50897141!
+reflectWithdraw: aWithdraw 
+	
+	acumulatedReport add: 'Extraccion de ', aWithdraw value asString.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50896968 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	acumulatedReport := acumulatedReport - aTransfer value.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897841 overrides: 50896333!
+printReport
+	
+	acumulatedReport := 0.
+	account reflectOn: self.
+	
+	^ acumulatedReport.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:25:47' prior: 50897074 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	acumulatedReport := acumulatedReport + aTransfer value.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:26:14'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:26:34) ejercicio19-2.image priorSource: 18125220!
+
+!classDefinition: #AccountReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:31:55'!
+Object subclass: #AccountReport
+	instanceVariableNames: 'account accumulatedReport'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898077 overrides: 50897141!
+reflectWithdraw: aWithdraw 
+	
+	accumulatedReport add: '    Extraccion de ', aWithdraw value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898085 overrides: 50896333!
+printReport
+
+	
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: '    Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898097 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	accumulatedReport add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898105 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport add: '    Transferencia saliente de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898113 overrides: 50897594!
+reflectAccount: anAccount
+	
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountTreeSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898122 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898129 overrides: 50897594!
+reflectAccount: anAccount
+	
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	
+	! !
+!AccountTreeReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898138 overrides: 50896333!
+printReport
+
+	
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	
+	^ accumulatedReport.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898147 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport add: 'Transferencia saliente de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898155 overrides: 50896333!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	account reflectOn: self.
+	
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898165 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: 'Deposito de ', aDeposit value asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898172 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	accumulatedReport add: 'Transferencia entrante de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898180 overrides: 50897141!
+reflectWithdraw: aWithdraw 
+	
+	accumulatedReport add: 'Extraccion de ', aWithdraw value asString.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898188 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport := accumulatedReport - aTransfer value.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898196 overrides: 50896333!
+printReport
+	
+	accumulatedReport := 0.
+	account reflectOn: self.
+	
+	^ accumulatedReport.! !
+!AccountNetTransferReport methodsFor: 'as yet unclassified' stamp: 'AS 11/16/2020 10:31:55' prior: 50898203 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	accumulatedReport := accumulatedReport + aTransfer value.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:32:00'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:32:03) ejercicio19-2.image priorSource: 18130968!
+
+Object subclass: #NameOfSubclass
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #NameOfSubclass category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:43:04'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #NameOfSubclass stamp: 'AS 11/16/2020 10:43:23'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:43:31'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 10:43:34) ejercicio19-2.image priorSource: 18136730!
+
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeSummaryReport category: #'Portfolio-Solucion' stamp: 'AS 11/16/2020 10:44:50'!
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:45:54' prior: 50898301 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:47:48' prior: 50898498 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+		
+	aDeposit affectBalance: balance 
+! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:48:00' prior: 50898506 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+		
+	
+! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:48:10' prior: 50898276 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	accumulatedReport add: '    Transferencia entrante de ', aTransfer value asString.
+	
+	aTransfer affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:48:16' prior: 50898284 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport add: '    Transferencia saliente de ', aTransfer value asString.
+	
+	aTransfer affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:48:58' prior: 50898515 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+	aDeposit affectBalance: balance 
+	
+		
+	
+! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:49:07' prior: 50898256 overrides: 50897141!
+reflectWithdraw: aWithdraw 
+	
+	accumulatedReport add: '    Extraccion de ', aWithdraw value asString.
+	
+	aWithdraw affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'printing report' stamp: 'AS 11/16/2020 10:49:33' prior: 50898264 overrides: 50896333!
+printReport
+
+	
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: '    Balance = ' , balance.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:49:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:49:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:49:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:49:35'!
+ERROR!
+!AccountTreeSummaryReport methodsFor: 'initialize' stamp: 'AS 11/16/2020 10:50:45' overrides: 50896012!
+initializeFor: anAccount 
+	
+	balance := 0.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:50:53'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:50:53'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:50:53'!
+ERROR!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:50:53'!
+ERROR!
+!AccountTreeSummaryReport methodsFor: 'initialize' stamp: 'AS 11/16/2020 10:51:36' prior: 50898611 overrides: 50896012!
+initializeFor: anAccount 
+	account := anAccount.
+	balance := 0.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:51:39'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:51:39'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:51:39'!
+ERROR!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:51:39'!
+ERROR!
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:53:32' prior: 50898543 overrides: 50897526!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+	balance:=aDeposit affectBalance: balance 
+	
+		
+	
+! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:53:51' prior: 50898523 overrides: 50897060!
+reflectIncomingTransfer: aTransfer 
+	
+	accumulatedReport add: '    Transferencia entrante de ', aTransfer value asString.
+	
+	balance:= aTransfer affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:53:54' prior: 50898533 overrides: 50896944!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport add: '    Transferencia saliente de ', aTransfer value asString.
+	
+	balance:= aTransfer affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'private-transactions' stamp: 'AS 11/16/2020 10:53:56' prior: 50898552 overrides: 50897141!
+reflectWithdraw: aWithdraw 
+	
+	accumulatedReport add: '    Extraccion de ', aWithdraw value asString.
+	
+	balance:= aWithdraw affectBalance: balance ! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:53:58'!
+ERROR!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:53:58'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:53:58'!
+ERROR!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:53:58'!
+ERROR!
+!AccountTreeSummaryReport methodsFor: 'printing report' stamp: 'AS 11/16/2020 10:54:43' prior: 50898561 overrides: 50896333!
+printReport
+
+	
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: '    Balance = ' , balance asString.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 10:54:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 10:54:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 10:54:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:54:45'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 10:54:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:54:46'!
+FAILURE!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 10:54:46'!
+ERROR!
+!AccountTreeSummaryReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 11:06:40' prior: 50898292 overrides: 50897594!
+reflectAccount: anAccount	|report|
+		report:=(self class for: anAccount).
+
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).	
+	balance:=balance+report balance.
+	
+	! !
+!AccountTreeSummaryReport methodsFor: 'private - balance' stamp: 'AS 11/16/2020 11:07:14'!
+balance
+^balance! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:07:20'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 11:07:20'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:07:20'!
+FAILURE!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:07:20'!
+ERROR!
+
+----SNAPSHOT----(16 November 2020 11:07:29) ejercicio19-2.image priorSource: 18138531!
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 11:07:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 11:07:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 11:07:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:07:30'!
+FAILURE!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 11:07:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 11:07:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 11:07:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:07:31'!
+FAILURE!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:07:31'!
+ERROR!
+!AccountTreeSummaryReport methodsFor: 'adding to report' stamp: 'AS 11/16/2020 11:13:31' prior: 50898831 overrides: 50897594!
+reflectAccount: anAccount	|report|
+		report:=(self class for: anAccount).
+
+	accumulatedReport addAll: (report printReport collect: [ :rep | '    ' , rep ]).	
+	balance:=balance+report balance.
+	
+	! !
+
+!testRun: #AccountReportTest #test01 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test012 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test013 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test014 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test02 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test03 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test04 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test05 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test06 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test07 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test08 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test09 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test10 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+!testRun: #AccountReportTest #test11 stamp: 'AS 11/16/2020 11:13:35'!
+PASSED!
+
+----SNAPSHOT----(16 November 2020 11:15:29) ejercicio19-2.image priorSource: 18151465!
