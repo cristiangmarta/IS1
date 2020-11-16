@@ -31689,3 +31689,2736 @@ expected fourth = report fourth!
 expected fourth!
 
 report fourth!
+
+----STARTUP---- (16 November 2020 14:10:07) as /home/cmarta/Downloads/parcial/limpio/linux64/CuisUniversity-4384.image!
+
+
+!classRemoval: #Transfer stamp: 'CM 11/16/2020 14:10:44'!
+Object subclass: #Transfer
+	instanceVariableNames: 'incomingTransfer outgoingTransfer value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #OutgoingTransfer stamp: 'CM 11/16/2020 14:10:45'!
+AccountTransferTransaction subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #IncomingTransfer stamp: 'CM 11/16/2020 14:10:45'!
+AccountTransferTransaction subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransferTransaction stamp: 'CM 11/16/2020 14:10:46'!
+AccountTransaction subclass: #AccountTransferTransaction
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'CM 11/16/2020 14:10:47'!
+AccountCashTransactions subclass: #Withdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'CM 11/16/2020 14:10:47'!
+AccountCashTransactions subclass: #Deposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountCashTransactions stamp: 'CM 11/16/2020 14:10:48'!
+AccountTransaction subclass: #AccountCashTransactions
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'CM 11/16/2020 14:10:49'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTreeSummaryReport stamp: 'CM 11/16/2020 14:10:49'!
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTreeReport stamp: 'CM 11/16/2020 14:10:50'!
+AccountReport subclass: #AccountTreeReport
+	instanceVariableNames: 'account reporteAcumulado sangria'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountSummaryReport stamp: 'CM 11/16/2020 14:10:50'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: 'account reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountNetTransferReport stamp: 'CM 11/16/2020 14:10:51'!
+AccountReport subclass: #AccountNetTransferReport
+	instanceVariableNames: 'receptiveAccount reporteAcumulado'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountReport stamp: 'CM 11/16/2020 14:10:52'!
+Object subclass: #AccountReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'CM 11/16/2020 14:10:52'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'CM 11/16/2020 14:10:53'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'CM 11/16/2020 14:10:54'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferTest stamp: 'CM 11/16/2020 14:10:54'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'CM 11/16/2020 14:10:55'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'CM 11/16/2020 14:10:56'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountReportTest stamp: 'CM 11/16/2020 14:10:57'!
+TestCase subclass: #AccountReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of /home/cmarta/Downloads/parcial/limpio/linux64/Portfolio-Solucion.st----!
+!Transfer methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:11:31' prior: 50878365!
+senderTransaction
+	^ outgoingTransfer .! !
+!Transfer methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:11:36' prior: 50878410!
+senderTransaction
+
+	^ outgoingTransfer .! !
+!Transfer methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:11:43' prior: 50878370 overrides: 16881508!
+value
+
+	^ value .! !
+!Transfer methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:11:54' prior: 50878361!
+receiverTransaction
+
+	^ incomingTransfer.! !
+!Transfer methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:12:09' prior: 50878351!
+initializeFor: aValue from: aSenderAccount to: aReceiverAccount 
+
+	value := aValue.
+	incomingTransfer := IncomingTransfer on: aReceiverAccount associatedTo: self.
+	outgoingTransfer := OutgoingTransfer on: aSenderAccount associatedTo: self.! !
+!Account methodsFor: 'reports' stamp: 'CM 11/16/2020 14:13:58' prior: 50877469!
+reflectOn: anAccountReport
+	^ name.! !
+!Portfolio methodsFor: 'reports' stamp: 'CM 11/16/2020 14:14:20' prior: 50877574 overrides: 50878440!
+reflectOn: anAccountReport 
+
+	accounts do: [ :account |
+			anAccountReport reflectAccount: account.
+		].
+	
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'CM 11/16/2020 14:14:34' prior: 50877703 overrides: 50878440!
+reflectOn: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction reflectOn: anAccountReport
+		].
+	
+	! !
+
+!testRun: #TransferTest #test01TransferExtractsFromSenderAndAddsToReceiver stamp: 'CM 11/16/2020 14:14:58'!
+PASSED!
+
+!testRun: #TransferTest #test02CanNavigateFromTransferToAccountTransactions stamp: 'CM 11/16/2020 14:14:58'!
+PASSED!
+
+!testRun: #TransferTest #test03CanNavigateFromAccountTransactionsToTransfer stamp: 'CM 11/16/2020 14:14:58'!
+PASSED!
+
+!testRun: #TransferTest #test04IsNotPossibleToTransferFromAndToTheSameAccount stamp: 'CM 11/16/2020 14:14:58'!
+PASSED!
+
+!testRun: #TransferTest #test05IsNotPossibleToTransferNegativeValues stamp: 'CM 11/16/2020 14:14:58'!
+PASSED!
+
+!testRun: #TransferTest #test06IsNotPosibleDoATransferWithAValueOfZero stamp: 'CM 11/16/2020 14:14:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CM 11/16/2020 14:15:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'CM 11/16/2020 14:15:32'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CM 11/16/2020 14:19:14'!
+test16PortfoliosHaveCustomNames
+	| portfolio portfolioName |
+	
+	portfolioName := 'My portfolio'.
+	portfolio := Portfolio named: portfolioName.
+	
+	self assert: portfolioName equals: portfolio name
+	! !
+
+!testRun: #PortfolioTest #test16PortfoliosHaveCustomNames stamp: 'CM 11/16/2020 14:19:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test16PortfoliosHaveCustomNames stamp: 'CM 11/16/2020 14:19:19'!
+ERROR!
+!Account methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:22:04'!
+initializeNamed: aName
+
+	name := aName.! !
+
+!methodRemoval: ReceptiveAccount #initializeNamed: stamp: 'CM 11/16/2020 14:22:04'!
+initializeNamed: aName
+
+	name := aName.!
+!Account class methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:22:22'!
+named: aName
+	
+	^ self new initializeNamed: aName.! !
+
+!methodRemoval: ReceptiveAccount class #named: stamp: 'CM 11/16/2020 14:22:22'!
+named: aName
+	
+	^ self new initializeNamed: aName.!
+
+!methodRemoval: Portfolio #initializeNamed: stamp: 'CM 11/16/2020 14:22:32'!
+initializeNamed: aName
+	
+	name := aName.
+	!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:23:11' prior: 50877615!
+named: aName with: anAccount
+
+	^(self named: aName)
+		add: anAccount;
+		yourself! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:23:22' prior: 50877621!
+named: aName with: anAccount with: anotherAccount
+
+	^(self new initializeNamed: aName)
+		add: anAccount;
+		add: anotherAccount;
+		yourself! !
+
+!testRun: #PortfolioTest #test16PortfoliosHaveCustomNames stamp: 'CM 11/16/2020 14:23:49'!
+PASSED!
+!PortfolioTest methodsFor: 'tests' stamp: 'CM 11/16/2020 14:23:58'!
+test16PortfoliosCanHaveCustomNames
+	| portfolio portfolioName |
+	
+	portfolioName := 'My portfolio'.
+	portfolio := Portfolio named: portfolioName.
+	
+	self assert: portfolioName equals: portfolio name
+	! !
+
+!methodRemoval: PortfolioTest #test16PortfoliosHaveCustomNames stamp: 'CM 11/16/2020 14:23:58'!
+test16PortfoliosHaveCustomNames
+	| portfolio portfolioName |
+	
+	portfolioName := 'My portfolio'.
+	portfolio := Portfolio named: portfolioName.
+	
+	self assert: portfolioName equals: portfolio name
+	!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'CM 11/16/2020 14:24:23' prior: 50877324!
+test07AccountKnowsItsTransactions 
+
+	| account deposit |
+	
+	account := ReceptiveAccount new.
+	
+	deposit := Deposit register: 100 on: account.
+		
+	self assert: 1 equals: account transactions size .
+	self assert: (account transactions includes: deposit).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'CM 11/16/2020 14:25:21'!
+test98ReceptiveAccountCanHaveCustomName
+	| account accountName |
+	
+	accountName := 'My portfolio'.
+	account := Portfolio named: accountName.
+	
+	self assert: accountName equals: account name
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'CM 11/16/2020 14:25:28'!
+test08ReceptiveAccountCanHaveCustomName
+	| account accountName |
+	
+	accountName := 'My portfolio'.
+	account := Portfolio named: accountName.
+	
+	self assert: accountName equals: account name
+	! !
+
+!methodRemoval: ReceptiveAccountTest #test98ReceptiveAccountCanHaveCustomName stamp: 'CM 11/16/2020 14:25:31'!
+test98ReceptiveAccountCanHaveCustomName
+	| account accountName |
+	
+	accountName := 'My portfolio'.
+	account := Portfolio named: accountName.
+	
+	self assert: accountName equals: account name
+	!
+
+!testRun: #ReceptiveAccountTest #test08ReceptiveAccountCanHaveCustomName stamp: 'CM 11/16/2020 14:25:32'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:29:37' prior: 50877347!
+test01TransferExtractsFromSenderAndAddsToReceiver
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer register: 100 from: account1 to: account2.
+		
+	self assert: -100 equals: account1 balance .	
+	self assert: 100 equals: account2 balance .
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:29:52' prior: 50877360!
+test02CanNavigateFromTransferToAccountTransactions
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 from: account1 to: account2.
+		
+	self assert: (account1 transactions includes: transfer senderTransaction) .
+	self assert: (account2 transactions includes: transfer receiverTransaction) .
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:30:15' prior: 50877375!
+test03CanNavigateFromAccountTransactionsToTransfer
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer register: 100 from: account1 to: account2.
+		
+	self assert: transfer equals: account1 transactions first associatedTransfer .
+	self assert: transfer equals: account2 transactions first associatedTransfer .
+	
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:30:31' prior: 50877391!
+test04IsNotPossibleToTransferFromAndToTheSameAccount
+
+	| account1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	self should: [
+			Transfer register: 100 from: account1 to: account1
+		]
+		raise: Error 
+		withMessageText: Transfer noSelfTransfersAllowedErrorDescription .
+		! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:30:34' prior: 50878723!
+test04IsNotPossibleToTransferFromAndToTheSameAccount
+
+	| account1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	self should: [
+			Transfer register: 100 from: account1 to: account1
+		]
+		raise: Error 
+		withMessageText: Transfer noSelfTransfersAllowedErrorDescription .
+		! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'CM 11/16/2020 14:30:53' prior: 50877403!
+test05IsNotPossibleToTransferNegativeValues
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	self should: [
+			Transfer register: -100 from: account1 to: account2
+		] raise: Error withMessageText: Transfer onlyPositiveTransfersErrorDescription .
+		! !
+
+!testRun: #TransferTest #test01TransferExtractsFromSenderAndAddsToReceiver stamp: 'CM 11/16/2020 14:30:59'!
+PASSED!
+
+!testRun: #TransferTest #test02CanNavigateFromTransferToAccountTransactions stamp: 'CM 11/16/2020 14:30:59'!
+PASSED!
+
+!testRun: #TransferTest #test03CanNavigateFromAccountTransactionsToTransfer stamp: 'CM 11/16/2020 14:30:59'!
+PASSED!
+
+!testRun: #TransferTest #test04IsNotPossibleToTransferFromAndToTheSameAccount stamp: 'CM 11/16/2020 14:30:59'!
+PASSED!
+
+!testRun: #TransferTest #test05IsNotPossibleToTransferNegativeValues stamp: 'CM 11/16/2020 14:30:59'!
+PASSED!
+
+!testRun: #TransferTest #test06IsNotPosibleDoATransferWithAValueOfZero stamp: 'CM 11/16/2020 14:30:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08ReceptiveAccountCanHaveCustomName stamp: 'CM 11/16/2020 14:31:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithOneAccountIsAccountBalance stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test16PortfoliosCanHaveCustomNames stamp: 'CM 11/16/2020 14:31:03'!
+PASSED!
+!AccountTransaction methodsFor: 'reports' stamp: 'CM 11/16/2020 14:31:26' prior: 50878112!
+reflectOn: anAccountSummaryReport
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'initialization' stamp: 'CM 11/16/2020 14:31:33' prior: 50878117!
+initializeFor: aValue
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'reports' stamp: 'CM 11/16/2020 14:33:05' prior: 50878196 overrides: 50878151!
+reflectOn: anAccountReport 
+
+	anAccountReport reflectDeposit: self.! !
+!Withdraw methodsFor: 'reports' stamp: 'CM 11/16/2020 14:33:11' prior: 50878214 overrides: 50878151!
+reflectOn: anAccountReport 
+
+	anAccountReport reflectWithdraw: self.! !
+!IncomingTransfer methodsFor: 'reports' stamp: 'CM 11/16/2020 14:33:17' prior: 50878307 overrides: 50878250!
+reflectOn: anAccountReport 
+
+	anAccountReport reflectIncomingTransfer: self.! !
+!IncomingTransfer methodsFor: 'reports' stamp: 'CM 11/16/2020 14:33:20' prior: 50878895 overrides: 50878250!
+reflectOn: anAccountReport 
+	anAccountReport reflectIncomingTransfer: self.! !
+!OutgoingTransfer methodsFor: 'reports' stamp: 'CM 11/16/2020 14:33:30' prior: 50878332 overrides: 50878250!
+reflectOn: anAccountReport 
+
+	anAccountReport reflectOutgoingTransfer: self.! !
+!AccountTransferTransaction methodsFor: 'reports' stamp: 'CM 11/16/2020 14:33:36' prior: 50878250 overrides: 50878872!
+reflectOn: anAccountReport
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountCashTransactions #reflectOn: stamp: 'CM 11/16/2020 14:33:46'!
+reflectOn: anAccountSummaryReport
+self subclassResponsibility !
+
+!methodRemoval: AccountTransferTransaction #reflectOn: stamp: 'CM 11/16/2020 14:33:50'!
+reflectOn: anAccountReport
+	self subclassResponsibility !
+
+!methodRemoval: AccountTransferTransaction #affectBalance: stamp: 'CM 11/16/2020 14:33:59'!
+affectBalance: aBalance
+self subclassResponsibility !
+
+!methodRemoval: AccountCashTransactions #affectBalance: stamp: 'CM 11/16/2020 14:34:06'!
+affectBalance: aBalance
+
+	self subclassResponsibility !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:34:42' prior: 50876888!
+test01 
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	summary := OrderedCollection with: 'Balance = 0'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:35:26'!
+test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	summary := OrderedCollection with: 'Balance = 0'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:35:43' prior: 50876898!
+test02 
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	summary := OrderedCollection with: 'Deposito de 100' with: 'Balance = 100'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:36:30'!
+test02DepositsAreCorrectlyReflectedOnAccountSummaryReport
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	summary := OrderedCollection with: 'Deposito de 100' with: 'Balance = 100'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:37:08'!
+test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 100 on: account.
+
+	summary := OrderedCollection with: 'Extraccion de 100' with: 'Balance = -100'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:37:47'!
+test04WithdrawsAreCorrectlyReflectedOnAccountSummaryReport
+
+	| account1 account2 summary |
+
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+
+	summary := OrderedCollection with: 'Transferencia entrante de 50' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: account2) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:38:05'!
+test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport
+
+	| account1 account2 summary |
+
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+
+	summary := OrderedCollection with: 'Transferencia entrante de 50' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: account2) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test04WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:38:08'!
+test04WithdrawsAreCorrectlyReflectedOnAccountSummaryReport
+
+	| account1 account2 summary |
+
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+
+	summary := OrderedCollection with: 'Transferencia entrante de 50' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: account2) printReport .
+!
+
+!methodRemoval: AccountReportTest #test04 stamp: 'CM 11/16/2020 14:38:09'!
+test04
+
+	| account1 account2 summary |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	summary := OrderedCollection with: 'Transferencia entrante de 50' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: account2) printReport .
+!
+
+!methodRemoval: AccountReportTest #test03 stamp: 'CM 11/16/2020 14:38:12'!
+test03
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 100 on: account.
+	
+	summary := OrderedCollection with: 'Extraccion de 100' with: 'Balance = -100'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+!
+
+!methodRemoval: AccountReportTest #test02 stamp: 'CM 11/16/2020 14:38:15'!
+test02 
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	summary := OrderedCollection with: 'Deposito de 100' with: 'Balance = 100'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+!
+
+!methodRemoval: AccountReportTest #test01 stamp: 'CM 11/16/2020 14:38:17'!
+test01 
+
+	| account summary |
+	
+	account := ReceptiveAccount new.
+	summary := OrderedCollection with: 'Balance = 0'.
+
+	self assert: summary equals: (AccountSummaryReport for: account) printReport .
+!
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:38:31'!
+test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport
+
+	| account1 account2 summary |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	summary := OrderedCollection with: 'Transferencia saliente de 50' with: 'Balance = -50'.
+
+	self assert: summary equals: (AccountSummaryReport for: account1) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test05 stamp: 'CM 11/16/2020 14:38:33'!
+test05
+
+	| account1 account2 summary |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	summary := OrderedCollection with: 'Transferencia saliente de 50' with: 'Balance = -50'.
+
+	self assert: summary equals: (AccountSummaryReport for: account1) printReport .
+!
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:40:05'!
+test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries
+
+	| portfolio account summary |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio with: account.
+	Deposit register: 50 on: account.
+	
+	summary := OrderedCollection with: 'Deposito de 50' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: portfolio) printReport .
+! !
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:41:14' prior: 50879114!
+test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries
+
+	| portfolio account1 account2 summary |
+	
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio with: account1 with: account2.
+	
+	Deposit register: 50 on: account1.
+	Withdraw register: 50 on: account2.
+
+	summary := OrderedCollection with: 'Deposito de 50' with: 'Extraccion de 20' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: portfolio) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test06 stamp: 'CM 11/16/2020 14:41:17'!
+test06
+
+	| portfolio account summary |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio with: account.
+	Deposit register: 50 on: account.
+	
+	summary := OrderedCollection with: 'Deposito de 50' with: 'Balance = 50'.
+
+	self assert: summary equals: (AccountSummaryReport for: portfolio) printReport .
+!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:41:18'!
+FAILURE!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:41:18'!
+FAILURE!
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:41:31' prior: 50879129!
+test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries
+
+	| portfolio account1 account2 summary |
+	
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio with: account1 with: account2.
+	
+	Deposit register: 50 on: account1.
+	Withdraw register: 50 on: account2.
+
+	summary := OrderedCollection with: 'Deposito de 50' with: 'Extraccion de 20' with: 'Balance = 30'.
+
+	self assert: summary equals: (AccountSummaryReport for: portfolio) printReport .
+! !
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:41:34'!
+FAILURE!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:41:34'!
+FAILURE!
+!AccountReportTest methodsFor: 'summary report' stamp: 'CM 11/16/2020 14:41:47' prior: 50879169!
+test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries
+
+	| portfolio account1 account2 summary |
+	
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	portfolio := Portfolio with: account1 with: account2.
+	
+	Deposit register: 50 on: account1.
+	Withdraw register: 20 on: account2.
+
+	summary := OrderedCollection with: 'Deposito de 50' with: 'Extraccion de 20' with: 'Balance = 30'.
+
+	self assert: summary equals: (AccountSummaryReport for: portfolio) printReport .
+! !
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:41:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 14:41:56'!
+PASSED!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:41:56'!
+PASSED!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:41:56'!
+PASSED!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:41:56'!
+PASSED!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:41:56'!
+PASSED!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:41:56'!
+PASSED!
+!AccountReport class methodsFor: 'instance creation' stamp: 'CM 11/16/2020 14:43:04' prior: 50877785!
+for: anAccount 
+	
+	^ self new initializeFor: anAccount ! !
+!AccountReport class methodsFor: 'instance creation' stamp: 'CM 11/16/2020 14:43:06' prior: 50879246!
+for: anAccount 
+	
+	^ self new initializeFor: anAccount. ! !
+
+!methodRemoval: AccountNetTransferReport class #for: stamp: 'CM 11/16/2020 14:43:11'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount !
+
+!methodRemoval: AccountSummaryReport class #for: stamp: 'CM 11/16/2020 14:43:16'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount !
+
+!methodRemoval: AccountTreeReport class #for: stamp: 'CM 11/16/2020 14:43:19'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount !
+
+!methodRemoval: AccountTreeSummaryReport class #for: stamp: 'CM 11/16/2020 14:43:21'!
+for: aReceptiveAccount 
+	
+	^self new initializeFor: aReceptiveAccount !
+!AccountReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 14:49:10' prior: 50877772!
+printReport
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'adding to report' stamp: 'CM 11/16/2020 14:49:33' prior: 50877767!
+reflectOn: anAccount
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'adding to report' stamp: 'CM 11/16/2020 14:49:37' prior: 50877762!
+reflectAccount: anAccount
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'CM 11/16/2020 14:49:51' prior: 50877742!
+reflectDeposit: aDeposit 
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'CM 11/16/2020 14:49:58' prior: 50877747!
+reflectIncomingTransfer: aTransfer
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'CM 11/16/2020 14:50:01' prior: 50877752!
+reflectOutgoingTransfer: aTransfer
+
+	self subclassResponsibility ! !
+!AccountReport methodsFor: 'private-transactions' stamp: 'CM 11/16/2020 14:50:05' prior: 50877757!
+reflectWithdraw: aWithdraw 
+
+	self subclassResponsibility ! !
+!AccountSummaryReport methodsFor: 'reflect transactions' stamp: 'CM 11/16/2020 14:51:12' prior: 50877869 overrides: 50879292!
+reflectDeposit: aDeposit 
+	
+	accumulatedReport add: 'Deposito de ', aDeposit value asString.! !
+!AccountSummaryReport methodsFor: 'reflect transactions' stamp: 'CM 11/16/2020 14:51:36' prior: 50877876 overrides: 50879297!
+reflectIncomingTransfer: aTransfer 
+	
+	accumulatedReport add: 'Transferencia entrante de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'reflect transactions' stamp: 'CM 11/16/2020 14:51:44' prior: 50877884 overrides: 50879303!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport add: 'Transferencia saliente de ', aTransfer value asString.! !
+!AccountSummaryReport methodsFor: 'reflect transactions' stamp: 'CM 11/16/2020 14:51:48' prior: 50877892 overrides: 50879309!
+reflectWithdraw: aWithdraw 
+	
+	accumulatedReport add: 'Extraccion de ', aWithdraw value asString.! !
+!AccountSummaryReport methodsFor: 'adding to report' stamp: 'CM 11/16/2020 14:52:11' prior: 50877899 overrides: 50879287!
+reflectAccount: anAccount
+	
+	anAccount reflectOn: self.! !
+!AccountSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 14:52:31' prior: 50877905 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	account reflectOn: self.
+	
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 14:58:39' prior: 50879351 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	self reflectAccount: account.
+	
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 14:58:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:58:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:58:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:58:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 14:58:45'!
+PASSED!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 14:58:45'!
+PASSED!
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 14:59:15' prior: 50876835!
+test07
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	netTransfer := 0.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .
+! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 14:59:39'!
+test07NetTransferReportOnEmptyAccountReturnsZero
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	netTransfer := 0.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test07 stamp: 'CM 11/16/2020 14:59:44'!
+test07
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	netTransfer := 0.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .
+!
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:00:36' prior: 50876844!
+test08
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	netTransfer := 0.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:01:52'!
+test08DepositsDontModifyNetTransferReport
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	netTransfer := 0.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:02:10' prior: 50876854!
+test09
+
+	| account1 account2 netTransfer |
+
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+
+	netTransfer := 50.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account2) printReport .! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:02:42'!
+test09IncomingTransfersAreReflectedOnNetTransferReport
+
+	| account1 account2 netTransfer |
+
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+
+	netTransfer := 50.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account2) printReport .! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:03:05' prior: 50876866!
+test10
+
+	| account1 account2 netTransfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	netTransfer := -50.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account1) printReport .! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:03:18'!
+test10OutgoingTransfersAreReflectedOnNetTransferReport
+
+	| account1 account2 netTransfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	netTransfer := -50.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account1) printReport .! !
+
+!methodRemoval: AccountReportTest #test10 stamp: 'CM 11/16/2020 15:03:19'!
+test10
+
+	| account1 account2 netTransfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+	
+	netTransfer := -50.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account1) printReport .!
+
+!methodRemoval: AccountReportTest #test09 stamp: 'CM 11/16/2020 15:03:20'!
+test09
+
+	| account1 account2 netTransfer |
+
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer register: 50 from: account1 to: account2.
+
+	netTransfer := 50.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account2) printReport .!
+
+!methodRemoval: AccountReportTest #test08 stamp: 'CM 11/16/2020 15:03:22'!
+test08
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	netTransfer := 0.
+
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .!
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:04:00'!
+test11WithdrawDontModifyNetTransferReport
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	
+	netTransfer := 0.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .! !
+!AccountReportTest methodsFor: 'net transfer report' stamp: 'CM 11/16/2020 15:04:01'!
+test11WithdrawsDontModifyNetTransferReport
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	
+	netTransfer := 0.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .! !
+
+!methodRemoval: AccountReportTest #test11WithdrawDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:04:03'!
+test11WithdrawDontModifyNetTransferReport
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	
+	netTransfer := 0.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .!
+
+!methodRemoval: AccountReportTest #test11 stamp: 'CM 11/16/2020 15:04:04'!
+test11
+
+	| account netTransfer |
+	
+	account := ReceptiveAccount new.
+	
+	Withdraw register: 50 on: account.
+	
+	netTransfer := 0.
+	
+	self assert: netTransfer equals: (AccountNetTransferReport for: account) printReport .!
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 15:10:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:10:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 15:10:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 15:10:30'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:10:30'!
+PASSED!
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:11:04' prior: 50877804 overrides: 50879287!
+reflectAccount: anAccount
+	
+	anAccount reflectOn: self.! !
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:11:08' prior: 50877810 overrides: 50879292!
+reflectDeposit: aDeposit 
+	! !
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:11:31' prior: 50877815 overrides: 50879297!
+reflectIncomingTransfer: aTransfer
+	
+	accumulatedReport := accumulatedReport + aTransfer value.! !
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:11:51' prior: 50877822 overrides: 50879303!
+reflectOutgoingTransfer: aTransfer 
+	
+	accumulatedReport := accumulatedReport - aTransfer value.! !
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:11:55' prior: 50877829 overrides: 50879309!
+reflectWithdraw: aWithdraw 
+	! !
+!AccountNetTransferReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 15:14:58' prior: 50877834 overrides: 50879277!
+printReport
+	
+	accumulatedReport := 0.
+	account reflectOn: self.
+	
+	^ accumulatedReport.! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:19:00' prior: 50876733!
+test012
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan'
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:19:38' prior: 50876762!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:20:42' prior: 50876794!
+test014
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '        Deposito de 100'
+							with: '        Balance = 100'.
+	report							
+							add: '    Portfolio de hijos' ;
+							add: '        Cuenta de Juan' ;
+							add: '            Extraccion de 20' ;
+							add: '            Balance = -20' ;
+							add: '        Cuenta de Angeles';
+							
+							add: '            Balance = 0' ;
+							add: '        Balance = -20';
+							add: '    Balance = 80'.
+							
+	expected := (AccountTreeSummaryReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:23:56'!
+test012TreeReportOnReceptiveAccountReturnsItsName
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Portfolio de Angeles' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan'
+							with: '        Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:24:11' prior: 50879733!
+test012TreeReportOnReceptiveAccountReturnsItsName
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+! !
+
+!testRun: #AccountReportTest #test012TreeReportOnReceptiveAccountReturnsItsName stamp: 'CM 11/16/2020 15:24:13'!
+PASSED!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:25:57'!
+test013TreeReportOnEmptyPortfolioReturnsItsName
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio'.
+								
+	self assert: report equals: (AccountTreeReport for: myPortfolio) printReport .
+! !
+
+!testRun: #AccountReportTest #test013TreeReportOnEmptyPortfolioReturnsItsName stamp: 'CM 11/16/2020 15:25:59'!
+PASSED!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:27:11' prior: 50879692!
+test014
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!testRun: #AccountReportTest #test014 stamp: 'CM 11/16/2020 15:27:17'!
+PASSED!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:28:22'!
+test013PortfolioReflectsItsNameOnAccountTreeReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio'.
+								
+	self assert: report equals: (AccountTreeReport for: myPortfolio) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test013TreeReportOnEmptyPortfolioReturnsItsName stamp: 'CM 11/16/2020 15:28:22'!
+test013TreeReportOnEmptyPortfolioReturnsItsName
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio'.
+								
+	self assert: report equals: (AccountTreeReport for: myPortfolio) printReport .
+!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:28:43'!
+test012ReceptiveAccountReflectsItsNameOnAccountTreeReport
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test012TreeReportOnReceptiveAccountReturnsItsName stamp: 'CM 11/16/2020 15:28:43'!
+test012TreeReportOnReceptiveAccountReturnsItsName
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:29:38'!
+test014PortfolioReflectsItsReceptiveAccountsOnTreeReport
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!methodRemoval: AccountReportTest #test014 stamp: 'CM 11/16/2020 15:29:38'!
+test014
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:29:58' prior: 50879852!
+test014PortfolioReflectsItsReceptiveAccountsOnTreeReport
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:31:11'!
+test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+
+!methodRemoval: AccountReportTest #test014PortfolioReflectsItsReceptiveAccountsOnTreeReport stamp: 'CM 11/16/2020 15:31:11'!
+test014PortfolioReflectsItsReceptiveAccountsOnTreeReport
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+!
+
+!methodRemoval: AccountReportTest #test013 stamp: 'CM 11/16/2020 15:31:13'!
+test013
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan' 
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+!
+
+!methodRemoval: AccountReportTest #test012 stamp: 'CM 11/16/2020 15:31:52'!
+test012
+
+	| report angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:myAccount with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta mia' 
+							with: '    Portfolio de hijos' 
+							with: '        Cuenta de Juan'
+							with: '        Cuenta de Angeles'.
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:33:44'!
+test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount expected |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	expected := (AccountTreeReport for: familyPortfolio) printReport.
+	self assert: report equals: expected .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:34:34' prior: 50879997!
+test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:35:01' prior: 50880015!
+test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount angiesAccount childrenPortfolio |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount with: angiesAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:36:04' prior: 50880035!
+test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+! !
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:37:09' prior: 50880058!
+test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myPortfolio with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Portfolio mio'
+							with: '        Cuenta mia'
+							with: '    Portfolio de los hijos'
+							with: '        Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+! !
+
+!testRun: #AccountReportTest #test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce stamp: 'CM 11/16/2020 15:37:14'!
+PASSED!
+!AccountReportTest methodsFor: 'portfolio tree report' stamp: 'CM 11/16/2020 15:37:25' prior: 50879903!
+test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport
+
+	| report familyPortfolio johnsAccount |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport.
+! !
+!AccountTreeReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 15:38:13' prior: 50877971 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	
+	^ accumulatedReport.! !
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:38:35' prior: 50877943 overrides: 50879287!
+reflectAccount: anAccount
+	
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 15:44:25'!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:45:27' prior: 50878009 overrides: 50879287!
+reflectAccount: anAccount	
+
+	|report|
+
+	report:=(self class for: anAccount).
+
+	accumulatedReport addAll: (report printReport collect: [ :rep | '    ' , rep ]).
+	balance:=balance+report balance.
+
+	! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:45:44' prior: 50880165 overrides: 50879287!
+reflectAccount: anAccount	
+
+	|report|
+
+	report:=(self class for: anAccount).
+
+	accumulatedReport addAll: (report printReport collect: [ :rep | '    ' , rep ]).
+	balance := balance + report balance.
+
+	! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:46:09' prior: 50878019 overrides: 50879292!
+reflectDeposit: aDeposit 
+
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+	balance:=aDeposit affectBalance: balance 
+	
+		
+	
+! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:46:13' prior: 50880187 overrides: 50879292!
+reflectDeposit: aDeposit 
+
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+	balance := aDeposit affectBalance: balance 
+	
+		
+	
+! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:46:20' prior: 50878028 overrides: 50879297!
+reflectIncomingTransfer: aTransfer
+	
+	accumulatedReport add: '    Transferencia entrante de ', aTransfer value asString.
+	
+	balance:= aTransfer affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:46:26' prior: 50878037 overrides: 50879303!
+reflectOutgoingTransfer: aTransfer
+	
+	accumulatedReport add: '    Transferencia saliente de ', aTransfer value asString.
+	
+	balance:= aTransfer affectBalance: balance ! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:46:43' prior: 50878046 overrides: 50879309!
+reflectWithdraw: aWithdraw
+	
+	accumulatedReport add: '    Extraccion de ', aWithdraw value asString.
+	
+	balance:= aWithdraw affectBalance: balance ! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'CM 11/16/2020 15:51:23'!
+reflectOnn: anAccountReport 
+
+	anAccountReport reflectAccountt: self.
+	
+	
+	! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'CM 11/16/2020 15:52:00'!
+reflectTransactionsOn: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction reflectOn: anAccountReport
+		].
+	
+	! !
+!Portfolio methodsFor: 'reports' stamp: 'CM 11/16/2020 15:52:27' prior: 50878445 overrides: 50878440!
+reflectOn: anAccountReport 
+
+	accounts do: [ :account |
+			anAccountReport reflectAccount: account.
+		].
+	
+	! !
+
+!methodRemoval: ReceptiveAccount #reflectTransactionsOn: stamp: 'CM 11/16/2020 15:52:35'!
+reflectTransactionsOn: anAccountReport 
+
+	transactions do: [ :transaction |
+			transaction reflectOn: anAccountReport
+		].
+	
+	!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'CM 11/16/2020 15:52:42'!
+m1: anAccountReport 
+
+	anAccountReport reflectAccountt: self.
+	
+	
+	! !
+
+!methodRemoval: ReceptiveAccount #reflectOnn: stamp: 'CM 11/16/2020 15:52:45'!
+reflectOnn: anAccountReport 
+
+	anAccountReport reflectAccountt: self.
+	
+	
+	!
+!Portfolio methodsFor: 'reports' stamp: 'CM 11/16/2020 15:53:15'!
+m1: anAccountReport 
+
+	anAccountReport reflectPortfolio: self.
+	
+	
+	! !
+!AccountSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 15:53:42' prior: 50879361 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	account reflectOn: self.
+	
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 15:53:58' prior: 50880275 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	account m1: self.
+	
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 15:54:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:54:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:54:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:54:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:54:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 15:54:35'!
+ERROR!
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 15:54:38'!
+ERROR!
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:55:17'!
+reflectPortfolio: aPortfolio
+	
+	aPortfolio reflectOn: self.! !
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:55:24'!
+reflectReceptiveAccount: anAccount
+	
+	anAccount reflectOn: self.! !
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:55:31' prior: 50880328!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	aReceptiveAccount reflectOn: self.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'CM 11/16/2020 15:55:38' prior: 50880258!
+m1: anAccountReport 
+
+	anAccountReport reflectReceptiveAccount: self.
+	
+	
+	! !
+
+!testRun: #AccountReportTest #test012ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test013PortfolioReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 15:55:43'!
+ERROR!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:55:43'!
+ERROR!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:55:43'!
+ERROR!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:55:43'!
+ERROR!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:55:43'!
+ERROR!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 15:55:43'!
+ERROR!
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:55:43'!
+PASSED!
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 15:55:45'!
+ERROR!
+!AccountSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:56:13'!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	aReceptiveAccount reflectOn: self.! !
+!AccountSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:56:23'!
+reflectPortfolio: aPortfolio
+	
+	aPortfolio reflectOn: self.! !
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 15:56:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:56:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:56:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:56:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 15:56:31'!
+PASSED!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 15:56:31'!
+PASSED!
+!AccountNetTransferReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 15:56:54' prior: 50879625 overrides: 50879277!
+printReport
+	
+	accumulatedReport := 0.
+	account m1: self.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 15:57:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:57:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 15:57:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 15:57:01'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 15:57:01'!
+PASSED!
+!AccountTreeReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 15:57:29' prior: 50880134 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account m1: self.
+	
+	^ accumulatedReport.! !
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:57:43'!
+reflectReceptiveAccount: anAccount
+	
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	! !
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:57:48'!
+reflectPortfolio: anAccount
+	
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	! !
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:57:57' prior: 50880493!
+reflectPortfolio: aPortfolio
+	
+	accumulatedReport addAll: ((self class for: aPortfolio) printReport collect: [ :rep | '    ' , rep ]).
+	! !
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 15:58:08' prior: 50880485!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	accumulatedReport addAll: ((self class for: aReceptiveAccount) printReport collect: [ :rep | '    ' , rep ]).
+	! !
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:02:20' prior: 50880509!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	! !
+
+!testRun: #AccountReportTest #test012ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:02:25'!
+PASSED!
+
+!testRun: #AccountReportTest #test012ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:02:28'!
+PASSED!
+
+!methodRemoval: AccountTreeReport #reflectPortfolio: stamp: 'CM 11/16/2020 16:04:16'!
+reflectPortfolio: aPortfolio
+	
+	accumulatedReport addAll: ((self class for: aPortfolio) printReport collect: [ :rep | '    ' , rep ]).
+	!
+
+!methodRemoval: AccountTreeReport #reflectReceptiveAccount: stamp: 'CM 11/16/2020 16:04:19'!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	!
+
+!methodRemoval: AccountSummaryReport #reflectPortfolio: stamp: 'CM 11/16/2020 16:04:29'!
+reflectPortfolio: aPortfolio
+	
+	aPortfolio reflectOn: self.!
+
+!methodRemoval: AccountSummaryReport #reflectReceptiveAccount: stamp: 'CM 11/16/2020 16:04:32'!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	aReceptiveAccount reflectOn: self.!
+
+!methodRemoval: AccountNetTransferReport #reflectReceptiveAccount: stamp: 'CM 11/16/2020 16:04:40'!
+reflectReceptiveAccount: aReceptiveAccount
+	
+	aReceptiveAccount reflectOn: self.!
+
+!methodRemoval: AccountNetTransferReport #reflectWithdraw: stamp: 'CM 11/16/2020 16:04:43'!
+reflectWithdraw: aWithdraw 
+	!
+
+!methodRemoval: ReceptiveAccount #m1: stamp: 'CM 11/16/2020 16:04:56'!
+m1: anAccountReport 
+
+	anAccountReport reflectReceptiveAccount: self.
+	
+	
+	!
+
+!methodRemoval: Portfolio #m1: stamp: 'CM 11/16/2020 16:05:04'!
+m1: anAccountReport 
+
+	anAccountReport reflectPortfolio: self.
+	
+	
+	!
+
+!testRun: #AccountReportTest #test012ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:05:12'!
+ERROR!
+
+!testRun: #AccountReportTest #test013PortfolioReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:05:12'!
+ERROR!
+
+!testRun: #AccountReportTest #test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport stamp: 'CM 11/16/2020 16:05:12'!
+ERROR!
+
+!testRun: #AccountReportTest #test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce stamp: 'CM 11/16/2020 16:05:12'!
+ERROR!
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:05:16'!
+ERROR!
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:05:16'!
+ERROR!
+!AccountSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:05:57' prior: 50880285 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	account reflectOn: self.
+	
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountNetTransferReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:06:02' prior: 50880451 overrides: 50879277!
+printReport
+	
+	accumulatedReport := 0.
+	account reflectOn: self.
+	
+	^ accumulatedReport.! !
+!AccountTreeReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:06:06' prior: 50880477 overrides: 50879277!
+printReport
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test012ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:06:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test013PortfolioReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:06:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport stamp: 'CM 11/16/2020 16:06:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce stamp: 'CM 11/16/2020 16:06:10'!
+PASSED!
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 16:06:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:06:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:06:12'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:12'!
+ERROR!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:12'!
+ERROR!
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 16:06:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:06:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:06:19'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:19'!
+ERROR!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:19'!
+ERROR!
+!AccountNetTransferReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:06:40' overrides: 50879309!
+reflectWithdraw: aWithdraw
+	
+	! !
+
+!methodRemoval: AccountNetTransferReport #reflectPortfolio: stamp: 'CM 11/16/2020 16:06:43'!
+reflectPortfolio: aPortfolio
+	
+	aPortfolio reflectOn: self.!
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 16:06:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:06:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:06:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:06:46'!
+PASSED!
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 16:06:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:06:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:06:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:06:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:06:48'!
+PASSED!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 16:06:48'!
+PASSED!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:07:47' prior: 50880150!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:07:49'!
+PASSED!
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:07:51'!
+PASSED!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:08:13' prior: 50880738!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+!AccountTreeSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:09:25' prior: 50878055 overrides: 50879277!
+printReport
+
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: '    Balance = ' , balance asString.
+	
+	^ accumulatedReport.! !
+
+!methodRemoval: AccountTreeSummaryReport #balance stamp: 'CM 11/16/2020 16:09:39'!
+balance
+^balance!
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:09:42'!
+PASSED!
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:10:25' prior: 50880196 overrides: 50879292!
+reflectDeposit: aDeposit 
+
+	accumulatedReport add: '    Deposito de ', aDeposit value asString.
+	
+		
+	
+! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:10:30' prior: 50880205 overrides: 50879297!
+reflectIncomingTransfer: aTransfer
+	
+	accumulatedReport add: '    Transferencia entrante de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:10:35' prior: 50880215 overrides: 50879303!
+reflectOutgoingTransfer: aTransfer
+	
+	accumulatedReport add: '    Transferencia saliente de ', aTransfer value asString.! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:10:39' prior: 50880225 overrides: 50879309!
+reflectWithdraw: aWithdraw
+	
+	accumulatedReport add: '    Extraccion de ', aWithdraw value asString.! !
+!AccountTreeSummaryReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:11:06' prior: 50880176 overrides: 50879287!
+reflectAccount: anAccount	
+
+	|report|
+
+	report:=(self class for: anAccount).
+
+	accumulatedReport addAll: (report printReport collect: [ :rep | '    ' , rep ]).
+
+	! !
+!AccountTreeSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:11:19' prior: 50880778 overrides: 50879277!
+printReport
+
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: '    Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:11:23'!
+PASSED!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:11:58' prior: 50880762!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Deposit register: 100 on: angiesAccount .
+	
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Deposito de 100'
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:12:08'!
+FAILURE!
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:12:08'!
+FAILURE!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:12:31' prior: 50880856!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Deposit register: 100 on: angiesAccount .
+	
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Deposito de 100'
+							with: '    Balance = 100'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+
+!testRun: #AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:12:33'!
+PASSED!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:14:17'!
+test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio' with: 'Balance = 0'.
+								
+	self assert: report equals: (AccountTreeReport for: myPortfolio) printReport .
+! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:14:23' prior: 50880904!
+test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio' with: 'Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: myPortfolio) printReport .
+! !
+
+!testRun: #AccountReportTest #test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:14:26'!
+FAILURE!
+
+!testRun: #AccountReportTest #test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:14:26'!
+FAILURE!
+!AccountTreeSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:15:14' prior: 50880841 overrides: 50879277!
+printReport
+
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: 'Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:15:41' prior: 50880883!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Deposit register: 100 on: angiesAccount .
+	
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Deposito de 100'
+							with: 'Balance = 100'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:15:57' prior: 50880950!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Deposit register: 100 on: angiesAccount .
+	
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Deposito de 100'
+							with: '    Balance = 100'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:16:14' prior: 50880917!
+test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio' 
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: myPortfolio) printReport .
+! !
+!AccountTreeSummaryReport methodsFor: 'printing report' stamp: 'CM 11/16/2020 16:16:31' prior: 50880940 overrides: 50879277!
+printReport
+
+
+	accumulatedReport := OrderedCollection new.
+	
+	accumulatedReport add: account name.
+	account reflectOn: self.
+	accumulatedReport add: '    Balance = ' , account balance asString.
+	
+	^ accumulatedReport.! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:17:30'!
+test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio' 
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: myPortfolio) printReport .
+! !
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:21:47' prior: 50881009!
+test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myPortfolio with: childrenPortfolio.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: myAccount .
+
+	report := OrderedCollection new.
+	
+	report add: 'Portfolio de la familia';
+		   add: '    Portfolio mio';
+		   add: '        Cuenta mia';
+		   add: '            Deposito de 100';
+		   add: '            Balance = 100';
+		   add: '        Balance = 100';		
+		   add: '    Portfolio de los hijos';
+		   add: '        Cuenta de Juan';
+		   add: '            Extraccion de 20';
+		   add: '            Balance = -20';
+		   add: '        Balance = -20';
+		   add: '    Balance = 80'.
+							.
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+
+! !
+
+!testRun: #AccountReportTest #test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:21:49'!
+FAILURE!
+
+!testRun: #AccountReportTest #test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:21:49'!
+FAILURE!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:22:08' prior: 50881023!
+test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myPortfolio with: childrenPortfolio.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: myAccount .
+
+	report := OrderedCollection new.
+	
+	report add: 'Portfolio de la familia';
+		   add: '    Portfolio mio';
+		   add: '        Cuenta mia';
+		   add: '            Deposito de 100';
+		   add: '            Balance = 100';
+		   add: '        Balance = 100';		
+		   add: '    Portfolio de los hijos';
+		   add: '        Cuenta de Juan';
+		   add: '            Extraccion de 20';
+		   add: '            Balance = -20';
+		   add: '        Balance = -20';
+		   add: '    Balance = 80'.
+							.
+	self assert: report equals: (AccountTreeSummaryReport for: familyPortfolio) printReport .
+
+! !
+
+!testRun: #AccountReportTest #test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:22:10'!
+FAILURE!
+
+!testRun: #AccountReportTest #test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:22:10'!
+FAILURE!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:22:33' prior: 50881072!
+test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myPortfolio with: childrenPortfolio.
+	
+	Deposit register: 100 on: myAccount .
+	Withdraw register: 20 on: johnsAccount .
+
+	report := OrderedCollection new.
+	
+	report add: 'Portfolio de la familia';
+		   add: '    Portfolio mio';
+		   add: '        Cuenta mia';
+		   add: '            Deposito de 100';
+		   add: '            Balance = 100';
+		   add: '        Balance = 100';		
+		   add: '    Portfolio de los hijos';
+		   add: '        Cuenta de Juan';
+		   add: '            Extraccion de 20';
+		   add: '            Balance = -20';
+		   add: '        Balance = -20';
+		   add: '    Balance = 80'.
+							.
+	self assert: report equals: (AccountTreeSummaryReport for: familyPortfolio) printReport .
+
+! !
+
+!testRun: #AccountReportTest #test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:22:40'!
+PASSED!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:22:46'!
+test16PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio' 
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: myPortfolio) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:22:46'!
+test016PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio' 
+							with: '    Balance = 0'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: myPortfolio) printReport .
+!
+!AccountReportTest methodsFor: 'tree summary report' stamp: 'CM 11/16/2020 16:22:50'!
+test15ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Deposit register: 100 on: angiesAccount .
+	
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Deposito de 100'
+							with: '    Balance = 100'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:22:50'!
+test015ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport
+
+	| report angiesAccount |
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	Deposit register: 100 on: angiesAccount .
+	
+	report := OrderedCollection with: 'Cuenta de Angeles'
+							with: '    Deposito de 100'
+							with: '    Balance = 100'.
+								
+	self assert: report equals: (AccountTreeSummaryReport for: angiesAccount) printReport .
+!
+!AccountReportTest methodsFor: 'tree report' stamp: 'CM 11/16/2020 16:23:01'!
+test12ReceptiveAccountReflectsItsNameOnAccountTreeReport
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test012ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:23:01'!
+test012ReceptiveAccountReflectsItsNameOnAccountTreeReport
+
+	| report angiesAccount |
+	
+	
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+
+	report := OrderedCollection with: 'Cuenta de Angeles'.
+								
+	self assert: report equals: (AccountTreeReport for: angiesAccount) printReport .
+!
+!AccountReportTest methodsFor: 'tree report' stamp: 'CM 11/16/2020 16:23:06'!
+test13PortfolioReflectsItsNameOnAccountTreeReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio'.
+								
+	self assert: report equals: (AccountTreeReport for: myPortfolio) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test013PortfolioReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:23:06'!
+test013PortfolioReflectsItsNameOnAccountTreeReport
+
+	| report myPortfolio |
+	
+	
+	myPortfolio := Portfolio named: 'Mi portfolio'.
+
+	report := OrderedCollection with: 'Mi portfolio'.
+								
+	self assert: report equals: (AccountTreeReport for: myPortfolio) printReport .
+!
+!AccountReportTest methodsFor: 'tree report' stamp: 'CM 11/16/2020 16:23:11'!
+test14NestedAccountReflectsItsNameIndentedOnAccountTreeReport
+
+	| report familyPortfolio johnsAccount |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport.
+! !
+
+!methodRemoval: AccountReportTest #test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport stamp: 'CM 11/16/2020 16:23:11'!
+test014NestedAccountReflectsItsNameIndentedOnAccountTreeReport
+
+	| report familyPortfolio johnsAccount |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: johnsAccount.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport.
+!
+!AccountReportTest methodsFor: 'tree report' stamp: 'CM 11/16/2020 16:23:16'!
+test15TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myPortfolio with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Portfolio mio'
+							with: '        Cuenta mia'
+							with: '    Portfolio de los hijos'
+							with: '        Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+! !
+
+!methodRemoval: AccountReportTest #test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce stamp: 'CM 11/16/2020 16:23:16'!
+test015TwoNestedPortfoliosAtSameLevelIndentOnlyOnce
+
+	| report familyPortfolio johnsAccount childrenPortfolio myAccount myPortfolio |
+	
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	childrenPortfolio := Portfolio named: 'Portfolio de los hijos' with: johnsAccount .
+	myPortfolio := Portfolio named: 'Portfolio mio' with: myAccount .
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: myPortfolio with: childrenPortfolio.
+
+	report := OrderedCollection with: 'Portfolio de la familia' 
+							with: '    Portfolio mio'
+							with: '        Cuenta mia'
+							with: '    Portfolio de los hijos'
+							with: '        Cuenta de Juan'.
+							
+	self assert: report equals: (AccountTreeReport for: familyPortfolio) printReport .
+!
+
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTreeSummaryReport category: 'Portfolio-Solucion' stamp: 'CM 11/16/2020 16:23:25'!
+AccountReport subclass: #AccountTreeSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!methodRemoval: AccountTreeSummaryReport #initializeFor: stamp: 'CM 11/16/2020 16:24:24'!
+initializeFor: anAccount 
+	account := anAccount.
+	balance := 0.!
+
+!testRun: #AccountReportTest #test01SummaryReportOnEmptyAccountReturnsOnlyItsBalance stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test02DepositsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test03WithdrawsAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test04IncomingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test05OutgoingTransfersAreCorrectlyReflectedOnAccountSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test06SummaryReportOnAPortfolioShouldReflectItsAccountsSummaries stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test07NetTransferReportOnEmptyAccountReturnsZero stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test08DepositsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test09IncomingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test10OutgoingTransfersAreReflectedOnNetTransferReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test11WithdrawsDontModifyNetTransferReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test12ReceptiveAccountReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test13PortfolioReflectsItsNameOnAccountTreeReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test14NestedAccountReflectsItsNameIndentedOnAccountTreeReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test15ReceptiveAccountReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test15TwoNestedPortfoliosAtSameLevelIndentOnlyOnce stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test16PortfolioReflectsItsNameAndSummaryOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+
+!testRun: #AccountReportTest #test17NestedAccountsAreReflectCorreclyOnAccountTreeSummaryReport stamp: 'CM 11/16/2020 16:24:27'!
+PASSED!
+!AccountTreeReport methodsFor: 'reflecting account info' stamp: 'CM 11/16/2020 16:25:21' prior: 50880143 overrides: 50879287!
+reflectAccount: anAccount
+	
+	accumulatedReport addAll: ((self class for: anAccount) printReport collect: [ :rep | '    ' , rep ]).
+	! !
+
+----SNAPSHOT----(16 November 2020 16:25:26) CuisUniversity-4384.image priorSource: 17419915!
