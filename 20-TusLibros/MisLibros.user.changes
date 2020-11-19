@@ -1,0 +1,1116 @@
+
+
+----SNAPSHOT----(18 November 2020 22:14:43) MisLibros.image priorSource: 17986092!
+
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+
+!classDefinition: #CartTest category: #'20-TusLibros' stamp: 'AS 11/18/2020 22:16:00'!
+Object subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+!CartTest methodsFor: 'no messages' stamp: 'AS 11/18/2020 22:18:36'!
+test01NewCartIsEmpty! !
+
+!classDefinition: #Cart category: #'20-TusLibros' stamp: 'AS 11/18/2020 22:27:15'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/18/2020 22:27:01' prior: 50893786!
+test01NewCartIsEmpty
+
+self assert: (Cart newCart) isEmpty.! !
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+
+!classDefinition: #CartTest category: #'20-TusLibros' stamp: 'AS 11/18/2020 22:27:58'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:28:01'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:28:01'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:28:02'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'AS 11/18/2020 22:28:22'!
+newCart
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNewCart! !
+!Cart class methodsFor: 'instance creation' stamp: 'AS 11/18/2020 22:29:34' prior: 50893820!
+newCart	
+	^self new initializeNewCart! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:29:39'!
+ERROR!
+!Cart methodsFor: 'initializatioon' stamp: 'AS 11/18/2020 22:30:17'!
+initializeNewCart
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: #'20-TusLibros' stamp: 'AS 11/18/2020 22:30:45'!
+Object subclass: #Cart
+	instanceVariableNames: 'cartContent'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '20-TusLibros'!
+!Cart methodsFor: 'initializatioon' stamp: 'AS 11/18/2020 22:30:39' prior: 50893835!
+initializeNewCart
+	cartContent:=Bag new! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:30:55'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:30:55'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:30:55'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'AS 11/18/2020 22:31:11'!
+isEmpty
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'AS 11/18/2020 22:31:26' prior: 50893858!
+isEmpty
+	^cartContent isEmpty! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/18/2020 22:31:59'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/18/2020 22:39:23'!
+test02CarIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self deny: (cart) isEmpty.! !
+
+!testRun: #CartTest #test02CarIsNotEmptyAfterAddingAnItem stamp: 'AS 11/18/2020 22:39:33'!
+ERROR!
+
+!testRun: #CartTest #test02CarIsNotEmptyAfterAddingAnItem stamp: 'AS 11/18/2020 22:39:33'!
+ERROR!
+
+!testRun: #CartTest #test02CarIsNotEmptyAfterAddingAnItem stamp: 'AS 11/18/2020 22:39:33'!
+ERROR!
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/18/2020 22:39:51'!
+add: aSmallInteger of: aString 
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/18/2020 22:40:35' prior: 50893885!
+add: aQuantiy of: aISBN 
+	self shouldBeImplemented.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/18/2020 22:40:41' prior: 50893869!
+test02CarIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self deny: (cart) isEmpty.! !
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/18/2020 22:41:52' prior: 50893890!
+add: aQuantiy of: aISBN 
+	cartContent add: aISBN withOccurrences: aQuantiy.! !
+
+!testRun: #CartTest #test02CarIsNotEmptyAfterAddingAnItem stamp: 'AS 11/18/2020 22:41:58'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/18/2020 23:32:54'!
+test02CartIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self deny: (cart) isEmpty.! !
+
+!methodRemoval: CartTest #test02CarIsNotEmptyAfterAddingAnItem stamp: 'AS 11/18/2020 23:32:54'!
+test02CarIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self deny: (cart) isEmpty.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 00:09:06'!
+test03CartListHasItemsWithCorrectQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484100' .
+cart add: 1 of: '97831484100' .
+self deny: (cart) isEmpty.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 05:39:47' prior: 50893924!
+test03CartListHasItemsWithCorrectQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484100' .
+cart add: 1 of: '97831484100' .
+self assert: cart contentListed.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 05:46:26' prior: 50893933!
+test03CartListHasItemsWithCorrectQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+self assert: cart contentListed=OrderedCollection with: 97831484100 with: 2 with: 97831484101 with: 4 add: 97831484103 add:4.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 05:47:32' prior: 50893943!
+test03CartListHasItemsWithCorrectQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+self assert: (cart contentListed=((OrderedCollection with: 97831484100 with: 2 with: 97831484101 with: 4) add: 97831484103) add: 4).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 05:47:41'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 05:47:41'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 05:47:41'!
+ERROR!
+!Cart methodsFor: 'accessing' stamp: 'AS 11/19/2020 05:50:36'!
+contentListed
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'accessing' stamp: 'AS 11/19/2020 05:52:24' prior: 50893978!
+contentListed
+	cartContent.! !
+!Cart methodsFor: 'initialization' stamp: 'AS 11/19/2020 06:11:20' prior: 50893846!
+initializeNewCart
+	cartContent:=Bag new! !
+!Cart methodsFor: 'initialization' stamp: 'AS 11/19/2020 06:11:29' prior: 50893986!
+initializeNewCart
+	cartContent:=Bag new! !
+!Cart methodsFor: 'accessing' stamp: 'AS 11/19/2020 07:40:19' prior: 50893982!
+contentListed
+|contents contentListed|
+	contents:=cartContent contents .
+	contentListed:=OrderedCollection new.
+	contents keysDo: [ :key | contentListed add: key. 
+					contentListed add: (contents at:key) ].
+				
+	^contentListed! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:44:02'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:44:02'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:44:02'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:46:23'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:46:23'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:46:23'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 07:46:59' prior: 50893956!
+test03CartListHasItemsWithCorrectQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+self assert: (cart contentListed=(((OrderedCollection with: 97831484100 with: 2 with: 97831484101 with: 4) add: 97831484103) add: 4)).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:47:02'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:47:02'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:47:02'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 07:49:33' prior: 50894024!
+test03CartListHasItemsWithCorrectQuantity
+|cart expectedContent|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: 97831484100 with: 2 with: 97831484101 with: 4).
+expectedContent add: 97831484103.
+expectedContent add: 4.
+
+self assert: (cart contentListed=expectedContent ).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:49:36'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:49:36'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:49:36'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:49:50'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:49:50'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:49:50'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 07:51:45' prior: 50894047!
+test03CartListHasItemsWithCorrectQuantity
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: 97831484100 with: 2 with: 97831484101 with: 4).
+expectedContent add: 97831484103.
+expectedContent add: 4.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:51:48'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:51:48'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:51:48'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 07:52:43' prior: 50894082!
+test03CartListHasItemsWithCorrectQuantity
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484100' with: 2 with: '97831484101' with: 4).
+expectedContent add: '97831484103'.
+expectedContent add: 4.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:52:47'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:52:47'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:52:47'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 07:53:22' prior: 50894109!
+test03CartListHasItemsWithCorrectQuantity
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484100' with: 2 with: '97831484101' with: 4).
+expectedContent add: '97831484103'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:53:25'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:53:25'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:53:25'!
+ERROR!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:56:34'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:56:34'!
+FAILURE!
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:56:34'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 07:57:05' prior: 50894136!
+test03CartListHasItemsWithCorrectQuantity
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!testRun: #CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 07:57:09'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:04:47' prior: 50893797!
+test01NewCartIsEmpty
+
+self assert: (Cart newCart) isEmpty.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:05:33' prior: 50894193!
+test01NewCartIsEmpty
+
+self assert: (Cart newCart) contentListed isEmpty.! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/19/2020 09:05:35'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:05:49' prior: 50893910!
+test02CartIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self deny: (cart) contentListed isEmpty.! !
+
+!testRun: #CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:05:51'!
+PASSED!
+
+!methodRemoval: Cart #isEmpty stamp: 'AS 11/19/2020 09:06:29'!
+isEmpty
+	^cartContent isEmpty!
+
+!testRun: #CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:06:37'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:10:20' prior: 50894206!
+test02CartIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self assert: (cart) contentListed = OrderedCollection with: '97831484100' with: 1.! !
+
+!testRun: #CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:10:23'!
+ERROR!
+
+!testRun: #CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:10:23'!
+ERROR!
+
+!testRun: #CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:10:23'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:10:35' prior: 50894223!
+test02CartIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 1).! !
+
+!testRun: #CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:10:38'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:11:44'!
+test02AProductCanBeAddedToTheCart
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 1).! !
+
+!methodRemoval: CartTest #test02CartIsNotEmptyAfterAddingAnItem stamp: 'AS 11/19/2020 09:11:44'!
+test02CartIsNotEmptyAfterAddingAnItem
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 1).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:12:25'!
+test04CanAddMultipleCopiesOfProductsToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test03CartListHasItemsWithCorrectQuantity stamp: 'AS 11/19/2020 09:12:25'!
+test03CartListHasItemsWithCorrectQuantity
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:13:06'!
+test03CanAddDifferentProductToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!testRun: #CartTest #test03CanAddDifferentProductToTheCart stamp: 'AS 11/19/2020 09:13:09'!
+PASSED!
+
+!testRun: #CartTest #test04CanAddMultipleCopiesOfProductsToTheCart stamp: 'AS 11/19/2020 09:13:12'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:15:55'!
+test05CanAddNegativeQuantitiesOfProductsToTheCar
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:16:11'!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+! !
+
+!methodRemoval: CartTest #test05CanAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:16:11'!
+test05CanAddNegativeQuantitiesOfProductsToTheCar
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:17:16' prior: 50894336!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+self should: [ cart add: 2 of: '97831484100' .]	
+		raise: Error .
+
+! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:17:23' prior: 50894356!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [ cart add: 2 of: '97831484100' .]	
+		raise: Error .
+
+! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:17:26'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:17:26'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:17:26'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:17:59' prior: 50894365!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [ cart add: -1 of: '97831484100' .]	
+		raise: Error .
+
+! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:18:02'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:18:02'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:18:02'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:18:16' prior: 50894384!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+ cart add: -1 of: '97831484100'.
+self should: [  cart add: -1 of: '97831484100']	
+		raise: Error .
+
+! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:18:18'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:18:18'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:18:18'!
+ERROR!
+
+----SNAPSHOT----(19 November 2020 09:18:29) MisLibros.image priorSource: 17987909!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:20:12' prior: 50894403!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+ cart add: -1 of: '97831484100'.
+self deny: (cart contentListed isEmpty).! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:20:15'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:21:32' prior: 50894426!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: -1 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:21:37'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:21:37'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:21:37'!
+ERROR!
+!Cart class methodsFor: 'error handling' stamp: 'AS 11/19/2020 09:22:02'!
+canNotAddNegativeAmountsOfProducts
+	self shouldBeImplemented.! !
+!Cart class methodsFor: 'error handling' stamp: 'AS 11/19/2020 09:22:52' prior: 50894458!
+canNotAddNegativeAmountsOfProducts
+	'The Quantity you add of a product can not be negative'! !
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/19/2020 09:24:54' prior: 50893902!
+add: aQuantity of: aISBN 
+
+	(aQuantity >0) ifTrue: [cartContent add: aISBN withOccurrences: aQuantity.]
+	 ifFalse:  self 
+	! !
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/19/2020 09:25:09' prior: 50894469!
+add: aQuantity of: aISBN 
+
+	(aQuantity >0) ifTrue: [cartContent add: aISBN withOccurrences: aQuantity.]
+	 ifFalse:  self class canNotAddNegativeAmountsOfProducts 
+	! !
+!Cart class methodsFor: 'error handling' stamp: 'AS 11/19/2020 09:25:34' prior: 50894463!
+canNotAddNegativeAmountsOfProducts
+	'The Quantity you add of a product must be positive'! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:25:38'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:25:38'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:25:39'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:25:56' prior: 50894438!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+cart add: -1 of: '97831484100'
+self should: [  cart add: -1 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:25:58' prior: 50894502!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+cart add: -1 of: '97831484100'.
+self should: [  cart add: -1 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:03'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:03'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:03'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:26:13' prior: 50894513!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+cart add: 0 of: '97831484100'.
+self should: [  cart add: -1 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:26:18' prior: 50894535!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+cart add: 0 of: '97831484100'.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:21'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:21'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:21'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:31'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:31'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:26:31'!
+ERROR!
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/19/2020 09:27:06' prior: 50894476!
+add: aQuantity of: aISBN 
+
+	(aQuantity >0) ifTrue: [cartContent add: aISBN withOccurrences: aQuantity.]
+	 ifFalse:  [^self class canNotAddNegativeAmountsOfProducts ]
+	! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:27:11'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:27:11'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:27:11'!
+ERROR!
+!Cart methodsFor: 'addingElements' stamp: 'AS 11/19/2020 09:28:12' prior: 50894578!
+add: aQuantity of: aISBN 
+
+	(aQuantity >0) ifTrue: [cartContent add: aISBN withOccurrences: aQuantity.]
+	 ifFalse:  [self error: self class canNotAddNegativeAmountsOfProducts ]
+	! !
+
+!testRun: #CartTest #test01NewCartIsEmpty stamp: 'AS 11/19/2020 09:28:15'!
+PASSED!
+
+!testRun: #CartTest #test02AProductCanBeAddedToTheCart stamp: 'AS 11/19/2020 09:28:15'!
+PASSED!
+
+!testRun: #CartTest #test03CanAddDifferentProductToTheCart stamp: 'AS 11/19/2020 09:28:15'!
+PASSED!
+
+!testRun: #CartTest #test04CanAddMultipleCopiesOfProductsToTheCart stamp: 'AS 11/19/2020 09:28:15'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:15'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:15'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:15'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:15'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:25'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:25'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:25'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:25'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:28:41'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:29:52'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:29:52'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:29:52'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:29:52'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:12'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:12'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:12'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:12'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:30:21' prior: 50894546!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+cart add: 0 of: '97831484100'.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!testRun: #CartTest #test04CanAddMultipleCopiesOfProductsToTheCart stamp: 'AS 11/19/2020 09:30:30'!
+PASSED!
+
+!testRun: #CartTest #test03CanAddDifferentProductToTheCart stamp: 'AS 11/19/2020 09:30:33'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:35'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:35'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:35'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:35'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:30:49'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:33:09'!
+ERROR!
+!Cart class methodsFor: 'error handling' stamp: 'AS 11/19/2020 09:51:07' prior: 50894485!
+canNotAddNegativeAmountsOfProducts
+	^'The Quantity you add of a product must be positive'! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:51:11'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:51:11'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:51:11'!
+ERROR!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:51:20' prior: 50894679!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!testRun: #CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 09:51:21'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:58:00'!
+test04CanAddMultipleCopiesOfSameProductToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 09:58:18'!
+test04CanAddMultipleCopiesOfSameProductsToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test04CanAddMultipleCopiesOfProductsToTheCart stamp: 'AS 11/19/2020 09:58:25'!
+test04CanAddMultipleCopiesOfProductsToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+
+!methodRemoval: CartTest #test04CanAddMultipleCopiesOfSameProductToTheCart stamp: 'AS 11/19/2020 09:58:28'!
+test04CanAddMultipleCopiesOfSameProductToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:00:24'!
+test04MultipleCopiesOfSameProductsToTheCartAreAddedCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test04CanAddMultipleCopiesOfSameProductsToTheCart stamp: 'AS 11/19/2020 10:00:24'!
+test04CanAddMultipleCopiesOfSameProductsToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:00:57'!
+test02AProductIsAddedToTheCartCorrectly
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 1).! !
+
+!methodRemoval: CartTest #test02AProductCanBeAddedToTheCart stamp: 'AS 11/19/2020 10:00:57'!
+test02AProductCanBeAddedToTheCart
+|cart|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 1).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:01:41'!
+test03MultipleProductOfDifferentTypeAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test03CanAddDifferentProductToTheCart stamp: 'AS 11/19/2020 10:01:41'!
+test03CanAddDifferentProductToTheCart
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:01:50'!
+test03MultipleProductsOfDifferentTypeAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test03MultipleProductOfDifferentTypeAreAddedToTheCartCorrectly stamp: 'AS 11/19/2020 10:01:50'!
+test03MultipleProductOfDifferentTypeAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:02:20'!
+test04MultipleCopiesOfTheSameProductsAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test04MultipleCopiesOfSameProductsToTheCartAreAddedCorrectly stamp: 'AS 11/19/2020 10:02:20'!
+test04MultipleCopiesOfSameProductsToTheCartAreAddedCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:04:49'!
+test05CanNotAddNotPositiveQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!methodRemoval: CartTest #test05CanNotAddNegativeQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 10:04:49'!
+test05CanNotAddNegativeQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:12:57'!
+test06AddingTheSameItem2DIfferentTimesIncreaseItsQuantity
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:13:12' prior: 50894990!
+test06AddingTheSameItem2DIfferentTimesIncreaseItsQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484100' .! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:16:32' prior: 50895000!
+test06AddingTheSameItem2DIfferentTimesIncreaseItsQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 6).! !
+
+!testRun: #CartTest #test06AddingTheSameItem2DIfferentTimesIncreaseItsQuantity stamp: 'AS 11/19/2020 10:16:47'!
+PASSED!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:21:26'!
+test03AddingTheSameItemTwoDIfferentTimesIncreaseItsQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 6).! !
+
+!methodRemoval: CartTest #test06AddingTheSameItem2DIfferentTimesIncreaseItsQuantity stamp: 'AS 11/19/2020 10:21:26'!
+test06AddingTheSameItem2DIfferentTimesIncreaseItsQuantity
+|cart|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484100' .
+self assert: (cart) contentListed = (OrderedCollection with: '97831484100' with: 6).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:21:33'!
+test04MultipleProductsOfDifferentTypeAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test03MultipleProductsOfDifferentTypeAreAddedToTheCartCorrectly stamp: 'AS 11/19/2020 10:21:33'!
+test03MultipleProductsOfDifferentTypeAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 1 of: '97831484100' .
+cart add: 1 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 1).
+expectedContent add: '97831484100'.
+expectedContent add: 1.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:21:40'!
+test05MultipleCopiesOfTheSameProductsAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).! !
+
+!methodRemoval: CartTest #test04MultipleCopiesOfTheSameProductsAreAddedToTheCartCorrectly stamp: 'AS 11/19/2020 10:21:40'!
+test04MultipleCopiesOfTheSameProductsAreAddedToTheCartCorrectly
+|cart expectedContent contentListed|
+cart:=Cart newCart.
+cart add: 2 of: '97831484100' .
+cart add: 4 of: '97831484101' .
+cart add: 1 of: '97831484103' .
+expectedContent:=(OrderedCollection with: '97831484103' with: 1 with: '97831484101' with: 4).
+expectedContent add: '97831484100'.
+expectedContent add: 2.
+
+contentListed :=cart contentListed .
+
+self assert: (contentListed=expectedContent ).!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'AS 11/19/2020 10:21:46'!
+test06CanNotAddNotPositiveQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.! !
+
+!methodRemoval: CartTest #test05CanNotAddNotPositiveQuantitiesOfProductsToTheCar stamp: 'AS 11/19/2020 10:21:46'!
+test05CanNotAddNotPositiveQuantitiesOfProductsToTheCar
+|cart|
+cart:=Cart newCart.
+self should: [  cart add: 0 of: '97831484100']	
+		raise: Error withMessageText: Cart canNotAddNegativeAmountsOfProducts.!
+
+----SNAPSHOT----(19 November 2020 10:25:05) MisLibros.image priorSource: 18008688!
