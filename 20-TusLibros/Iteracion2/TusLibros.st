@@ -322,6 +322,54 @@ setUp
 	factory := TusLibrosTestSubjectFactory new.! !
 
 
+!classDefinition: #TestDoubleTest category: 'TusLibros'!
+TestCase subclass: #TestDoubleTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TestDoubleTest methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 03:04:59'!
+test01
+	| double |
+	
+	double := TestDouble new.
+	
+	double allowToReceive: #myMethod andReturn: [ 2 ].
+	
+	self assert: 2 equals: double myMethod.! !
+
+!TestDoubleTest methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 03:09:23'!
+test02
+	| double |
+	
+	double := TestDouble new.
+	double allowToReceive: #myMethod andReturn: [ 2 ].
+	
+	self assert: 0 equals: (double timesReceived: #myMethod).! !
+
+!TestDoubleTest methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 03:10:18'!
+test03
+	| double |
+	
+	double := TestDouble new.
+	double allowToReceive: #myMethod andReturn: [ 2 ].
+	double myMethod.
+	
+	self assert: 1 equals: (double timesReceived: #myMethod).! !
+
+!TestDoubleTest methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 03:10:09'!
+test04
+	| double |
+	
+	double := TestDouble new.
+	double allowToReceive: #myMethod andReturn: [ 2 ].
+	double myMethod.
+	double myMethod.
+	
+	self assert: 2 equals: (double timesReceived: #myMethod).! !
+
+
 !classDefinition: #Cart category: 'TusLibros'!
 Object subclass: #Cart
 	instanceVariableNames: 'catalog items'
@@ -534,7 +582,7 @@ allowToReceive: aMessageSelector andReturn: aBlock
 	
 	! !
 
-!TestDouble methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 02:39:06'!
+!TestDouble methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 03:11:56'!
 doesNotUnderstand: aMessage 
 
 	| blockToEvaluate |
@@ -543,8 +591,15 @@ doesNotUnderstand: aMessage
 					ifAbsent: [ ^ super doesNotUnderstand: aMessage. ]
 	).
 
-	receivedMessages at: 	aMessage selector put: 1.
-	blockToEvaluate valueWithArguments: aMessage arguments.
+	self incrementTimesReceived: aMessage selector.
+	^ blockToEvaluate valueWithArguments: aMessage arguments.
+	
+	! !
+
+!TestDouble methodsFor: 'as yet unclassified' stamp: 'CM 11/22/2020 03:11:32'!
+incrementTimesReceived: aMessageSelector
+
+	receivedMessages at: aMessageSelector put: (self timesReceived: aMessageSelector) + 1.
 	
 	! !
 
