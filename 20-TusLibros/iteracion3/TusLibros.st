@@ -980,14 +980,12 @@ nextNumberAvailableTransaction := nextNumberAvailableTransaction + 1.
 ! !
 
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:08:47'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:11'!
 addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 (cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	((((cartSessionsByID at: aCartId) timeOfLastUse ) +30 minutes )< aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId) setTimeTo: aTime.
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
 	
 	^((cartSessionsByID at: aCartId) cart) add: anAmount of: aProduct .
 	] 
@@ -997,15 +995,13 @@ addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 ! !
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:25:53'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:18'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
 |cashier saleValue userOfCart transactionNumber|
 
 (cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	(((cartSessionsByID at: aCartId)timeOfLastUse +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId) setTimeTo: aTime.
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
 	
 	cashier:= Cashier
 		toCheckout: ((cartSessionsByID at: aCartId) cart )
@@ -1052,14 +1048,12 @@ authenticationResult ifTrue: [
 	^iDOfCart.
 	].! !
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:07:37'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:31'!
 listCart: aCartId atTime: aTime
 
 (cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	((((cartSessionsByID at: aCartId)  timeOfLastUse) +30 minutes) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId)  setTimeTo: aTime.
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
 	
 	^(cartSessionsByID at: aCartId)cart contents.
 	] 
@@ -1079,6 +1073,13 @@ authenticationResult ifTrue: [
 
 	].
 ! !
+
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:47:43'!
+setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId
+
+	((((cartSessionsByID at: aCartId) timeOfLastUse ) +30 minutes )< aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
+	
+	(cartSessionsByID at: aCartId) setTimeTo: aTime.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 

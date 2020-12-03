@@ -1,561 +1,106 @@
 
 
-TestCase subclass: #CartSession
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #CartSession category: #TusLibros stamp: 'AS 12/3/2020 15:42:18'!
-TestCase subclass: #CartSession
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-TestCase subclass: #UserSession
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #UserSession category: #TusLibros stamp: 'AS 12/3/2020 15:42:28'!
-TestCase subclass: #UserSession
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #Store category: #TusLibros stamp: 'AS 12/3/2020 15:44:17'!
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartsByID userPurchases totalCostOfUserPurchases timeOfLastUseCartsByID userOfCartById cartSessionsByID'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-!Store methodsFor: 'initialization' stamp: 'AS 12/3/2020 15:44:15' prior: 50900665!
-initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
-authenticator :=aAuthenticator.
-catalogue :=aCatalogue .
-
-nextIdavailableCart := 1.
-nextNumberAvailableTransaction:=1.
-
-salesBook := OrderedCollection new.
-
-cartSessionsByID:=Dictionary new.
-
-cartsByID := Dictionary new.
-timeOfLastUseCartsByID := Dictionary new.
-userOfCartById := Dictionary new.
-
-userPurchases := Dictionary new.
-totalCostOfUserPurchases := Dictionary new.
-! !
-
-Object subclass: #Cart
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #Cart category: #TusLibros stamp: 'AS 12/3/2020 15:45:40'!
-Object subclass: #Cart
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 15:45:42'!
-PASSED!
-
-Object subclass: #Cart
-	instanceVariableNames: 'items'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #Cart category: #TusLibros stamp: 'AS 12/3/2020 15:46:13'!
-Object subclass: #Cart
-	instanceVariableNames: 'items'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 15:46:14'!
-PASSED!
-
-TestCase subclass: #CartSession
-	instanceVariableNames: 'cart timeOfLastUse userOfCart'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #CartSession category: #TusLibros stamp: 'AS 12/3/2020 15:46:23'!
-TestCase subclass: #CartSession
-	instanceVariableNames: 'cart timeOfLastUse userOfCart'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 15:46:24'!
-PASSED!
-
-!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:46:26'!
-PASSED!
-
-!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 15:46:26'!
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 15:46:26'!
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 15:46:26'!
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 15:46:26'!
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 15:46:26'!
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 15:46:27'!
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 15:46:27'!
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 15:46:27'!
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'AS 12/3/2020 15:46:31'!
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'AS 12/3/2020 15:46:31'!
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'AS 12/3/2020 15:46:31'!
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'AS 12/3/2020 15:46:31'!
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'AS 12/3/2020 15:46:31'!
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'AS 12/3/2020 15:46:31'!
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:43:23'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'AS 12/3/2020 16:43:26'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'AS 12/3/2020 16:43:26'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'AS 12/3/2020 16:43:26'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'AS 12/3/2020 16:43:26'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'AS 12/3/2020 16:43:26'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'AS 12/3/2020 16:43:26'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 15:46:34'!
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:46:35'!
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:46:35'!
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:46:35'!
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 15:46:35'!
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 15:46:35'!
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 15:50:38' prior: 50900687!
-createCartForClient: aUser withPassword: aPassword atTime: aTime
-|authenticationResult iDOfCart|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailableCart .
-	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
 
-	(totalCostOfUserPurchases includesKey: aUser) ifFalse: [
-		totalCostOfUserPurchases at: aUser  put: 0.
-		(userPurchases at: aUser put: Bag new).
-	].
-
-	
-	
-	^iDOfCart.
-	].! !
-!CartSession class methodsFor: 'no messages' stamp: 'AS 12/3/2020 15:51:37'!
-for: aCart withTime: aTime withUser: aUser
-self new intializeWith: aCart withTime: aTime withUser: aUser! !
-!CartSession methodsFor: 'no messages' stamp: 'AS 12/3/2020 15:52:34'!
-intializeWith: aCart withTime: aTime withUser: aUser
-cart:=aCart.
-timeOfLastUse:=aTime.
-userOfCart :=aUser .! !
-!Store methodsFor: 'initialization' stamp: 'AS 12/3/2020 15:53:02' prior: 50901558!
-initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
-authenticator :=aAuthenticator.
-catalogue :=aCatalogue .
-
-nextIdavailableCart := 1.
-nextNumberAvailableTransaction:=1.
-
-salesBook := OrderedCollection new.
-
-cartSessionsByID:=Dictionary new.
-
-
-userPurchases := Dictionary new.
-totalCostOfUserPurchases := Dictionary new.
-! !
-
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook  userPurchases totalCostOfUserPurchases cartSessionsByID'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #Store category: #TusLibros stamp: 'AS 12/3/2020 15:53:23'!
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook userPurchases totalCostOfUserPurchases cartSessionsByID'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 15:59:07' prior: 50900774!
-checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
-|cashier saleValue userOfCart transactionNumber|
-
-(cartSessionsByID includesKey: aCartId) ifTrue: [
-	
-	(((cartSessionsByID at: aCartId)timeOfLastUse +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId) setTimeTo: aTime.
-	
-	cashier:= Cashier
-		toCheckout: ((cartSessionsByID at: aCartId) cart )
-		charging:  aCreditCard
-		throught: aMerchantProcessor
-		on:  (aTime)
-		registeringOn: (salesBook ).
-		
-		saleValue:= cashier checkOut.
-		userOfCart:= (cartSessionsByID at: aCartId) userofCart.
-		
-		totalCostOfUserPurchases at: userOfCart  put: (totalCostOfUserPurchases at: userOfCart)+saleValue.
-		(userPurchases at: userOfCart) addAll: (((cartSessionsByID at: aCartId ) cart) contents ).
-		
-	cartSessionsByID removeKey: aCartId .
-
-		transactionNumber:=nextNumberAvailableTransaction .
-	
-	self increaseNextNumberAvailableTransaction .
-	
-	^transactionNumber.
-	] 
-	ifFalse:[
-		self error: self class invalidCartErrorDescription .
-	]
-! !
-!CartSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:00:14'!
-setTimeTo: aTime
-timeOfLastUse:=aTime.
-! !
-!CartSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:01:26'!
-timeOfLastUse
-^timeOfLastUse 
-! !
-!CartSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:01:59'!
-userofCart
-^userOfCart ! !
-!CartSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:02:29'!
-cart
-^cart ! !
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:04:35' prior: 50898343!
-listCart: aCartId atTime: aTime
-
-(cartSessionsByID includesKey: aCartId) ifTrue: [
-	
-	((((cartSessionsByID at: aCartId) +30 minutes ) timeOfLastUse) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId) timeOfLastUse setTimeTo: aTime.
-	
-	^(cartSessionsByID at: aCartId)cart contents.
-	] 
-	ifFalse:[
-		self error: self class invalidCartErrorDescription .
-	]! !
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:06:38' prior: 50898574!
-addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
-
-(cartSessionsByID includesKey: aCartId) ifTrue: [
-	
-	((((cartSessionsByID at: aCartId) +30 minutes ) timeOfLastUse )< aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId) setTimeTo: aTime.
-	
-	^((cartSessionsByID at: aCartId) cart) add: anAmount of: aProduct .
-	] 
-	ifFalse:[
-		self error: self class invalidCartErrorDescription .
-	]
-
-! !
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:06:50' prior: 50901924!
-listCart: aCartId atTime: aTime
-
-(cartSessionsByID includesKey: aCartId) ifTrue: [
-	
-	((((cartSessionsByID at: aCartId) +30 minutes ) timeOfLastUse) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId)  setTimeTo: aTime.
-	
-	^(cartSessionsByID at: aCartId)cart contents.
-	] 
-	ifFalse:[
-		self error: self class invalidCartErrorDescription .
-	]! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:06:53'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:06:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:06:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:06:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:06:53'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:06:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:06:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:06:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:06:53'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:06:53'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:06:53'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:06:53'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:06:53'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:06:53'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:06:53'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:07:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:07:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:07:11'!
-ERROR!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:07:37' prior: 50901958!
-listCart: aCartId atTime: aTime
-
-(cartSessionsByID includesKey: aCartId) ifTrue: [
-	
-	((((cartSessionsByID at: aCartId)  timeOfLastUse) +30 minutes) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId)  setTimeTo: aTime.
-	
-	^(cartSessionsByID at: aCartId)cart contents.
-	] 
-	ifFalse:[
-		self error: self class invalidCartErrorDescription .
-	]! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:07:42'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:07:42'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:07:42'!
-ERROR!
-!CartSession class methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:08:12' prior: 50901826!
-for: aCart withTime: aTime withUser: aUser
-^self new intializeWith: aCart withTime: aTime withUser: aUser! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:08:22'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:08:24'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:08:26'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:08:26'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:08:26'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:08:26'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:08:26'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:08:26'!
+!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 16:43:32'!
 PASSED!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:08:26'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:08:26'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:08:33'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:08:33'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:08:33'!
-ERROR!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:08:47' prior: 50901940!
-addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:47:43'!
+setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId
 
-(cartSessionsByID includesKey: aCartId) ifTrue: [
-	
 	((((cartSessionsByID at: aCartId) timeOfLastUse ) +30 minutes )< aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
 	
-	(cartSessionsByID at: aCartId) setTimeTo: aTime.
+	(cartSessionsByID at: aCartId) setTimeTo: aTime.! !
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:11' prior: 50902163!
+addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
+
+(cartSessionsByID includesKey: aCartId) ifTrue: [
+	
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
 	
 	^((cartSessionsByID at: aCartId) cart) add: anAmount of: aProduct .
 	] 
@@ -564,346 +109,13 @@ addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 	]
 
 ! !
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:08:51'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:08:53'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:08:53'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:08:53'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:08:53'!
-ERROR!
-
-----SNAPSHOT----(3 December 2020 16:08:58) tusLibros-iteracion3.image priorSource: 18235840!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:09:00'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:09:01'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:09:03'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:09:04'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:09:06'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:09:09'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:09:11'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:09:13'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:09:15'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:09:16'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:09:16'!
-FAILURE!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:09:16'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:09:29'!
-PASSED!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:12:52' prior: 50901806!
-createCartForClient: aUser withPassword: aPassword atTime: aTime
-|authenticationResult iDOfCart|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailableCart .
-	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
-
-	(totalCostOfUserPurchases includesKey: aUser) ifFalse: [
-		totalCostOfUserPurchases at: aUser  put: 0.
-		(userPurchases at: aUser put: Bag new).
-	].
-	self increaseNextIdavailableCart 
-
-	
-	
-	^iDOfCart.
-	].! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:12:59'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:12:59'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:12:59'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:12:59'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:12:59'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:13:04'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:13:04'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:13:04'!
-ERROR!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:13:26' prior: 50902317!
-createCartForClient: aUser withPassword: aPassword atTime: aTime
-|authenticationResult iDOfCart|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailableCart .
-	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
-
-	(totalCostOfUserPurchases includesKey: aUser) ifFalse: [
-		totalCostOfUserPurchases at: aUser  put: 0.
-		(userPurchases at: aUser put: Bag new).
-	].
-	self increaseNextIdavailableCart .
-
-	
-	
-	^iDOfCart.
-	].! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:13:29'!
-PASSED!
-
-!classDefinition: #Store category: #TusLibros stamp: 'AS 12/3/2020 16:15:41'!
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook userPurchases totalCostOfUserPurchases cartSessionsByID userSession'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-!Store methodsFor: 'initialization' stamp: 'AS 12/3/2020 16:15:38' prior: 50901839!
-initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
-authenticator :=aAuthenticator.
-catalogue :=aCatalogue .
-
-nextIdavailableCart := 1.
-nextNumberAvailableTransaction:=1.
-
-salesBook := OrderedCollection new.
-
-cartSessionsByID:=Dictionary new.
-
-userSession := Dictionary new.
-! !
-
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartSessionsByID userSession'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #Store category: #TusLibros stamp: 'AS 12/3/2020 16:16:26'!
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartSessionsByID userSession'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:19:16' prior: 50902412!
-createCartForClient: aUser withPassword: aPassword atTime: aTime
-|authenticationResult iDOfCart|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailableCart .
-	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
-
-	(UserSession includesKey: aUser) ifFalse: [
-		UserSession create
-	].
-	self increaseNextIdavailableCart .
-
-	
-	
-	^iDOfCart.
-	].! !
-!UserSession class methodsFor: 'no messages' stamp: 'AS 12/3/2020 16:19:43'!
-create
-^self new initialize .! !
-
-!classDefinition: #UserSession category: #TusLibros stamp: 'AS 12/3/2020 16:20:46'!
-TestCase subclass: #UserSession
-	instanceVariableNames: 'purchases'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!classDefinition: #UserSession category: #TusLibros stamp: 'AS 12/3/2020 16:20:47'!
-TestCase subclass: #UserSession
-	instanceVariableNames: 'purchases totalPurchaseAmount'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-!UserSession methodsFor: 'no messages' stamp: 'AS 12/3/2020 16:20:45' overrides: 16896425!
-initialize
-purchases:=Bag new.
-totalPurchaseAmount := 0.! !
-!UserSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:21:15'!
-purchases
-^purchases.
-! !
-!UserSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:21:24'!
-totalPurchaseAmount 
-^totalPurchaseAmount.
-! !
-
-!classDefinition: #Store category: #TusLibros stamp: 'AS 12/3/2020 16:24:26'!
-Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartSessionsByID userSessionByUser'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:24:26' prior: 50902509!
-initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
-authenticator :=aAuthenticator.
-catalogue :=aCatalogue .
-
-nextIdavailableCart := 1.
-nextNumberAvailableTransaction:=1.
-
-salesBook := OrderedCollection new.
-
-cartSessionsByID:=Dictionary new.
-
-userSessionByUser := Dictionary new.
-! !
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:25:53' prior: 50901872!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:18' prior: 50902612!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
 |cashier saleValue userOfCart transactionNumber|
 
 (cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	(((cartSessionsByID at: aCartId)timeOfLastUse +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
-	
-	(cartSessionsByID at: aCartId) setTimeTo: aTime.
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
 	
 	cashier:= Cashier
 		toCheckout: ((cartSessionsByID at: aCartId) cart )
@@ -931,227 +143,107 @@ checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcesso
 		self error: self class invalidCartErrorDescription .
 	]
 ! !
-!UserSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:26:51'!
-addToTotalCostOfPurchases: aSaleValue
-totalPurchaseAmount := totalPurchaseAmount+ aSaleValue.! !
-!UserSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:27:35'!
-addPurchases: aBag
-! !
-!UserSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:27:54' prior: 50902655!
-addPurchases: aBag
-purchases addAll: aBag.! !
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:30:28' prior: 50900204!
-listPurchasesOfUser: aUser withPassword: aPassword
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:48:31' prior: 50902048!
+listCart: aCartId atTime: aTime
 
-|authenticationResult|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-
-authenticationResult ifTrue: [ 
-	(userSessionByUser includesKey: aUser) ifTrue: [^(userSessionByUser at: aUser)listTransactions]
-	ifFalse: [^((Bag new)->0). ]
-
-	].
-! !
-!UserSession methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:31:01'!
-listTransactions
-^(purchases )->(totalPurchaseAmount ) ! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:31:11'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:31:11'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:31:11'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:31:11'!
-PASSED!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:31:11'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:31:12'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:31:12'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:31:12'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:31:12'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:15'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:15'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:15'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:42'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:42'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:31:42'!
-ERROR!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:31:58' prior: 50902538!
-createCartForClient: aUser withPassword: aPassword atTime: aTime
-|authenticationResult iDOfCart|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailableCart .
-	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
-
-	(userSessionByUser includesKey: aUser) ifFalse: [
-		UserSession create
-	].
-	self increaseNextIdavailableCart .
-
+(cartSessionsByID includesKey: aCartId) ifTrue: [
 	
+	self setTimeTo: aTime andItsLessThan30MinutesAfterLastTimeItsUsedForCart: aCartId.
 	
-	^iDOfCart.
-	].! !
+	^(cartSessionsByID at: aCartId)cart contents.
+	] 
+	ifFalse:[
+		self error: self class invalidCartErrorDescription .
+	]! !
 
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:32:00'!
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:48:47'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:32:00'!
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:47'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:32:00'!
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:48:47'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:32:00'!
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:48:47'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:32:01'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:32:01'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:32:01'!
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:32:01'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:32:07'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:32:07'!
-ERROR!
-
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:32:07'!
-ERROR!
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:34:40' prior: 50902765!
-createCartForClient: aUser withPassword: aPassword atTime: aTime
-|authenticationResult iDOfCart|
-authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
-authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailableCart .
-	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
-
-	(userSessionByUser includesKey: aUser) ifFalse: [
-		userSessionByUser at: aUser put: (UserSession create).
-	].
-	self increaseNextIdavailableCart .
-
-	
-	
-	^iDOfCart.
-	].! !
-
-!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:34:42'!
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:34:42'!
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:48:48'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:34:43'!
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:53'!
 PASSED!
 
-----SNAPSHOT----(3 December 2020 16:34:48) tusLibros-iteracion3.image priorSource: 18259386!
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
 
-----SNAPSHOT----(3 December 2020 16:39:14) tusLibros-iteracion3.image priorSource: 18281382!
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 16:48:53'!
+PASSED!
+
+----SNAPSHOT----(3 December 2020 16:50:55) tusLibros-iteracion3.image priorSource: 18281476!
