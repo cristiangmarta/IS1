@@ -331,14 +331,14 @@ cartId := interface createCartForClient:(testObjectsFactory validUser) withPassw
 	
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 13:10:23'!
+!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:14:22'!
 test06CannotCheckoutCartWithInvalidID
 |interface  |
 
 	interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
 	
 	self
-		should: [interface checkOutCart: 1 debitingFrom: (testObjectsFactory notExpiredCreditCard ) .]
+		should: [interface checkOutCart: 1 debitingFrom: (testObjectsFactory notExpiredCreditCard ) withProcessor: self .]
 		raise: Error withMessageText: Store invalidCartErrorDescription.
 
 	
@@ -374,7 +374,7 @@ interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
 
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 13:15:14'!
+!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:12:05'!
 test09CheckingOutACartAddsPurchasesToItsUser
 
 |interface user password cartID cartExpectedContents expectedPrice|
@@ -394,6 +394,7 @@ test09CheckingOutACartAddsPurchasesToItsUser
 	cartExpectedContents:=Bag new .
 	cartExpectedContents add: (testObjectsFactory itemSellByTheStore) withOccurrences: 2.
 	expectedPrice := testObjectsFactory itemSellByTheStorePrice * 2.
+	
 	
 	self assert: ((interface listPurchasesOfUser: user withPassword: password) = ((cartExpectedContents )->expectedPrice )).
 ! !
@@ -844,7 +845,7 @@ addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 13:37:31'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:04:02'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
 |cashier saleValue userOfCart|
 
@@ -858,7 +859,7 @@ checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcesso
 		toCheckout: (cartsByID at: aCartId )
 		charging:  aCreditCard
 		throught: aMerchantProcessor
-		on:  (aTime day)
+		on:  (aTime)
 		registeringOn: (salesBook ).
 		
 		saleValue:= cashier checkOut.
@@ -875,7 +876,7 @@ checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcesso
 	]
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 13:51:15'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:01:46'!
 createCartForClient: aUser withPassword: aPassword atTime: aTime
 |authenticationResult iDOfCart|
 authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
@@ -886,8 +887,11 @@ authenticationResult ifTrue: [
 	userOfCartById at: iDOfCart put: aUser.
 	self increaseNextIdavailable .
 	
-	
-	
+	(totalCostOfUserPurchases includesKey: aUser) ifFalse: [
+		totalCostOfUserPurchases at: aUser  put: 0.
+		(userPurchases at: aUser put: Bag new).
+	].
+
 	
 	
 	^iDOfCart.
@@ -899,12 +903,12 @@ nextIdavailable := nextIdavailable + 1.
 
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 13:44:04'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:06:18'!
 initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
 authenticator :=aAuthenticator.
 catalogue :=aCatalogue .
 nextIdavailable := 1.
-salesBook := Dictionary new.
+salesBook := OrderedCollection new.
 
 cartsByID := Dictionary new.
 timeOfLastUseCartsByID := Dictionary new.
@@ -929,14 +933,14 @@ listCart: aCartId atTime: aTime
 		self error: self class invalidCartErrorDescription .
 	]! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 13:24:45'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:11:51'!
 listPurchasesOfUser: aUser withPassword: aPassword
 
 |authenticationResult|
 authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
 
 authenticationResult ifTrue: [ 
-	(userPurchases includesKey: aUser) ifTrue: [(userPurchases at: aUser)->totalCostOfUserPurchases at: aUser ]
+	(userPurchases includesKey: aUser) ifTrue: [^(userPurchases at: aUser)->(totalCostOfUserPurchases at: aUser) ]
 	ifFalse: [^((Bag new)->0). ]
 
 	].
