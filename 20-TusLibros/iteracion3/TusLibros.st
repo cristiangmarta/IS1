@@ -265,11 +265,47 @@ TestCase subclass: #InternalRestInterfaceTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 13:08:32'!
-debit: anAmount from: aCreditCard 
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:21:12'!
+test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID |interface listCart: cartID .].
+
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 03:41:19'!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:21:07'!
+test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID | interface addToCart: cartID theProduct: (testObjectsFactory  itemSellByTheStore ) withAmount: 2.]
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:21:01'!
+test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID | interface checkOutCart: cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.]
+
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:16:08'!
+thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: aBlock
+
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: [(aBlock value: interface value: cartID)]
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+! !
+
+
+!InternalRestInterfaceTest methodsFor: 'tests- valid operations' stamp: 'AS 12/3/2020 03:41:19'!
 test01NewCartsAreCreatedEmpty
 |interface cartId|
 
@@ -281,42 +317,7 @@ interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
 	self assert: (interface listCart: cartId) isEmpty.
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 06:58:54'!
-test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials
-|interface |
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-							
-							
-	self
-		should: [interface createCartForClient:(testObjectsFactory invalidUser) withPassword: (testObjectsFactory invalidPassword).]
-		raise: Error withMessageText: Authenticator wrongCredentialsErrorDescription.
-	
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 07:44:35'!
-test03cannotListACartIfThereIsNotACartWIthTheAskedId
-|interface |
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-interface createCartForClient:(testObjectsFactory validUser) withPassword: (testObjectsFactory validPassword).							
-	self
-		should: [interface listCart: 2]
-		raise: Error withMessageText: Store invalidCartErrorDescription.
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 08:12:15'!
-test04cannotAddToCartIfThereIsNotACartWithTheAskedId
-|interface |
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-							
-	self
-		should: [interface addToCart: 2 theProduct: (testObjectsFactory itemSellByTheStore) withAmount: 1.]
-		raise: Error withMessageText: Store invalidCartErrorDescription.
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 08:29:41'!
+!InternalRestInterfaceTest methodsFor: 'tests- valid operations' stamp: 'AS 12/3/2020 08:29:41'!
 test05ValidItemsAreAddedToCart
 |interface cartId cartExpectedContents|
 
@@ -331,20 +332,7 @@ cartId := interface createCartForClient:(testObjectsFactory validUser) withPassw
 	
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:14:22'!
-test06CannotCheckoutCartWithInvalidID
-|interface  |
-
-	interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-	
-	self
-		should: [interface checkOutCart: 1 debitingFrom: (testObjectsFactory notExpiredCreditCard ) withProcessor: self .]
-		raise: Error withMessageText: Store invalidCartErrorDescription.
-
-	
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 10:20:25'!
+!InternalRestInterfaceTest methodsFor: 'tests- valid operations' stamp: 'AS 12/3/2020 10:20:25'!
 test07PurchasesListFromAClientWithNoPurchasesIsEmpty
 
 |interface user password|
@@ -360,21 +348,7 @@ test07PurchasesListFromAClientWithNoPurchasesIsEmpty
 
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 10:24:27'!
-test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials
-|interface |
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-							
-							
-	self
-		should: [interface listPurchasesOfUser: (testObjectsFactory validUser) withPassword:  (testObjectsFactory invalidPassword ) .]
-		raise: Error withMessageText: Authenticator wrongCredentialsErrorDescription.
-	
-
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:12:05'!
+!InternalRestInterfaceTest methodsFor: 'tests- valid operations' stamp: 'AS 12/3/2020 14:12:05'!
 test09CheckingOutACartAddsPurchasesToItsUser
 
 |interface user password cartID cartExpectedContents expectedPrice|
@@ -399,7 +373,81 @@ test09CheckingOutACartAddsPurchasesToItsUser
 	self assert: ((interface listPurchasesOfUser: user withPassword: password) = ((cartExpectedContents )->expectedPrice )).
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 13:15:18'!
+
+!InternalRestInterfaceTest methodsFor: 'merchant processor' stamp: 'AS 12/3/2020 13:08:32'!
+debit: anAmount from: aCreditCard 
+! !
+
+
+!InternalRestInterfaceTest methodsFor: 'setUp' stamp: 'AS 12/2/2020 21:45:19'!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.! !
+
+
+!InternalRestInterfaceTest methodsFor: 'tests-errors' stamp: 'AS 12/3/2020 06:58:54'!
+test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials
+|interface |
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+							
+							
+	self
+		should: [interface createCartForClient:(testObjectsFactory invalidUser) withPassword: (testObjectsFactory invalidPassword).]
+		raise: Error withMessageText: Authenticator wrongCredentialsErrorDescription.
+	
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests-errors' stamp: 'AS 12/3/2020 07:44:35'!
+test03cannotListACartIfThereIsNotACartWIthTheAskedId
+|interface |
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+interface createCartForClient:(testObjectsFactory validUser) withPassword: (testObjectsFactory validPassword).							
+	self
+		should: [interface listCart: 2]
+		raise: Error withMessageText: Store invalidCartErrorDescription.
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests-errors' stamp: 'AS 12/3/2020 08:12:15'!
+test04cannotAddToCartIfThereIsNotACartWithTheAskedId
+|interface |
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+							
+	self
+		should: [interface addToCart: 2 theProduct: (testObjectsFactory itemSellByTheStore) withAmount: 1.]
+		raise: Error withMessageText: Store invalidCartErrorDescription.
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests-errors' stamp: 'AS 12/3/2020 14:14:22'!
+test06CannotCheckoutCartWithInvalidID
+|interface  |
+
+	interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+	
+	self
+		should: [interface checkOutCart: 1 debitingFrom: (testObjectsFactory notExpiredCreditCard ) withProcessor: self .]
+		raise: Error withMessageText: Store invalidCartErrorDescription.
+
+	
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests-errors' stamp: 'AS 12/3/2020 10:24:27'!
+test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials
+|interface |
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+							
+							
+	self
+		should: [interface listPurchasesOfUser: (testObjectsFactory validUser) withPassword:  (testObjectsFactory invalidPassword ) .]
+		raise: Error withMessageText: Authenticator wrongCredentialsErrorDescription.
+	
+
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests-errors' stamp: 'AS 12/3/2020 13:15:18'!
 test10CheckingOutACartRemovesItFromTheListOfValidCarts
 
 |interface user password cartID |
@@ -421,68 +469,8 @@ test10CheckingOutACartRemovesItFromTheListOfValidCarts
 
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 11:48:32'!
-test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
 
-|interface user password cartID|
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-
-user:= (testObjectsFactory validUser).
-password:=(testObjectsFactory validUser).
-
-cartID:= interface createCartForClient: user withPassword: password .
-
-interface changeClockTo: [DateAndTime now + 30 minutes].
-
-self
-		should: [interface listCart: cartID .]
-		raise: Error withMessageText: Store cartExpiredErrorDescription.
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 11:53:47'!
-test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
-
-|interface user password cartID|
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-
-user:= (testObjectsFactory validUser).
-password:=(testObjectsFactory validUser).
-
-cartID:= interface createCartForClient: user withPassword: password .
-
-interface changeClockTo: [DateAndTime now + 30 minutes].
-
-self
-		should: [interface addToCart: cartID theProduct: (testObjectsFactory  itemSellByTheStore ) withAmount: 2.]
-		raise: Error withMessageText: Store cartExpiredErrorDescription.
-
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 13:15:26'!
-test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
-
-|interface user password cartID|
-
-interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
-
-user:= (testObjectsFactory validUser).
-password:=(testObjectsFactory validUser).
-
-cartID:= interface createCartForClient: user withPassword: password .
-
-interface changeClockTo: [DateAndTime now + 30 minutes].
-
-
-self
-		should: [interface checkOutCart: cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.]
-		raise: Error withMessageText: Store cartExpiredErrorDescription.
-
-
-! !
-
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:22:08'!
+!InternalRestInterfaceTest methodsFor: 'tests-different ID' stamp: 'AS 12/3/2020 14:22:08'!
 test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId
 
 |interface user password cartID1 cartID2|
@@ -501,7 +489,7 @@ self deny: cartID1=cartID2.
 
 ! !
 
-!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:35:19'!
+!InternalRestInterfaceTest methodsFor: 'tests-different ID' stamp: 'AS 12/3/2020 14:56:57'!
 test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber
 
 |interface user password cartID checkoutNumber1 checkOutNumber2|
@@ -521,7 +509,7 @@ cartID:= interface createCartForClient: user withPassword: password .
 
 	interface addToCart: cartID theProduct: (testObjectsFactory itemSellByTheStore ) withAmount: 2.						
 
-checkOutNumber2:=interface checkOutCart:  cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self..
+checkOutNumber2:=interface checkOutCart:  cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.
 
 
 
@@ -529,13 +517,6 @@ checkOutNumber2:=interface checkOutCart:  cartID debitingFrom: testObjectsFactor
 self deny: checkoutNumber1=checkOutNumber2.
 
 ! !
-
-
-!InternalRestInterfaceTest methodsFor: 'setUp' stamp: 'AS 12/2/2020 21:45:19'!
-setUp 
-
-	testObjectsFactory := StoreTestObjectsFactory new.! !
-
 
 
 !classDefinition: #Authenticator category: #TusLibros!
@@ -793,38 +774,40 @@ Object subclass: #InternalRestInterface
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:55:29'!
+!InternalRestInterface methodsFor: 'interfaceOperations' stamp: 'AS 12/3/2020 11:55:29'!
 addToCart: aCartId theProduct: aProduct withAmount: anAmount
 store addToCart: aCartId theProduct: aProduct withAmount: anAmount atTime: (clock value).
 ! !
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 13:47:46'!
-changeClockTo: aClousure
-clock:=aClousure.! !
-
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:26:30'!
+!InternalRestInterface methodsFor: 'interfaceOperations' stamp: 'AS 12/3/2020 14:26:30'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor
 ^store checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: (clock value)
 
 ! !
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:42:18'!
+!InternalRestInterface methodsFor: 'interfaceOperations' stamp: 'AS 12/3/2020 11:42:18'!
 createCartForClient: aUser withPassword: aPassword
 ^store createCartForClient: aUser withPassword: aPassword atTime: (clock value).! !
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:19:57'!
+!InternalRestInterface methodsFor: 'interfaceOperations' stamp: 'AS 12/3/2020 11:26:38'!
+listCart: aCartId
+^store listCart: aCartId atTime: (clock value).! !
+
+!InternalRestInterface methodsFor: 'interfaceOperations' stamp: 'AS 12/3/2020 11:26:14'!
+listPurchasesOfUser: aUserId withPassword: aPassword
+^store listPurchasesOfUser: aUserId withPassword: aPassword! !
+
+
+!InternalRestInterface methodsFor: 'initialize' stamp: 'AS 12/3/2020 11:19:57'!
 initializeForStore:  aStore.
 
 store:=aStore .
 clock:=[DateAndTime now].! !
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:26:38'!
-listCart: aCartId
-^store listCart: aCartId atTime: (clock value).! !
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:26:14'!
-listPurchasesOfUser: aUserId withPassword: aPassword
-^store listPurchasesOfUser: aUserId withPassword: aPassword! !
+!InternalRestInterface methodsFor: 'change clock' stamp: 'AS 12/3/2020 13:47:46'!
+changeClockTo: aClousure
+clock:=aClousure.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -876,7 +859,39 @@ Object subclass: #Store
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:56:30'!
+!Store methodsFor: 'initialization' stamp: 'AS 12/3/2020 14:29:52'!
+initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
+authenticator :=aAuthenticator.
+catalogue :=aCatalogue .
+
+nextIdavailableCart := 1.
+nextNumberAvailableTransaction:=1.
+
+salesBook := OrderedCollection new.
+
+cartsByID := Dictionary new.
+timeOfLastUseCartsByID := Dictionary new.
+userOfCartById := Dictionary new.
+
+userPurchases := Dictionary new.
+totalCostOfUserPurchases := Dictionary new.
+! !
+
+
+!Store methodsFor: 'nextID' stamp: 'AS 12/3/2020 14:30:09'!
+increaseNextIdavailableCart
+nextIdavailableCart := nextIdavailableCart + 1.
+
+! !
+
+!Store methodsFor: 'nextID' stamp: 'AS 12/3/2020 14:31:05'!
+increaseNextNumberAvailableTransaction
+nextNumberAvailableTransaction := nextNumberAvailableTransaction + 1.
+
+! !
+
+
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 11:56:30'!
 addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 (cartsByID includesKey: aCartId) ifTrue: [
@@ -893,7 +908,7 @@ addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:33:46'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 14:33:46'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
 |cashier saleValue userOfCart transactionNumber|
 
@@ -931,7 +946,7 @@ checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcesso
 	]
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:30:09'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 14:30:09'!
 createCartForClient: aUser withPassword: aPassword atTime: aTime
 |authenticationResult iDOfCart|
 authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
@@ -952,37 +967,7 @@ authenticationResult ifTrue: [
 	^iDOfCart.
 	].! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:30:09'!
-increaseNextIdavailableCart
-nextIdavailableCart := nextIdavailableCart + 1.
-
-! !
-
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:31:05'!
-increaseNextNumberAvailableTransaction
-nextNumberAvailableTransaction := nextNumberAvailableTransaction + 1.
-
-! !
-
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:29:52'!
-initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
-authenticator :=aAuthenticator.
-catalogue :=aCatalogue .
-
-nextIdavailableCart := 1.
-nextNumberAvailableTransaction:=1.
-
-salesBook := OrderedCollection new.
-
-cartsByID := Dictionary new.
-timeOfLastUseCartsByID := Dictionary new.
-userOfCartById := Dictionary new.
-
-userPurchases := Dictionary new.
-totalCostOfUserPurchases := Dictionary new.
-! !
-
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 11:45:44'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 11:45:44'!
 listCart: aCartId atTime: aTime
 
 (cartsByID includesKey: aCartId) ifTrue: [
@@ -997,7 +982,7 @@ listCart: aCartId atTime: aTime
 		self error: self class invalidCartErrorDescription .
 	]! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:11:51'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 14:11:51'!
 listPurchasesOfUser: aUser withPassword: aPassword
 
 |authenticationResult|

@@ -406,3 +406,459 @@ PASSED!
 ----SNAPSHOT----(3 December 2020 14:35:57) tusLibros-iteracion3.image priorSource: 18215959!
 
 ----SNAPSHOT----(3 December 2020 14:37:07) tusLibros-iteracion3.image priorSource: 18216053!
+!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:56:57' prior: 50900863!
+test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber
+
+|interface user password cartID checkoutNumber1 checkOutNumber2|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+	interface addToCart: cartID theProduct: (testObjectsFactory itemSellByTheStore ) withAmount: 2.						
+
+checkoutNumber1:=interface checkOutCart:  cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+	interface addToCart: cartID theProduct: (testObjectsFactory itemSellByTheStore ) withAmount: 2.						
+
+checkOutNumber2:=interface checkOutCart:  cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.
+
+
+
+
+self deny: checkoutNumber1=checkOutNumber2.
+
+! !
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:01:05'!
+thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: aBlock
+
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: aBlock 
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+! !
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:04:40' prior: 50898423!
+test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID |interface listCart: cartID .].
+
+"
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: [interface listCart: cartID .]
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+"! !
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:08:59' prior: 50900942!
+thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: aBlock
+
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: (aBlock value: interface value: cartID )
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+! !
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:03'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:03'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:03'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:06'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:06'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:06'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:25'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:25'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:25'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:55'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 15:09:55'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:55'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:09:55'!
+ERROR!
+
+[:x :y| x+y] value:1 value: 2!
+
+([:x :y| x+y] value:1 value: 2 )!
+
+----SNAPSHOT----(3 December 2020 15:12:18) tusLibros-iteracion3.image priorSource: 18216147!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:12:54'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:13:01'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:13:01'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:13:02'!
+ERROR!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:13:36' prior: 50900985!
+thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: aBlock
+
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: (aBlock )
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+! !
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:13:43'!
+FAILURE!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:13:43'!
+FAILURE!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:13:43'!
+ERROR!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:14:14' prior: 50901148!
+thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: aBlock
+
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: (aBlock value: interface value: cartID)
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+! !
+
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:15'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 15:14:15'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:15'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:16'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:23'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:23'!
+ERROR!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:14:23'!
+ERROR!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:16:08' prior: 50901182!
+thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: aBlock
+
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: [(aBlock value: interface value: cartID)]
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+! !
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:16:10'!
+PASSED!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:20:01' prior: 50898508!
+test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID | interface addToCart: cartID theProduct: (testObjectsFactory  itemSellByTheStore ) withAmount: 2.]
+
+"
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+self
+		should: [interface addToCart: cartID theProduct: (testObjectsFactory  itemSellByTheStore ) withAmount: 2.]
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+
+"! !
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:20:02'!
+PASSED!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:20:54' prior: 50899391!
+test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID | interface checkOutCart: cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.]
+
+"
+|interface user password cartID|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+interface changeClockTo: [DateAndTime now + 30 minutes].
+
+
+self
+		should: [interface checkOutCart: cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.]
+		raise: Error withMessageText: Store cartExpiredErrorDescription.
+"
+
+! !
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:20:55'!
+PASSED!
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:21:01' prior: 50901350!
+test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID | interface checkOutCart: cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.]
+
+! !
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:21:07' prior: 50901316!
+test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID | interface addToCart: cartID theProduct: (testObjectsFactory  itemSellByTheStore ) withAmount: 2.]
+! !
+!InternalRestInterfaceTest methodsFor: 'tests- Life Expectancy Cart' stamp: 'AS 12/3/2020 15:21:12' prior: 50900961!
+test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError
+
+self thirtyMinutesHappenedSinceTheCartWasLastUsedWhenRunningBlock: [:interface :cartID |interface listCart: cartID .].
+
+! !
+
+----SNAPSHOT----(3 December 2020 15:22:53) tusLibros-iteracion3.image priorSource: 18223151!
+
+----SNAPSHOT----(3 December 2020 15:24:31) tusLibros-iteracion3.image priorSource: 18232587!
+
+!testRun: #InternalRestInterfaceTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test02creatingACartRisesAnErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test03cannotListACartIfThereIsNotACartWIthTheAskedId stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test04cannotAddToCartIfThereIsNotACartWithTheAskedId stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test05ValidItemsAreAddedToCart stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test06CannotCheckoutCartWithInvalidID stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test07PurchasesListFromAClientWithNoPurchasesIsEmpty stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test08ListingPurchasesRaiseAndErrorIfAuthenticatorDoesNotValidateCredentials stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test09CheckingOutACartAddsPurchasesToItsUser stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test10CheckingOutACartRemovesItFromTheListOfValidCarts stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test11ListingACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test12addingToACartIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test13tryingToCheckoutIf30MinutesHappenedSinceTheCartWasLastUsedShouldRaiseAnError stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #InternalRestInterfaceTest #test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber stamp: 'AS 12/3/2020 15:33:48'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+!testRun: #CartTest #test09CartContentsReturnsBagWithCartContent stamp: 'AS 12/3/2020 15:33:59'!
+PASSED!
+
+----SNAPSHOT----(3 December 2020 15:36:02) tusLibros-iteracion3.image priorSource: 18232681!
+
+----SNAPSHOT----(3 December 2020 15:36:30) tusLibros-iteracion3.image priorSource: 18235746!
