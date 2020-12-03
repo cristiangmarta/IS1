@@ -482,6 +482,54 @@ self
 
 ! !
 
+!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:22:08'!
+test14twoCartsCreatedOneAfterTheOtherShouldHaveDifferentId
+
+|interface user password cartID1 cartID2|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID1:= interface createCartForClient: user withPassword: password .
+
+cartID2:= interface createCartForClient: user withPassword: password .
+
+
+self deny: cartID1=cartID2.
+
+! !
+
+!InternalRestInterfaceTest methodsFor: 'tests' stamp: 'AS 12/3/2020 14:35:19'!
+test15twoCheckoutsOneAfterTheOtherShouldHaveDifferentNumber
+
+|interface user password cartID checkoutNumber1 checkOutNumber2|
+
+interface := InternalRestInterface forStore: testObjectsFactory defaultStore.
+
+user:= (testObjectsFactory validUser).
+password:=(testObjectsFactory validUser).
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+	interface addToCart: cartID theProduct: (testObjectsFactory itemSellByTheStore ) withAmount: 2.						
+
+checkoutNumber1:=interface checkOutCart:  cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self.
+
+cartID:= interface createCartForClient: user withPassword: password .
+
+	interface addToCart: cartID theProduct: (testObjectsFactory itemSellByTheStore ) withAmount: 2.						
+
+checkOutNumber2:=interface checkOutCart:  cartID debitingFrom: testObjectsFactory notExpiredCreditCard withProcessor: self..
+
+
+
+
+self deny: checkoutNumber1=checkOutNumber2.
+
+! !
+
 
 !InternalRestInterfaceTest methodsFor: 'setUp' stamp: 'AS 12/2/2020 21:45:19'!
 setUp 
@@ -754,9 +802,9 @@ store addToCart: aCartId theProduct: aProduct withAmount: anAmount atTime: (cloc
 changeClockTo: aClousure
 clock:=aClousure.! !
 
-!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 13:14:21'!
+!InternalRestInterface methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:26:30'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor
-store checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: (clock value)
+^store checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: (clock value)
 
 ! !
 
@@ -823,7 +871,7 @@ of: aTotal
 
 !classDefinition: #Store category: #TusLibros!
 Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailable salesBook cartsByID userPurchases totalCostOfUserPurchases timeOfLastUseCartsByID userOfCartById'
+	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartsByID userPurchases totalCostOfUserPurchases timeOfLastUseCartsByID userOfCartById'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -845,9 +893,9 @@ addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:04:02'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:33:46'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
-|cashier saleValue userOfCart|
+|cashier saleValue userOfCart transactionNumber|
 
 (cartsByID includesKey: aCartId) ifTrue: [
 	
@@ -870,22 +918,29 @@ checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcesso
 		
 	cartsByID removeKey: aCartId .
 		timeOfLastUseCartsByID removeKey: aCartId.
+		
+		
+		transactionNumber:=nextNumberAvailableTransaction .
+	
+	self increaseNextNumberAvailableTransaction .
+	
+	^transactionNumber.
 	] 
 	ifFalse:[
 		self error: self class invalidCartErrorDescription .
 	]
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:01:46'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:30:09'!
 createCartForClient: aUser withPassword: aPassword atTime: aTime
 |authenticationResult iDOfCart|
 authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
 authenticationResult ifTrue: [ 
-	iDOfCart:=nextIdavailable .
+	iDOfCart:=nextIdavailableCart .
 	cartsByID at: iDOfCart put: (Cart acceptingItemsOf: catalogue) .
 	timeOfLastUseCartsByID at: iDOfCart put: aTime.
 	userOfCartById at: iDOfCart put: aUser.
-	self increaseNextIdavailable .
+	self increaseNextIdavailableCart .
 	
 	(totalCostOfUserPurchases includesKey: aUser) ifFalse: [
 		totalCostOfUserPurchases at: aUser  put: 0.
@@ -897,17 +952,26 @@ authenticationResult ifTrue: [
 	^iDOfCart.
 	].! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 05:12:20'!
-increaseNextIdavailable
-nextIdavailable := nextIdavailable + 1.
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:30:09'!
+increaseNextIdavailableCart
+nextIdavailableCart := nextIdavailableCart + 1.
 
 ! !
 
-!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:06:18'!
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:31:05'!
+increaseNextNumberAvailableTransaction
+nextNumberAvailableTransaction := nextNumberAvailableTransaction + 1.
+
+! !
+
+!Store methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 14:29:52'!
 initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
 authenticator :=aAuthenticator.
 catalogue :=aCatalogue .
-nextIdavailable := 1.
+
+nextIdavailableCart := 1.
+nextNumberAvailableTransaction:=1.
+
 salesBook := OrderedCollection new.
 
 cartsByID := Dictionary new.
