@@ -1,3 +1,47 @@
+!classDefinition: #CartSession category: #TusLibros!
+TestCase subclass: #CartSession
+	instanceVariableNames: 'cart timeOfLastUse userOfCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!CartSession methodsFor: 'change content' stamp: 'AS 12/3/2020 16:00:14'!
+setTimeTo: aTime
+timeOfLastUse:=aTime.
+! !
+
+
+!CartSession methodsFor: 'get content' stamp: 'AS 12/3/2020 16:02:29'!
+cart
+^cart ! !
+
+!CartSession methodsFor: 'get content' stamp: 'AS 12/3/2020 16:01:26'!
+timeOfLastUse
+^timeOfLastUse 
+! !
+
+!CartSession methodsFor: 'get content' stamp: 'AS 12/3/2020 16:01:59'!
+userofCart
+^userOfCart ! !
+
+
+!CartSession methodsFor: 'initialization' stamp: 'AS 12/3/2020 15:52:34'!
+intializeWith: aCart withTime: aTime withUser: aUser
+cart:=aCart.
+timeOfLastUse:=aTime.
+userOfCart :=aUser .! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'CartSession class' category: #TusLibros!
+CartSession class
+	instanceVariableNames: ''!
+
+!CartSession class methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:08:12'!
+for: aCart withTime: aTime withUser: aUser
+^self new intializeWith: aCart withTime: aTime withUser: aUser! !
+
+
 !classDefinition: #CartTest category: #TusLibros!
 TestCase subclass: #CartTest
 	instanceVariableNames: 'testObjectsFactory'
@@ -519,6 +563,54 @@ self deny: checkoutNumber1=checkOutNumber2.
 ! !
 
 
+!classDefinition: #UserSession category: #TusLibros!
+TestCase subclass: #UserSession
+	instanceVariableNames: 'purchases totalPurchaseAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!UserSession methodsFor: 'transactions In Format Ready for output' stamp: 'AS 12/3/2020 16:31:01'!
+listTransactions
+^(purchases )->(totalPurchaseAmount ) ! !
+
+
+!UserSession methodsFor: 'set values' stamp: 'AS 12/3/2020 16:27:54'!
+addPurchases: aBag
+purchases addAll: aBag.! !
+
+!UserSession methodsFor: 'set values' stamp: 'AS 12/3/2020 16:26:51'!
+addToTotalCostOfPurchases: aSaleValue
+totalPurchaseAmount := totalPurchaseAmount+ aSaleValue.! !
+
+
+!UserSession methodsFor: 'information' stamp: 'AS 12/3/2020 16:21:15'!
+purchases
+^purchases.
+! !
+
+!UserSession methodsFor: 'information' stamp: 'AS 12/3/2020 16:21:24'!
+totalPurchaseAmount 
+^totalPurchaseAmount.
+! !
+
+
+!UserSession methodsFor: 'initialization' stamp: 'AS 12/3/2020 16:20:45'!
+initialize
+purchases:=Bag new.
+totalPurchaseAmount := 0.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'UserSession class' category: #TusLibros!
+UserSession class
+	instanceVariableNames: ''!
+
+!UserSession class methodsFor: 'as yet unclassified' stamp: 'AS 12/3/2020 16:19:43'!
+create
+^self new initialize .! !
+
+
 !classDefinition: #Authenticator category: #TusLibros!
 Object subclass: #Authenticator
 	instanceVariableNames: ''
@@ -559,7 +651,7 @@ authenticateUser: aUser withPassword: aPassword
 
 !classDefinition: #Cart category: #TusLibros!
 Object subclass: #Cart
-	instanceVariableNames: 'catalog items'
+	instanceVariableNames: 'items'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -854,12 +946,12 @@ of: aTotal
 
 !classDefinition: #Store category: #TusLibros!
 Object subclass: #Store
-	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartsByID userPurchases totalCostOfUserPurchases timeOfLastUseCartsByID userOfCartById'
+	instanceVariableNames: 'authenticator catalogue nextIdavailableCart nextNumberAvailableTransaction salesBook cartSessionsByID userSessionByUser'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Store methodsFor: 'initialization' stamp: 'AS 12/3/2020 14:29:52'!
+!Store methodsFor: 'initialization' stamp: 'AS 12/3/2020 16:24:26'!
 initializeWithAuthenticator: aAuthenticator withACatalogue: aCatalogue
 authenticator :=aAuthenticator.
 catalogue :=aCatalogue .
@@ -869,12 +961,9 @@ nextNumberAvailableTransaction:=1.
 
 salesBook := OrderedCollection new.
 
-cartsByID := Dictionary new.
-timeOfLastUseCartsByID := Dictionary new.
-userOfCartById := Dictionary new.
+cartSessionsByID:=Dictionary new.
 
-userPurchases := Dictionary new.
-totalCostOfUserPurchases := Dictionary new.
+userSessionByUser := Dictionary new.
 ! !
 
 
@@ -891,16 +980,16 @@ nextNumberAvailableTransaction := nextNumberAvailableTransaction + 1.
 ! !
 
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 11:56:30'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:08:47'!
 addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
-(cartsByID includesKey: aCartId) ifTrue: [
+(cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	(((timeOfLastUseCartsByID at: aCartId) +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
+	((((cartSessionsByID at: aCartId) timeOfLastUse ) +30 minutes )< aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
 	
-	timeOfLastUseCartsByID at: aCartId put: aTime.
+	(cartSessionsByID at: aCartId) setTimeTo: aTime.
 	
-	^(cartsByID at: aCartId) add: anAmount of: aProduct .
+	^((cartSessionsByID at: aCartId) cart) add: anAmount of: aProduct .
 	] 
 	ifFalse:[
 		self error: self class invalidCartErrorDescription .
@@ -908,33 +997,32 @@ addToCart: aCartId theProduct: aProduct withAmount: anAmount  atTime: aTime.
 
 ! !
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 14:33:46'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:25:53'!
 checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcessor atTime: aTime
 |cashier saleValue userOfCart transactionNumber|
 
-(cartsByID includesKey: aCartId) ifTrue: [
+(cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	(((timeOfLastUseCartsByID at: aCartId) +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
+	(((cartSessionsByID at: aCartId)timeOfLastUse +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
 	
-	timeOfLastUseCartsByID at: aCartId put: aTime.
+	(cartSessionsByID at: aCartId) setTimeTo: aTime.
 	
 	cashier:= Cashier
-		toCheckout: (cartsByID at: aCartId )
+		toCheckout: ((cartSessionsByID at: aCartId) cart )
 		charging:  aCreditCard
 		throught: aMerchantProcessor
 		on:  (aTime)
 		registeringOn: (salesBook ).
 		
 		saleValue:= cashier checkOut.
-		userOfCart:= userOfCartById at: aCartId .
+		userOfCart:= (cartSessionsByID at: aCartId) userofCart.
 		
-		totalCostOfUserPurchases at: userOfCart  put: (totalCostOfUserPurchases at: userOfCart)+saleValue.
-		(userPurchases at: userOfCart) addAll: ((cartsByID at: aCartId ) contents ).
+		(userSessionByUser at: userOfCart ) addToTotalCostOfPurchases: saleValue.
 		
-	cartsByID removeKey: aCartId .
-		timeOfLastUseCartsByID removeKey: aCartId.
+		(userSessionByUser at: userOfCart) addPurchases: (((cartSessionsByID at: aCartId ) cart) contents ).
 		
-		
+	cartSessionsByID removeKey: aCartId .
+
 		transactionNumber:=nextNumberAvailableTransaction .
 	
 	self increaseNextNumberAvailableTransaction .
@@ -946,50 +1034,47 @@ checkOutCart: aCartId debitingFrom: aCreditCard withProcessor: aMerchantProcesso
 	]
 ! !
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 14:30:09'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:34:40'!
 createCartForClient: aUser withPassword: aPassword atTime: aTime
 |authenticationResult iDOfCart|
 authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
 authenticationResult ifTrue: [ 
 	iDOfCart:=nextIdavailableCart .
-	cartsByID at: iDOfCart put: (Cart acceptingItemsOf: catalogue) .
-	timeOfLastUseCartsByID at: iDOfCart put: aTime.
-	userOfCartById at: iDOfCart put: aUser.
-	self increaseNextIdavailableCart .
-	
-	(totalCostOfUserPurchases includesKey: aUser) ifFalse: [
-		totalCostOfUserPurchases at: aUser  put: 0.
-		(userPurchases at: aUser put: Bag new).
+	cartSessionsByID at: iDOfCart put: (CartSession for: (Cart acceptingItemsOf: catalogue) withTime: aTime withUser: aUser).
+
+	(userSessionByUser includesKey: aUser) ifFalse: [
+		userSessionByUser at: aUser put: (UserSession create).
 	].
+	self increaseNextIdavailableCart .
 
 	
 	
 	^iDOfCart.
 	].! !
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 11:45:44'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:07:37'!
 listCart: aCartId atTime: aTime
 
-(cartsByID includesKey: aCartId) ifTrue: [
+(cartSessionsByID includesKey: aCartId) ifTrue: [
 	
-	(((timeOfLastUseCartsByID at: aCartId) +30 minutes ) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
+	((((cartSessionsByID at: aCartId)  timeOfLastUse) +30 minutes) < aTime) ifTrue: [self error: self class cartExpiredErrorDescription].
 	
-	timeOfLastUseCartsByID at: aCartId put: aTime.
+	(cartSessionsByID at: aCartId)  setTimeTo: aTime.
 	
-	^(cartsByID at: aCartId) contents.
+	^(cartSessionsByID at: aCartId)cart contents.
 	] 
 	ifFalse:[
 		self error: self class invalidCartErrorDescription .
 	]! !
 
-!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 14:11:51'!
+!Store methodsFor: 'operations' stamp: 'AS 12/3/2020 16:30:28'!
 listPurchasesOfUser: aUser withPassword: aPassword
 
 |authenticationResult|
 authenticationResult := authenticator authenticateUser: aUser withPassword: aPassword.
 
 authenticationResult ifTrue: [ 
-	(userPurchases includesKey: aUser) ifTrue: [^(userPurchases at: aUser)->(totalCostOfUserPurchases at: aUser) ]
+	(userSessionByUser includesKey: aUser) ifTrue: [^(userSessionByUser at: aUser)listTransactions]
 	ifFalse: [^((Bag new)->0). ]
 
 	].
